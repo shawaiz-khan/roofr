@@ -11,6 +11,26 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        purple: {
+          primary: "var(--purple-primary)",
+          secondary: "var(--purple-secondary)",
+          tertiary: "var(--purple-tertiary)",
+          light: "var(--purple-light)",
+        },
+        black: {
+          primary: "var(--black-primary)",
+          secondary: "var(--black-secondary)",
+          tertiary: "var(--black-tertiary)",
+        },
+        gray: {
+          primary: "var(--gray-primary)",
+          secondary: "var(--gray-secondary)",
+          tertiary: "var(--gray-tertiary)",
+        },
+        text: {
+          light: "var(--foreground)",
+          dark: "var(--background)",
+        }
       },
     },
   },
