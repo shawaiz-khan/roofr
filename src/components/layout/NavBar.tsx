@@ -45,7 +45,7 @@ const NavBar: React.FC = () => {
                 </div>
             )}
 
-            <div className="bg-black-secondary w-full px-5 md:px-8 py-4 flex justify-between items-center">
+            <div className="bg-black-secondary w-full px-5 md:px-8 py-4 flex justify-between items-center border-b border-black-tertiary">
                 <div className="flex justify-center items-end gap-2">
                     <Image src={Logo} alt="Roofr Logo" className="w-10" />
                     <h1 className="text-xl font-semibold">Roofr</h1>

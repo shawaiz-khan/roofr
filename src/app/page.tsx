@@ -2,7 +2,7 @@ import React from "react";
 
 const Home: React.FC = () => {
   return (
-    <>Hello World</>
+    <main className="p-5 min-h-screen bg-black-primary">Hello World</main>
   );
 }
 

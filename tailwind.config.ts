@@ -30,6 +30,10 @@ export default {
         text: {
           light: "var(--foreground)",
           dark: "var(--background)",
+        },
+        stroke: {
+          grey: "var(--stroke-grey)",
+          dark: "var(--stroke-dark)",
         }
       },
     },
