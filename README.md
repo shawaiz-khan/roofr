@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Roofr
+
+Roofr is a real estate website designed to help users browse, buy, sell, or rent properties. This project is built with Next.js and TypeScript, providing a seamless, modern web experience.
+
+## Features
+
+- **Property Listings**: Browse a variety of property listings including homes, apartments, and commercial spaces.
+- **Property Search**: Search for properties based on location, price range, and other filters.
+- **Real-time Updates**: Stay up-to-date with the latest property listings and market trends.
+- **User Authentication**: (If implemented) Users can sign up, log in, and save favorite properties.
+
+## Technologies Used
+
+- **Next.js**: A React-based framework for building modern web applications.
+- **TypeScript**: A superset of JavaScript that adds static typing, improving code quality and maintainability.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **MongoDB**: (If applicable) A NoSQL database used to store property data and user information.
+- **Vercel**: For deploying the Next.js application (optional).
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Before you begin, make sure you have the following installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/) (optional, but recommended)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/shawaiz-khan/roofr.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Navigate to the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd roofr
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Install the dependencies:
 
-## Deploy on Vercel
+   ```bash
+   yarn install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   or, if using npm:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   ```
+
+4. Set up your environment variables (if any). Create a `.env.local` file in the root of the project and add your configurations (e.g., MongoDB connection strings, API keys, etc.).
+
+5. Start the development server:
+
+   ```bash
+   yarn dev
+   ```
+
+   or, if using npm:
+
+   ```bash
+   npm run dev
+   ```
+
+   Your app should now be running on `http://localhost:3000`.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository, create a feature branch, and submit a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
