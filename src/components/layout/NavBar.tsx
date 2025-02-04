@@ -22,7 +22,7 @@ const NavBar: React.FC = () => {
     return (
         <nav className="text-text-light flex flex-col justify-between items-center relative">
             {isModal && (
-                <div className="bg-black-secondary border-b border-black-tertiary flex justify-center items-center relative overflow-hidden w-full h-full px-3 py-4">
+                <div className="bg-black-secondary border-b border-stroke-grey flex justify-center items-center relative overflow-hidden w-full h-full px-3 py-4">
                     <div className="text-xs md:text-sm z-10 flex justify-between md:justify-center items-center w-full">
                         <div className="flex justify-center items-center gap-2 w-full">
                             <span>✨ Discover Your Dream Property with Roofr</span>
@@ -45,7 +45,7 @@ const NavBar: React.FC = () => {
                 </div>
             )}
 
-            <div className="bg-black-secondary w-full px-5 md:px-8 py-4 flex justify-between items-center border-b border-black-tertiary">
+            <div className="bg-black-secondary w-full px-5 md:px-8 py-4 flex justify-between items-center border-b border-stroke-grey">
                 <div className="flex justify-center items-end gap-2">
                     <Image src={Logo} alt="Roofr Logo" className="w-10" />
                     <h1 className="text-xl font-semibold">Roofr</h1>
@@ -56,8 +56,7 @@ const NavBar: React.FC = () => {
                         <li key={navItem.path}>
                             <Link
                                 href={navItem.path}
-                                className={`text-md px-3 py-2 cursor-pointer rounded-md ${pathname === navItem.path ? "bg-black-primary border border-black-tertiary" : ""
-                                    }`}
+                                className={`text-md px-3 py-2 cursor-pointer rounded-md ${pathname === navItem.path ? "bg-black-primary border border-stroke-grey" : ""}`}
                             >
                                 {navItem.name}
                             </Link>
@@ -65,7 +64,7 @@ const NavBar: React.FC = () => {
                     ))}
                 </ul>
 
-                <button className="hidden md:block bg-black-primary border border-black-tertiary px-3 py-2 rounded-md cursor-pointer">
+                <button className="hidden md:block bg-black-primary border border-stroke-dark px-3 py-2 rounded-md cursor-pointer">
                     <Link href={"/contact"}>Contact</Link>
                 </button>
 
@@ -86,7 +85,7 @@ const NavBar: React.FC = () => {
                         />
 
                         <motion.div
-                            className="fixed top-0 right-0 h-full w-64 bg-black-primary border-l border-black-tertiary shadow-xl z-50 p-6 flex flex-col"
+                            className="fixed top-0 right-0 h-full w-64 bg-black-primary border-l border-stroke-grey shadow-xl z-50 p-6 flex flex-col"
                             initial={{ x: "100%" }}
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
@@ -108,7 +107,7 @@ const NavBar: React.FC = () => {
                                     </li>
                                 ))}
                                 <button
-                                    className="block bg-black-primary border border-black-tertiary px-4 py-3 rounded-md cursor-pointer"
+                                    className="block bg-black-primary border border-stroke-grey px-4 py-3 rounded-md cursor-pointer"
                                 >
                                     <Link href={"/contact"}>Contact</Link>
                                 </button>
