@@ -38,9 +38,9 @@ const NavBar: React.FC = () => {
                     <Image
                         src={HeaderGraphic}
                         alt="Header Graphic"
-                        layout="fill"
-                        objectFit="cover"
-                        className="absolute inset-0"
+                        fill
+                        className="absolute inset-0 object-cover"
+                        priority
                     />
                 </div>
             )}
@@ -66,7 +66,7 @@ const NavBar: React.FC = () => {
                 </ul>
 
                 <button className="hidden md:block bg-black-primary border border-black-tertiary px-3 py-2 rounded-md cursor-pointer">
-                    Contact
+                    <Link href={"/contact"}>Contact</Link>
                 </button>
 
                 <button onClick={handleMenu} className="block md:hidden">
@@ -107,12 +107,17 @@ const NavBar: React.FC = () => {
                                         </Link>
                                     </li>
                                 ))}
+                                <button
+                                    className="block bg-black-primary border border-black-tertiary px-4 py-3 rounded-md cursor-pointer"
+                                >
+                                    <Link href={"/contact"}>Contact</Link>
+                                </button>
                             </ul>
                         </motion.div>
                     </>
                 )}
             </AnimatePresence>
-        </nav>
+        </nav >
     );
 };
 
