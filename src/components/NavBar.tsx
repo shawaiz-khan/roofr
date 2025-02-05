@@ -46,9 +46,9 @@ const NavBar: React.FC = () => {
             )}
 
             <div className="bg-black-secondary w-full px-5 md:px-8 py-4 flex justify-between items-center border-b border-stroke-grey">
-                <div className="flex justify-center items-end gap-2">
+                <div className="flex items-end gap-2">
                     <Image src={Logo} alt="Roofr Logo" className="w-10" />
-                    <h1 className="text-xl font-semibold">Roofr</h1>
+                    <h1 className="text-2xl leading-none">Roofr</h1>
                 </div>
 
                 <ul className="hidden md:flex justify-center items-center gap-5">
