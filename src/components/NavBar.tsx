@@ -56,7 +56,7 @@ const NavBar: React.FC = () => {
                         <li key={navItem.path}>
                             <Link
                                 href={navItem.path}
-                                className={`text-md px-3 py-2 cursor-pointer rounded-md ${pathname === navItem.path ? "bg-black-primary border border-stroke-grey" : ""}`}
+                                className={`text-md px-4 py-3 cursor-pointer rounded-md ${pathname === navItem.path ? "bg-black-primary border border-stroke-grey" : ""}`}
                             >
                                 {navItem.name}
                             </Link>
@@ -65,7 +65,7 @@ const NavBar: React.FC = () => {
                 </ul>
 
                 <button className="hidden md:block bg-black-primary border border-stroke-dark px-3 py-2 rounded-md cursor-pointer">
-                    <Link href={"/contact"}>Contact</Link>
+                    <Link href={"/login"}>Login</Link>
                 </button>
 
                 <button onClick={handleMenu} className="block md:hidden">
@@ -109,7 +109,7 @@ const NavBar: React.FC = () => {
                                 <button
                                     className="block bg-black-primary border border-stroke-grey px-4 py-3 rounded-md cursor-pointer"
                                 >
-                                    <Link href={"/contact"}>Contact</Link>
+                                    <Link href={"/login"}>Login</Link>
                                 </button>
                             </ul>
                         </motion.div>
