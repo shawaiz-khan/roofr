@@ -3,10 +3,12 @@ import React from "react";
 import heroImg from '@/assets/images/hero.jpg';
 import RoundTextSvg from "@/components/RoundTextSvg";
 import RatingBlock from "@/components/RatingBlock";
+import FeaturesBlock from "@/components/FeaturesBlock";
 
 const Home: React.FC = () => {
   return (
-    <main className="p-5 md:p-0 min-h-screen bg-black-primary text-text-light">
+    <main className="p-5 md:p-0 min-h-screen flex flex-col gap-10 md:gap-0 bg-black-primary text-text-light">
+      {/* Hero */}
       <div className="flex flex-col gap-10 md:grid md:grid-cols-2 md:min-h-[75vh]">
         <div className="relative h-80 md:h-full md:order-last">
           <Image
@@ -35,6 +37,10 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* Featured Cards  */}
+      <div className="z-10">
+        <FeaturesBlock />
       </div>
     </main>
   );
