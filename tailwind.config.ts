@@ -26,6 +26,7 @@ export default {
           primary: "var(--gray-primary)",
           secondary: "var(--gray-secondary)",
           tertiary: "var(--gray-tertiary)",
+          quaternary: "var(--gray-quaternary)",
         },
         text: {
           light: "var(--foreground)",
@@ -36,6 +37,11 @@ export default {
           dark: "var(--stroke-dark)",
         }
       },
+      safelist: [
+        {
+          pattern: /(bg|text|border)-(purple|black|gray|text|stroke)-(primary|secondary|tertiary|light|quaternary|dark|grey)/,
+        },
+      ],
     },
   },
   plugins: [],
