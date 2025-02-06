@@ -82,7 +82,7 @@ const CreateAccount: React.FC = () => {
                     <span className="text-xs text-gray-quaternary text-center">Enter credentials to create a new account</span>
                 </div>
                 <div className="space-y-4 w-full">
-                    <div className="space-y-4 w-full md:flex md:space-y-0 md:space-x-4">
+                    <div className="space-y-4 w-full md:grid md:grid-cols-2 md:space-y-0 md:gap-3">
                         <input
                             type="text"
                             placeholder="Full Name"
@@ -100,7 +100,7 @@ const CreateAccount: React.FC = () => {
                             className={inputStyle}
                         />
                     </div>
-                    <div className="space-y-4 w-full md:flex md:space-y-0 md:space-x-4">
+                    <div className="space-y-4 w-full md:grid md:grid-cols-2 md:space-y-0 md:gap-3">
                         <input
                             type="text"
                             placeholder="Phone"
@@ -166,19 +166,21 @@ const CreateAccount: React.FC = () => {
                     </label>
                 </div>
                 {error && <span className="text-red-500 text-xs">{error}</span>}
-                <button
-                    type="submit"
-                    className="w-full py-3 bg-purple-primary text-white rounded-md focus:ring-2 focus:ring-purple-primary transition-all"
-                >
-                    Create Account
-                </button>
-                <div className="flex justify-between w-full text-xs text-gray-quaternary mt-3">
-                    <Link href="/contact">
-                        Need Help?
-                    </Link>
-                    <Link href="/auth/login">
-                        Already have an Account? Log In
-                    </Link>
+                <div className="space-y-2 w-full">
+                    <button
+                        type="submit"
+                        className="w-full py-3 bg-purple-primary text-white rounded-md focus:ring-2 focus:ring-purple-primary transition-all"
+                    >
+                        Create Account
+                    </button>
+                    <div className="flex justify-between w-full text-xs text-gray-quaternary mt-3">
+                        <Link href="/contact">
+                            Need Help?
+                        </Link>
+                        <Link href="/auth/login">
+                            Already have an Account? Log In
+                        </Link>
+                    </div>
                 </div>
             </form>
 

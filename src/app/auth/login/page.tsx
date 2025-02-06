@@ -75,19 +75,21 @@ const Login: React.FC = () => {
                     />
                 </div>
                 {error && <span className="text-red-500 text-xs">{error}</span>}
-                <button
-                    type="submit"
-                    className="w-full py-3 bg-purple-primary text-white rounded-md focus:ring-2 focus:ring-purple-primary transition-all"
-                >
-                    Log In
-                </button>
-                <div className="flex justify-between w-full text-xs text-gray-quaternary mt-3">
-                    <Link href="/contact">
-                        Need Help?
-                    </Link>
-                    <Link href="/auth/create-account">
-                        Create an Account
-                    </Link>
+                <div className="w-full space-y-2">
+                    <button
+                        type="submit"
+                        className="w-full py-3 bg-purple-primary text-white rounded-md focus:ring-2 focus:ring-purple-primary transition-all"
+                    >
+                        Log In
+                    </button>
+                    <div className="flex justify-between w-full text-xs text-gray-quaternary mt-3">
+                        <Link href="/contact">
+                            Need Help?
+                        </Link>
+                        <Link href="/auth/create-account">
+                            Create an Account
+                        </Link>
+                    </div>
                 </div>
             </form>
 
