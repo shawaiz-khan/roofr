@@ -5,11 +5,12 @@ import Image from 'next/image';
 import { FooterAboutItems, FooterContactItems, FooterHomeItems, FooterPropertiesItems, FooterServicesItems } from '@/constants/footerPaths';
 import Link from 'next/link';
 import FooterBlock from './FooterBlock';
+import FooterSocials from './FooterSocials';
 
 const Footer: React.FC = () => {
     return (
-        <div className="px-5 py-10 bg-black-primary border-t border-black-tertiary flex flex-col gap-10">
-            <div className="flex flex-col gap-5">
+        <div className="pt-10 bg-black-primary border-t border-black-tertiary flex flex-col gap-10">
+            <div className="px-5 flex flex-col gap-5">
                 <div className="flex items-end gap-2">
                     <Image src={Logo} alt="Roofr Logo" className="w-10" />
                     <h1 className="text-2xl text-text-light leading-none">Roofr</h1>
@@ -26,7 +27,7 @@ const Footer: React.FC = () => {
                     </button>
                 </div>
             </div>
-            <div className="grid grid-cols-2 gap-5 w-full">
+            <div className="px-5 grid grid-cols-2 gap-5 w-full">
                 <div className='flex flex-col gap-5 border-r border-black-tertiary pr-4'>
                     <FooterBlock title="Home">
                         {FooterHomeItems.map((item) => (
@@ -70,6 +71,7 @@ const Footer: React.FC = () => {
                     </FooterBlock>
                 </div>
             </div>
+            <FooterSocials />
         </div>
     );
 }
