@@ -22,14 +22,19 @@ export const FooterPropertiesItems: FooterItemProps[] = [
 ];
 
 export const FooterServicesItems: FooterItemProps[] = [
-    { name: "Valuation Mastery", path: "/services#valuation-mastery" },
-    { name: "Strategic Marketing", path: "/services#strategic-marketing" },
-    { name: "Negotiation Wizardry", path: "/services#negotiation-wizardry" },
+    { name: "Valuation", path: "/services#valuation-mastery" },
+    { name: "Marketing", path: "/services#strategic-marketing" },
+    { name: "Negotiation", path: "/services#negotiation-wizardry" },
     { name: "Closing Success", path: "/services#closing-success" },
-    { name: "Property Management", path: "/services#property-management" },
+    { name: "Management", path: "/services#property-management" },
 ];
 
 export const FooterContactItems: FooterItemProps[] = [
     { name: "Contact Form", path: "/contact#form" },
     { name: "Our Offices", path: "/contact#offices" },
+];
+
+export const FooterUserItems: FooterItemProps[] = [
+    { name: "Login", path: "/login" },
+    { name: "Create Account", path: "/create-account" },
 ];
