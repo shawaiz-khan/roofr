@@ -11,8 +11,10 @@ const CreateAccount: React.FC = () => {
         phone: "",
         userType: "",
         password: "",
+        confirmPassword: "",
         location: "",
         terms: false,
+        role: "user"
     });
     const [error, setError] = useState("");
 
@@ -41,6 +43,9 @@ const CreateAccount: React.FC = () => {
         } else if (!emailPattern.test(signupForm.email)) {
             setError("Email is Invalid, Try Again!");
             return false;
+        } else if (signupForm.password !== signupForm.confirmPassword) {
+            setError("Passwords do not match!");
+            return false;
         } else if (!signupForm.terms) {
             setError("You must agree to the terms and conditions!");
             return false;
@@ -60,8 +65,10 @@ const CreateAccount: React.FC = () => {
             phone: "",
             userType: "",
             password: "",
+            confirmPassword: "",
             location: "",
             terms: false,
+            role: "user"
         });
     };
 
@@ -69,53 +76,66 @@ const CreateAccount: React.FC = () => {
 
     return (
         <div className="relative min-h-screen overflow-hidden bg-black-primary flex justify-center items-center py-10">
-            <form onSubmit={handleSubmit} className="bg-black-secondary px-5 py-10 max-w-xs w-full rounded-md border border-black-tertiary shadow-lg text-text-light flex flex-col items-center justify-center gap-5 z-10">
+            <form onSubmit={handleSubmit} className="bg-black-secondary px-5 py-10 max-w-xs md:max-w-lg w-full rounded-md border border-black-tertiary shadow-lg text-text-light flex flex-col items-center justify-center gap-5 z-10">
                 <div className="flex flex-col justify-center items-center space-y-2">
                     <h1 className="text-2xl font-normal text-center text-text-light">Create a New Account</h1>
                     <span className="text-xs text-gray-quaternary text-center">Enter credentials to create a new account</span>
                 </div>
-                <div className="space-y-3 w-full">
-                    <input
-                        type="text"
-                        placeholder="Full Name"
-                        name="name"
-                        value={signupForm.name}
-                        onChange={handleOnChange}
-                        className={inputStyle}
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email Address"
-                        name="email"
-                        value={signupForm.email}
-                        onChange={handleOnChange}
-                        className={inputStyle}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Phone"
-                        name="phone"
-                        value={signupForm.phone}
-                        onChange={handleOnChange}
-                        className={inputStyle}
-                    />
-                    <div className="relative">
-                        <select
-                            name="userType"
-                            value={signupForm.userType}
+                <div className="space-y-4 w-full">
+                    <div className="space-y-4 w-full md:flex md:space-y-0 md:space-x-4">
+                        <input
+                            type="text"
+                            placeholder="Full Name"
+                            name="name"
+                            value={signupForm.name}
                             onChange={handleOnChange}
-                            className={`${inputStyle} appearance-none pr-10`}
-                        >
-                            <option value="" disabled>Select User Type</option>
-                            <option value="Buyer">Buyer</option>
-                            <option value="Seller">Seller</option>
-                            <option value="Agent">Agent</option>
-                            <option value="Investor">Investor</option>
-                        </select>
-                        <ArrowDownCircleIcon
-                            className="absolute inset-y-0 right-2 translate-y-1/2 text-gray-primary pointer-events-none"
+                            className={inputStyle}
+                        />
+                        <input
+                            type="email"
+                            placeholder="Email Address"
+                            name="email"
+                            value={signupForm.email}
+                            onChange={handleOnChange}
+                            className={inputStyle}
                         />
                     </div>
+                    <div className="space-y-4 w-full md:flex md:space-y-0 md:space-x-4">
+                        <input
+                            type="text"
+                            placeholder="Phone"
+                            name="phone"
+                            value={signupForm.phone}
+                            onChange={handleOnChange}
+                            className={inputStyle}
+                        />
+                        <div className="relative w-full">
+                            <select
+                                name="userType"
+                                value={signupForm.userType}
+                                onChange={handleOnChange}
+                                className={`${inputStyle} appearance-none pr-10`}
+                            >
+                                <option value="" disabled>Select User Type</option>
+                                <option value="Buyer">Buyer</option>
+                                <option value="Seller">Seller</option>
+                                <option value="Agent">Agent</option>
+                                <option value="Investor">Investor</option>
+                            </select>
+                            <ArrowDownCircleIcon
+                                size={20}
+                                className="absolute inset-y-0 right-3 translate-y-2/3 text-gray-tertiary pointer-events-none"
+                            />
+                        </div>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Location (Optional)"
+                        name="location"
+                        value={signupForm.location}
+                        onChange={handleOnChange}
+                        className={inputStyle}
+                    />
                     <input
                         type="password"
                         placeholder="Enter Your Password"
@@ -125,10 +145,10 @@ const CreateAccount: React.FC = () => {
                         className={inputStyle}
                     />
                     <input
-                        type="text"
-                        placeholder="Location (Optional)"
-                        name="location"
-                        value={signupForm.location}
+                        type="password"
+                        placeholder="Confirm Your Password"
+                        name="confirmPassword"
+                        value={signupForm.confirmPassword}
                         onChange={handleOnChange}
                         className={inputStyle}
                     />
