@@ -1,42 +1,23 @@
-/* eslint-disable no-var */
-import { MongoClient, Db } from 'mongodb';
+import mongoose from 'mongoose';
 
-const uri: string = process.env.MONGODB_URI as string;
+const URI = process.env.MONGODB_URI;
 
-if (!uri) {
-    throw new Error("MONGODB_URI is missing in .env file");
+if (!URI) {
+    throw new Error("Please define the MONGODB_URI environment variable inside .env");
 }
 
-let clientPromise: Promise<MongoClient>;
-
-declare global {
-    var _mongoCLientPromise: Promise<MongoClient> | undefined;
-}
-
-const connectDb = async (): Promise<Db> => {
-    const client = await clientPromise;
-    const db = client.db("roofr_db");
-
+const connectDB = async () => {
     try {
-        await db.command({ ping: 1 });
-        console.log("MongoDB connected successfully!");
+        if (mongoose.connection.readyState >= 1) {
+            return;
+        }
+        await mongoose.connect(URI, {
+            dbName: "roofr_db",
+        });
+        console.log("MongoDB connected");
     } catch (err) {
-        console.error("MongoDB connection failed:", err);
-        throw new Error("Failed to connect to MongoDB");
+        console.error("MongoDB connection error:", err);
     }
+};
 
-    return db;
-}
-
-if (process.env.NODE_ENV === "development") {
-    if (!globalThis._mongoCLientPromise) {
-        const client = new MongoClient(uri);
-        globalThis._mongoCLientPromise = client.connect();
-    }
-    clientPromise = globalThis._mongoCLientPromise;
-} else {
-    const client = new MongoClient(uri);
-    clientPromise = client.connect();
-}
-
-export default connectDb;
+export default connectDB;
