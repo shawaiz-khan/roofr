@@ -65,7 +65,7 @@ const NavBar: React.FC = () => {
                 </ul>
 
                 <button className="hidden md:block bg-black-primary border border-stroke-dark px-3 py-2 rounded-md cursor-pointer">
-                    <Link href={"/login"}>Login</Link>
+                    <Link href={"/auth/login"}>Login</Link>
                 </button>
 
                 <button onClick={handleMenu} className="block md:hidden">
@@ -109,7 +109,7 @@ const NavBar: React.FC = () => {
                                 <button
                                     className="block bg-black-primary border border-stroke-grey px-4 py-3 rounded-md cursor-pointer"
                                 >
-                                    <Link href={"/login"}>Login</Link>
+                                    <Link href={"/auth/login"}>Login</Link>
                                 </button>
                             </ul>
                         </motion.div>
