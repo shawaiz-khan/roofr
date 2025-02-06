@@ -33,7 +33,6 @@ const UserSchema = new Schema<IUser>(
             type: Boolean,
             required: true
         },
-        profilePicture: { type: String },
         role: {
             type:
                 String,

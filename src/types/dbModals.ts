@@ -8,7 +8,6 @@ export default interface IUser extends Document {
     password: string;
     location?: string;
     terms: boolean;
-    profilePicture?: string;
     createdAt?: Date;
     updatedAt?: Date;
     role: "user" | "admin";

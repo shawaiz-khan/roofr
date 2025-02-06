@@ -1,11 +1,10 @@
-import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db';
 import { registerUser } from '@/controllers/authController';
+import connectDB from "@/lib/db";
+import { NextRequest } from "next/server";
 
 connectDB();
 
-export async function POST(req: Request) {
-    const body = await req.json();
-
+export async function POST(request: NextRequest) {
+    const body = await request.json();
     return registerUser(body);
 }
