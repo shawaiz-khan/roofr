@@ -2,10 +2,13 @@ import Logo from '@/assets/svg/logo.svg';
 import SendIcon from '@/assets/svg/Send.svg';
 import MailIcon from '@/assets/svg/Mail.svg';
 import Image from 'next/image';
+import { FooterAboutItems, FooterContactItems, FooterHomeItems, FooterPropertiesItems, FooterServicesItems } from '@/constants/footerPaths';
+import Link from 'next/link';
+import FooterBlock from './FooterBlock';
 
 const Footer: React.FC = () => {
     return (
-        <div className="p-5 bg-black-primary border-t border-black-tertiary flex flex-col gap-10">
+        <div className="px-5 py-10 bg-black-primary border-t border-black-tertiary flex flex-col gap-10">
             <div className="flex flex-col gap-5">
                 <div className="flex items-end gap-2">
                     <Image src={Logo} alt="Roofr Logo" className="w-10" />
@@ -16,11 +19,55 @@ const Footer: React.FC = () => {
                     <input
                         type="text"
                         placeholder='Enter Your Email'
-                        className='bg-transparent border border-black-tertiary w-full pl-11 pr-10 py-3 rounded-md placeholder:text-sm placeholder:text-gray-tertiary outline-none focus:ring-2 focus:ring-inset focus:ring-gray-quaternary'
+                        className='bg-transparent border border-black-tertiary text-gray-tertiary w-full pl-11 pr-10 py-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary'
                     />
                     <button className='absolute right-4 top-1/2 -translate-y-1/2'>
                         <Image src={SendIcon} alt="Send Message" className="w-5" title='Send Message' />
                     </button>
+                </div>
+            </div>
+            <div className="grid grid-cols-2 gap-5 w-full">
+                <div className='flex flex-col gap-5 border-r border-black-tertiary pr-4'>
+                    <FooterBlock title="Home">
+                        {FooterHomeItems.map((item) => (
+                            <Link key={item.path} href={item.path}>
+                                <li className="text-text-light text-sm hover:text-white transition">{item.name}</li>
+                            </Link>
+                        ))}
+                    </FooterBlock>
+
+                    <FooterBlock title="Properties">
+                        {FooterPropertiesItems.map((item) => (
+                            <Link key={item.path} href={item.path}>
+                                <li className="text-text-light text-sm hover:text-white transition">{item.name}</li>
+                            </Link>
+                        ))}
+                    </FooterBlock>
+
+                    <FooterBlock title="Contact Us">
+                        {FooterContactItems.map((item) => (
+                            <Link key={item.path} href={item.path}>
+                                <li className="text-text-light text-sm hover:text-white transition">{item.name}</li>
+                            </Link>
+                        ))}
+                    </FooterBlock>
+                </div>
+                <div className='flex flex-col gap-5'>
+                    <FooterBlock title="About Us">
+                        {FooterAboutItems.map((item) => (
+                            <Link key={item.path} href={item.path}>
+                                <li className="text-text-light text-sm hover:text-white transition">{item.name}</li>
+                            </Link>
+                        ))}
+                    </FooterBlock>
+
+                    <FooterBlock title="Services">
+                        {FooterServicesItems.map((item) => (
+                            <Link key={item.path} href={item.path}>
+                                <li className="text-text-light text-sm hover:text-white transition">{item.name}</li>
+                            </Link>
+                        ))}
+                    </FooterBlock>
                 </div>
             </div>
         </div>

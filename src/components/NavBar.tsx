@@ -6,9 +6,9 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/assets/svg/logo.svg";
-import navItems from "@/constants/paths";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import NavItems from "@/constants/navPaths";
 
 const NavBar: React.FC = () => {
     const [isModal, setIsModal] = useState<boolean>(true);
@@ -52,7 +52,7 @@ const NavBar: React.FC = () => {
                 </div>
 
                 <ul className="hidden md:flex justify-center items-center gap-5">
-                    {navItems.map((navItem) => (
+                    {NavItems.map((navItem) => (
                         <li key={navItem.path}>
                             <Link
                                 href={navItem.path}
@@ -96,7 +96,7 @@ const NavBar: React.FC = () => {
                             </button>
 
                             <ul className="flex flex-col gap-4">
-                                {navItems.map((navItem) => (
+                                {NavItems.map((navItem) => (
                                     <li key={navItem.path}>
                                         <Link
                                             href={navItem.path}

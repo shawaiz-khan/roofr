@@ -1,9 +1,6 @@
-interface NavItemProps {
-    name: string,
-    path: string,
-}
+import { NavItemProps } from '@/types/paths';
 
-const navItems: NavItemProps[] = [
+const NavItems: NavItemProps[] = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Properties", path: "/properties" },
@@ -11,4 +8,4 @@ const navItems: NavItemProps[] = [
     { name: "Contact", path: "/contact" }
 ];
 
-export default navItems;
+export default NavItems;
