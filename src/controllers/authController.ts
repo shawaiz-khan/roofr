@@ -38,12 +38,9 @@ export const registerUser = async (userData: any) => {
 
         await newUser.save();
 
-        const token = generateToken(newUser._id.toString(), newUser.email, newUser.role);
-
         return NextResponse.json(
             {
                 message: "User registered successfully!",
-                token,
                 user: {
                     id: newUser._id,
                     name: newUser.name,
