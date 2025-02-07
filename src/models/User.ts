@@ -26,6 +26,10 @@ const UserSchema = new Schema<IUser>(
             type: String,
             required: true
         },
+        confirmPassword: {
+            type: String,
+            required: true
+        },
         location: {
             type: String
         },
@@ -33,7 +37,6 @@ const UserSchema = new Schema<IUser>(
             type: Boolean,
             required: true
         },
-        profilePicture: { type: String },
         role: {
             type:
                 String,
