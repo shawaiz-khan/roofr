@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { registerUser } from "@/services/authService";
+import { useRouter } from "next/navigation";
 
 export const useRegister = () => {
     const [signupForm, setSignupForm] = useState({
@@ -17,6 +18,8 @@ export const useRegister = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState('');
+
+    const router = useRouter();
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setSignupForm((prev) => ({
@@ -66,6 +69,7 @@ export const useRegister = () => {
             const apiUrl = "/api/auth/create-account";
             await registerUser({ apiUrl, userData });
             setSuccess("User registered successfully!");
+            router.push("/auth/login");
         } catch (error: any) {
             setError(error.message || "Something went wrong!");
         } finally {

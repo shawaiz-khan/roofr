@@ -33,7 +33,7 @@ export const useLogin = () => {
             return false;
         }
         return true;
-    }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -48,13 +48,14 @@ export const useLogin = () => {
             const apiUrl = "/api/auth/login";
             const res = await loginUser({ apiUrl, userData });
             console.log(res);
-            setSuccess("User LoggedIn successfully!");
+            setSuccess("User Logged In successfully!");
+
         } catch (error: any) {
             setError(error.message || "Something went wrong!");
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     return {
         loginForm,
@@ -63,5 +64,5 @@ export const useLogin = () => {
         loading,
         handleOnChange,
         handleSubmit
-    }
-}
+    };
+};
