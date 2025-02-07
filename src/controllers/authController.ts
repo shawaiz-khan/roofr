@@ -3,7 +3,7 @@ import { deHash, hashedGenerator } from "@/helpers/hashHelper";
 import User from "@/models/User";
 import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
-import { generateToken } from '@/helpers/generateToken';
+import { generateAccessToken, generateRefreshToken } from '@/helpers/generateToken';
 
 export const registerUser = async (userData: any) => {
     try {
@@ -85,12 +85,14 @@ export const loginUser = async (userData: any) => {
             );
         }
 
-        const token = generateToken(user._id.toString(), user.email, user.role);
+        const token = generateAccessToken(user._id.toString(), user.email, user.role);
+        const refreshToken = generateRefreshToken(user._id.toString(), user.email, user.role);
 
         return NextResponse.json(
             {
                 message: "Login successful!",
                 token,
+                refreshToken,
                 user: {
                     id: user._id,
                     name: user.name,
