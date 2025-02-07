@@ -6,7 +6,6 @@ export default interface IUser extends Document {
     phone: string;
     userType: "Buyer" | "Seller" | "Agent" | "Investor";
     password: string;
-    confirmPassword: string;
     location?: string;
     terms: boolean;
     createdAt?: Date;

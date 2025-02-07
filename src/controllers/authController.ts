@@ -7,12 +7,13 @@ import { generateToken } from '@/helpers/generateToken';
 
 export const registerUser = async (userData: any) => {
     try {
-        const { name, email, phone, password, confirmPassword, terms, role, ...rest } = userData;
+        const { confirmPassword, ...filteredUserData } = userData;
+        const { name, email, phone, password, terms, role } = filteredUserData;
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (!name || !email || !password || !phone || !terms) {
             throw new Error("All fields are required.");
-        } else if (confirmPassword != password) {
+        } else if (confirmPassword !== password) {
             throw new Error("Passwords do not match.");
         } else if (!emailRegex.test(email)) {
             throw new Error("Invalid email format.");
@@ -26,14 +27,12 @@ export const registerUser = async (userData: any) => {
             );
         }
 
-
         const hashedPassword = await hashedGenerator(password);
 
         const newUser = new User({
-            ...rest,
-            email,
+            ...filteredUserData,
             password: hashedPassword,
-            role: role || "user"
+            role: role || "user",
         });
 
         await newUser.save();
@@ -45,7 +44,7 @@ export const registerUser = async (userData: any) => {
                     id: newUser._id,
                     name: newUser.name,
                     email: newUser.email,
-                    role: newUser.role
+                    role: newUser.role,
                 }
             },
             { status: StatusCodes.CREATED }

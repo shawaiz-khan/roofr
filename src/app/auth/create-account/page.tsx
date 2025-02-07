@@ -1,76 +1,19 @@
 "use client";
 
-import { ArrowDownCircleIcon } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+import { ArrowDownCircleIcon } from 'lucide-react';
+import Link from 'next/link';
+import { useRegister } from '@/hooks/useRegister';
 
 const CreateAccount: React.FC = () => {
-    const [signupForm, setSignupForm] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        userType: "",
-        password: "",
-        confirmPassword: "",
-        location: "",
-        terms: false,
-        role: "user"
-    });
-    const [error, setError] = useState("");
-
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setSignupForm((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.value,
-        }));
-        setError("");
-    };
-
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSignupForm((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.checked,
-        }));
-        setError("");
-    };
-
-    const validateForm = () => {
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (signupForm.name === "" || signupForm.email === "" || signupForm.phone === "" || signupForm.password === "") {
-            setError("Please Fill All Required Fields");
-            return false;
-        } else if (!emailPattern.test(signupForm.email)) {
-            setError("Email is Invalid, Try Again!");
-            return false;
-        } else if (signupForm.password !== signupForm.confirmPassword) {
-            setError("Passwords do not match!");
-            return false;
-        } else if (!signupForm.terms) {
-            setError("You must agree to the terms and conditions!");
-            return false;
-        }
-        return true;
-    };
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        if (!validateForm()) return;
-
-        console.log("Form: ", signupForm);
-        setSignupForm({
-            name: "",
-            email: "",
-            phone: "",
-            userType: "",
-            password: "",
-            confirmPassword: "",
-            location: "",
-            terms: false,
-            role: "user"
-        });
-    };
+    const {
+        signupForm,
+        error,
+        success,
+        loading,
+        handleOnChange,
+        handleCheckboxChange,
+        handleSubmit,
+    } = useRegister();
 
     const inputStyle = `bg-transparent border border-black-tertiary text-sm text-gray-tertiary w-full py-3 px-4 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary`;
 
@@ -166,12 +109,14 @@ const CreateAccount: React.FC = () => {
                     </label>
                 </div>
                 {error && <span className="text-red-500 text-xs">{error}</span>}
+                {success && <span className="text-green-500 text-xs">{success}</span>}
                 <div className="space-y-2 w-full">
                     <button
                         type="submit"
                         className="w-full py-3 bg-purple-primary text-white rounded-md focus:ring-2 focus:ring-purple-primary transition-all"
+                        disabled={loading}
                     >
-                        Create Account
+                        {loading ? 'Creating Account...' : 'Create Account'}
                     </button>
                     <div className="flex justify-between w-full text-xs text-gray-quaternary mt-3">
                         <Link href="/contact">
