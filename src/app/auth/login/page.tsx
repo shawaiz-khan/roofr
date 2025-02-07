@@ -1,51 +1,17 @@
 "use client";
 
+import { useLogin } from "@/hooks/useLogin";
 import Link from "next/link";
-import { useState } from "react";
 
 const Login: React.FC = () => {
-    const [loginForm, setLoginForm] = useState({
-        email: "",
-        password: "",
-    });
-    const [error, setError] = useState("");
-
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLoginForm((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.value,
-        }));
-        setError("");
-    };
-
-    const validateForm = () => {
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (loginForm.email === "" && loginForm.password === "") {
-            setError("Please Fill the form");
-            return false;
-        } else if (loginForm.email === "" || !emailPattern.test(loginForm.email)) {
-            setError("Email is Invalid, Try Again!");
-            return false;
-        } else if (loginForm.password === "") {
-            setError("Password is Required, Try Again!");
-            return false;
-        }
-        return true;
-    }
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        if (!validateForm()) return;
-
-        console.log("Form: ", loginForm);
-        setLoginForm((prev) => ({
-            ...prev,
-            email: "",
-            password: "",
-        }));
-    }
+    const {
+        loginForm,
+        error,
+        success,
+        loading,
+        handleOnChange,
+        handleSubmit
+    } = useLogin();
 
     const inputStyle = `bg-transparent border border-black-tertiary text-gray-tertiary w-full py-3 px-4 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary`;
 
@@ -75,12 +41,14 @@ const Login: React.FC = () => {
                     />
                 </div>
                 {error && <span className="text-red-500 text-xs">{error}</span>}
+                {success && <span className="text-green-500 text-xs">{success}</span>}
                 <div className="w-full space-y-2">
                     <button
                         type="submit"
                         className="w-full py-3 bg-purple-primary text-white rounded-md focus:ring-2 focus:ring-purple-primary transition-all"
+                        disabled={loading}
                     >
-                        Log In
+                        {loading ? 'Logging In...' : 'Log In'}
                     </button>
                     <div className="flex justify-between w-full text-xs text-gray-quaternary mt-3">
                         <Link href="/contact">

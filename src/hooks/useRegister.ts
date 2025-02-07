@@ -60,9 +60,11 @@ export const useRegister = () => {
 
         setLoading(true);
 
+        const userData = signupForm;
+
         try {
             const apiUrl = "/api/auth/create-account";
-            await registerUser({ apiUrl, signupForm });
+            await registerUser({ apiUrl, userData });
             setSuccess("User registered successfully!");
         } catch (error: any) {
             setError(error.message || "Something went wrong!");
