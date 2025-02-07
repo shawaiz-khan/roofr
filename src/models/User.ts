@@ -26,6 +26,10 @@ const UserSchema = new Schema<IUser>(
             type: String,
             required: true
         },
+        confirmPassword: {
+            type: String,
+            required: true
+        },
         location: {
             type: String
         },

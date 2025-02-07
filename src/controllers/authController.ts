@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import jwt from 'jsonwebtoken';
 import { hashedGenerator } from "@/helpers/hashedGenerator";
 import User from "@/models/User";
 import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
+import { ValidateUserData } from '@/helpers/validateData';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export const registerUser = async (userData: any) => {
     try {
-        const { email, password, ...rest } = userData;
+        await ValidateUserData(userData);
+
+        const { email, password, role, ...rest } = userData;
 
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -17,13 +20,14 @@ export const registerUser = async (userData: any) => {
             );
         }
 
+
         const hashedPassword = await hashedGenerator(password);
 
         const newUser = new User({
             ...rest,
             email,
             password: hashedPassword,
-            role: "user"
+            role: role || "user"
         });
 
         await newUser.save();
@@ -47,10 +51,10 @@ export const registerUser = async (userData: any) => {
             },
             { status: StatusCodes.CREATED }
         );
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error registering user:", error);
         return NextResponse.json(
-            { message: "Something went wrong. Please try again." },
+            { message: error.message || "Something went wrong. Please try again." },
             { status: StatusCodes.INTERNAL_SERVER_ERROR }
         );
     }
