@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import jwt from 'jsonwebtoken';
 import { hashedGenerator } from "@/helpers/hashedGenerator";
 import User from "@/models/User";
 import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
 import { ValidateUserData } from '@/helpers/validateData';
+import { generateToken } from '@/helpers/generateToken';
 
 export const registerUser = async (userData: any) => {
     try {
@@ -32,11 +32,7 @@ export const registerUser = async (userData: any) => {
 
         await newUser.save();
 
-        const token = jwt.sign(
-            { id: newUser._id, email: newUser.email },
-            process.env.JWT_SECRET!,
-            { expiresIn: '1h' }
-        );
+        const token = generateToken(newUser._id.toString(), newUser.email, newUser.role);
 
         return NextResponse.json(
             {
