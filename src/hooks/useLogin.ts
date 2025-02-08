@@ -46,8 +46,7 @@ export const useLogin = () => {
 
         try {
             const apiUrl = "/api/auth/login";
-            const res = await loginUser({ apiUrl, userData });
-            console.log(res);
+            await loginUser({ apiUrl, userData });
             setSuccess("User Logged In successfully!");
 
         } catch (error: any) {

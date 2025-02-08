@@ -4,6 +4,8 @@ import User from "@/models/User";
 import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
 import { generateAccessToken, generateRefreshToken } from '@/helpers/generateToken';
+import { setCookie } from "cookies-next";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export const registerUser = async (userData: any) => {
     try {
@@ -57,7 +59,7 @@ export const registerUser = async (userData: any) => {
     }
 };
 
-export const loginUser = async (userData: any) => {
+export const loginUser = async (userData: any, req: NextApiRequest, res: NextApiResponse) => {
     try {
         const { email, password } = userData;
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -87,6 +89,24 @@ export const loginUser = async (userData: any) => {
 
         const token = generateAccessToken(user._id.toString(), user.email, user.role);
         const refreshToken = generateRefreshToken(user._id.toString(), user.email, user.role);
+
+        setCookie("authToken", token, {
+            req, res,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 2 * 60 * 60,
+            path: '/'
+        });
+
+        setCookie("refreshToken", refreshToken, {
+            req, res,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60,
+            path: '/'
+        });
 
         return NextResponse.json(
             {

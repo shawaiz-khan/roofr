@@ -14,15 +14,7 @@ export const registerUser = async ({ apiUrl, userData }: AuthServiceProps) => {
 export const loginUser = async ({ apiUrl, userData }: AuthServiceProps) => {
     try {
         const res = await axiosInstance.post(apiUrl, userData);
-
-        if (res.data.token) {
-            localStorage.setItem("authToken", res.data.token);
-
-            if (res.data.refreshToken) {
-                localStorage.setItem("refreshToken", res.data.refreshToken);
-            }
-        }
-
+        console.log("Login: ", res.data);
         return res.data;
     } catch (err: any) {
         throw new Error(err?.response?.data?.message || "Login failed");
