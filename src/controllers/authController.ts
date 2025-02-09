@@ -120,34 +120,3 @@ export const loginUser = async (userData: any, req?: NextApiRequest, res?: NextA
         );
     }
 };
-
-export const getUsers = async () => {
-    try {
-        const users = await User.find({});
-
-        if (users.length === 0) {
-            return NextResponse.json(
-                { message: "No users found." },
-                { status: 404 }
-            );
-        }
-
-        const userDetails = users.map((user) => ({
-            id: user._id.toString(),
-            name: user.name,
-            email: user.email,
-            role: user.role,
-        }));
-
-        return NextResponse.json(
-            { message: "Users found.", users: userDetails },
-            { status: 200 }
-        );
-    } catch (error: any) {
-        console.error("Error fetching users:", error);
-        return NextResponse.json(
-            { message: error.message || "Something went wrong." },
-            { status: 500 }
-        );
-    }
-};
