@@ -46,10 +46,11 @@ export const useLogin = () => {
 
         try {
             const apiUrl = "/api/auth/login";
-            await loginUser({ apiUrl, userData });
+            const res = await loginUser({ apiUrl, userData });
             setSuccess("User Logged In successfully!");
             setError("");
-
+            const token = res.token;
+            console.log(token);
         } catch (error: any) {
             setError(error.message || "Something went wrong!");
             setSuccess("");
