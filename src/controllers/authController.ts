@@ -140,7 +140,7 @@ export const getUsers = async () => {
         }));
 
         return NextResponse.json(
-            { users: userDetails, },
+            { message: "Users found.", users: userDetails },
             { status: 200 }
         );
     } catch (error: any) {

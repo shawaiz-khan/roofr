@@ -66,10 +66,10 @@ export const useRegister = () => {
         const userData = signupForm;
 
         try {
-            const apiUrl = "/api/auth/create-account";
+            const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/create-account`;
             await registerUser({ apiUrl, userData });
             setSuccess("User registered successfully!");
-            router.push("/auth/login");
+            router.push(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`);
         } catch (error: any) {
             setError(error.message || "Something went wrong!");
         } finally {
