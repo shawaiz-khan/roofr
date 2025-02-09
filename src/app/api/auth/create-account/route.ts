@@ -8,3 +8,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     return registerUser(body);
 }
+
+export const config = {
+    runtime: "nodejs",
+};
