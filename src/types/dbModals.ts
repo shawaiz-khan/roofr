@@ -8,7 +8,8 @@ export default interface IUser extends Document {
     password: string;
     location?: string;
     terms: boolean;
+    role: "user" | "admin";
+    refreshToken: string;
     createdAt?: Date;
     updatedAt?: Date;
-    role: "user" | "admin";
 }

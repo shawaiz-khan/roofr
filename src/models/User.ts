@@ -34,10 +34,12 @@ const UserSchema = new Schema<IUser>(
             required: true
         },
         role: {
-            type:
-                String,
+            type: String,
             enum: ["user", "admin"],
             default: "user"
+        },
+        refreshToken: {
+            type: String,
         },
     },
     { timestamps: true }

@@ -7,7 +7,8 @@ import { NextResponse } from "next/server";
 
 const authMiddleware = (handler: Function) => {
     return async (req: NextApiRequest, res: NextApiResponse) => {
-        const token = req.cookies.authToken;
+        console.log("Middleware");
+        const token = req.cookies.accessToken;
 
         if (!token) {
             return NextResponse.json(
@@ -18,7 +19,6 @@ const authMiddleware = (handler: Function) => {
 
         try {
             const decoded = verifyJwt(token);
-            console.log(decoded);
             req.user = decoded;
             return handler(req, res);
         } catch (err: any) {
