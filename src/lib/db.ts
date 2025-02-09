@@ -12,6 +12,9 @@ const connectDB = async () => {
 
         await mongoose.connect(URI, {
             dbName: "roofr_db",
+            connectTimeoutMS: 30000,
+            socketTimeoutMS: 45000,
+            minPoolSize: 10,
         });
 
         console.log("MongoDB connected");
