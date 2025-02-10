@@ -12,6 +12,6 @@ export const generateRefreshToken = (userId: string, email: string) => {
     return jwt.sign(
         { id: userId, email: email },
         process.env.REFRESH_TOKEN_SECRET!,
-        { expiresIn: 15 * 24 * 60 * 60 }
+        { expiresIn: 7 * 24 * 60 * 60 }
     )
 }

@@ -66,7 +66,7 @@ export const useRegister = () => {
         const userData = signupForm;
 
         try {
-            const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/create-account`;
+            const apiUrl = `/api/auth/create-account`;
             await Register({ apiUrl, userData });
             setSuccess("User registered successfully!");
             router.push(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`);

@@ -45,7 +45,7 @@ export const useLogin = () => {
         const userData = loginForm;
 
         try {
-            const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`;
+            const apiUrl = `/api/auth/login`;
             await Login({ apiUrl, userData });
             setSuccess("User Logged In successfully!");
             setError("");

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { deHash, hashedGenerator } from "@/helpers/hashHelper";
+import { deHash, hashedPasswordGenerator } from "@/helpers/hashHelper";
 import User from "@/models/User";
 import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
@@ -30,7 +30,7 @@ export const registerUser = async (userData: any) => {
             );
         }
 
-        const hashedPassword = await hashedGenerator(password);
+        const hashedPassword = await hashedPasswordGenerator(password);
 
         const newUser = new User({
             ...filteredUserData,
@@ -47,7 +47,6 @@ export const registerUser = async (userData: any) => {
                     id: newUser._id,
                     name: newUser.name,
                     email: newUser.email,
-                    role: newUser.role,
                 }
             },
             { status: StatusCodes.CREATED }
@@ -102,7 +101,15 @@ export const loginUser = async (userData: any) => {
             sameSite: 'strict',
             maxAge: 15 * 60,
             path: '/'
-        })
+        });
+
+        CookieStore.set("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60,
+            path: '/'
+        });
 
         return NextResponse.json(
             {

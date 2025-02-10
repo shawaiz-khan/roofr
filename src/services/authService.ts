@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import api from "@/lib/axios";
 import AuthServiceProps from "@/types/authService";
-import axios from "axios";
 
 export const Register = async ({ apiUrl, userData }: AuthServiceProps) => {
     try {
-        const res = await axios.post(apiUrl, userData);
+        const res = await api.post(apiUrl, userData);
         return res.data;
     } catch (err: any) {
         throw new Error(err?.response?.data?.message || "Registration failed");
@@ -13,7 +13,7 @@ export const Register = async ({ apiUrl, userData }: AuthServiceProps) => {
 
 export const Login = async ({ apiUrl, userData }: AuthServiceProps) => {
     try {
-        const res = await axios.post(apiUrl, userData);
+        const res = await api.post(apiUrl, userData);
         return res.data;
     } catch (err: any) {
         throw new Error(err?.response?.data?.message || "Login failed");
@@ -22,7 +22,7 @@ export const Login = async ({ apiUrl, userData }: AuthServiceProps) => {
 
 export const User = async ({ apiUrl }: { apiUrl: string }) => {
     try {
-        const res = await axios.get(apiUrl);
+        const res = await api.get(apiUrl);
         return res.data;
     } catch (err: any) {
         throw new Error(err.response?.data?.message || "Fetching User Failed");
