@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { loginUser } from "@/services/authService";
+import { Login } from "@/services/authService";
 import { useState } from "react";
 
 export const useLogin = () => {
@@ -46,7 +46,7 @@ export const useLogin = () => {
 
         try {
             const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`;
-            await loginUser({ apiUrl, userData });
+            await Login({ apiUrl, userData });
             setSuccess("User Logged In successfully!");
             setError("");
         } catch (error: any) {

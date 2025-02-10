@@ -5,6 +5,8 @@ import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
 import { generateAccessToken, generateRefreshToken } from '@/helpers/generateToken';
 import { cookies } from "next/headers";
+import { getAccessToken } from "@/helpers/getCookies";
+import { verifyJwt } from "@/helpers/jwtHelpers";
 
 export const registerUser = async (userData: any) => {
     try {
@@ -119,6 +121,54 @@ export const loginUser = async (userData: any) => {
         console.error("Error logging in user:", error);
         return NextResponse.json(
             { message: error.message || "Something went wrong. Please try again." },
+            { status: StatusCodes.INTERNAL_SERVER_ERROR }
+        );
+    }
+};
+
+export const getUser = async () => {
+    try {
+        const accessToken = await getAccessToken();
+        if (!accessToken) {
+            return NextResponse.json(
+                { message: "Unauthorized: No access token provided" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+
+        let userData;
+        try {
+            userData = verifyJwt(accessToken.value);
+        } catch (error: any) {
+            return NextResponse.json(
+                { message: error.message || "Invalid or expired token" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+
+        if (typeof userData !== "object" || !userData.email) {
+            return NextResponse.json(
+                { message: "Invalid token payload" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+
+        const user = await User.findOne({ email: userData.email });
+
+        if (!user) {
+            return NextResponse.json(
+                { message: "User not found" },
+                { status: StatusCodes.NOT_FOUND }
+            );
+        }
+
+        return NextResponse.json(
+            { message: "User Found", user },
+            { status: StatusCodes.OK }
+        );
+    } catch (err: any) {
+        return NextResponse.json(
+            { message: err.message || "Something went wrong. Please try again." },
             { status: StatusCodes.INTERNAL_SERVER_ERROR }
         );
     }

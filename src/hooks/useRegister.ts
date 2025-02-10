@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import { registerUser } from "@/services/authService";
+import { Register } from "@/services/authService";
 import { useRouter } from "next/navigation";
 
 export const useRegister = () => {
@@ -67,7 +67,7 @@ export const useRegister = () => {
 
         try {
             const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/create-account`;
-            await registerUser({ apiUrl, userData });
+            await Register({ apiUrl, userData });
             setSuccess("User registered successfully!");
             router.push(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`);
         } catch (error: any) {
