@@ -28,3 +28,12 @@ export const User = async ({ apiUrl }: { apiUrl: string }) => {
         throw new Error(err.response?.data?.message || "Fetching User Failed");
     }
 }
+
+export const RefreshToken = async ({ apiUrl }: { apiUrl: string }) => {
+    try {
+        const res = await api.post(apiUrl);
+        return res.data;
+    } catch (err: any) {
+        throw new Error(err.response?.data?.message || "Token Refreshing Failed");
+    }
+}

@@ -8,7 +8,7 @@ export const getAccessToken = async () => {
     return accessToken;
 }
 
-export const generateRefreshToken = async () => {
+export const getRefreshToken = async () => {
     const CookieStore = await cookies();
     const refreshToken = CookieStore.get("refreshToken");
     return refreshToken;

@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
 import { generateAccessToken, generateRefreshToken } from '@/helpers/generateToken';
 import { cookies } from "next/headers";
-import { getAccessToken } from "@/helpers/getCookies";
+import { getAccessToken, getRefreshToken } from "@/helpers/getCookies";
 import { verifyJwt } from "@/helpers/jwtHelpers";
 
 export const registerUser = async (userData: any) => {
@@ -176,6 +176,64 @@ export const getUser = async () => {
     } catch (err: any) {
         return NextResponse.json(
             { message: err.message || "Something went wrong. Please try again." },
+            { status: StatusCodes.INTERNAL_SERVER_ERROR }
+        );
+    }
+};
+
+export const refreshAccessToken = async () => {
+    try {
+        const refreshToken = await getRefreshToken();
+
+        if (!refreshToken) {
+            return NextResponse.json(
+                { message: "Refresh token is Required" },
+                { status: StatusCodes.UNAUTHORIZED }
+            )
+        }
+
+        let decoded;
+        try {
+            decoded = verifyJwt(refreshToken.value);
+        } catch (err: any) {
+            return NextResponse.json(
+                { message: err.message || "Invalid or expired refresh token" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+
+        if (typeof decoded !== "object" || !decoded.userId) {
+            return NextResponse.json(
+                { message: "Invalid token payload" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+
+        const user = await User.findById(decoded.userId);
+
+        if (!user || user.refreshToken !== refreshToken.value) {
+            return NextResponse.json(
+                { message: "Invalid refresh token" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+
+        const newAccessToken = await generateAccessToken(user._id.toString(), user.email);
+
+        const CookieStore = await cookies();
+        CookieStore.set("accessToken", newAccessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 15 * 60,
+            path: "/"
+        });
+
+        return NextResponse.json({ accessToken: newAccessToken }, { status: StatusCodes.OK });
+
+    } catch (error: any) {
+        return NextResponse.json(
+            { message: error.message || "Something went wrong, please try again" },
             { status: StatusCodes.INTERNAL_SERVER_ERROR }
         );
     }
