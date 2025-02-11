@@ -6,5 +6,6 @@ import { NextRequest } from "next/server";
 connectDB();
 
 export async function POST(request: NextRequest) {
+    console.log("POST req received....");
     return await refreshAccessToken();
 }

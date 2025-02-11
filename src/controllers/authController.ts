@@ -87,11 +87,12 @@ export const loginUser = async (userData: any) => {
             );
         }
 
-        const accessToken = generateAccessToken(user._id.toString(), user.email);
-        const refreshToken = generateRefreshToken(user._id.toString(), user.email);
+        const accessToken = await generateAccessToken(user._id.toString(), user.email);
+        const refreshToken = await generateRefreshToken(user._id.toString(), user.email);
 
         user.refreshToken = refreshToken;
 
+        console.log("Refresh Token saved in DB");
         await user.save();
 
         const CookieStore = await cookies();
@@ -99,7 +100,7 @@ export const loginUser = async (userData: any) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
-            maxAge: 15 * 60,
+            maxAge: 60,
             path: '/'
         });
 
@@ -145,7 +146,7 @@ export const getUser = async () => {
 
         let userData;
         try {
-            userData = verifyJwt(accessToken.value);
+            userData = await verifyJwt(accessToken.value, 'access');
         } catch (error: any) {
             return NextResponse.json(
                 { message: error.message || "Invalid or expired token" },
@@ -187,14 +188,14 @@ export const refreshAccessToken = async () => {
 
         if (!refreshToken) {
             return NextResponse.json(
-                { message: "Refresh token is Required" },
+                { message: "Refresh token is required" },
                 { status: StatusCodes.UNAUTHORIZED }
-            )
+            );
         }
 
         let decoded;
         try {
-            decoded = verifyJwt(refreshToken.value);
+            decoded = await verifyJwt(refreshToken.value, "refresh");
         } catch (err: any) {
             return NextResponse.json(
                 { message: err.message || "Invalid or expired refresh token" },
@@ -202,14 +203,14 @@ export const refreshAccessToken = async () => {
             );
         }
 
-        if (typeof decoded !== "object" || !decoded.userId) {
+        if (typeof decoded !== "object" || !decoded.id) {
             return NextResponse.json(
                 { message: "Invalid token payload" },
                 { status: StatusCodes.UNAUTHORIZED }
             );
         }
 
-        const user = await User.findById(decoded.userId);
+        const user = await User.findById(decoded.id);
 
         if (!user || user.refreshToken !== refreshToken.value) {
             return NextResponse.json(
@@ -220,6 +221,7 @@ export const refreshAccessToken = async () => {
 
         const newAccessToken = await generateAccessToken(user._id.toString(), user.email);
 
+        console.log("Generating & Saving new Access Token");
         const CookieStore = await cookies();
         CookieStore.set("accessToken", newAccessToken, {
             httpOnly: true,
@@ -229,7 +231,10 @@ export const refreshAccessToken = async () => {
             path: "/"
         });
 
-        return NextResponse.json({ accessToken: newAccessToken }, { status: StatusCodes.OK });
+        return NextResponse.json(
+            { message: "Token refreshed", accessToken: newAccessToken },
+            { status: StatusCodes.OK }
+        );
 
     } catch (error: any) {
         return NextResponse.json(
