@@ -15,11 +15,7 @@ export async function authMiddleware(req: NextRequest) {
             throw new Error("No refresh token found.");
         }
 
-        console.log("Refresh Token:", refreshToken.value);
-
-        const decoded = await verifyJwt(refreshToken.value, "refresh");
-        console.log("Decoded Refresh Token:", decoded);
-
+        await verifyJwt(refreshToken.value, "refresh");
         const accessToken = await getAccessToken();
 
         if (!accessToken || !accessToken.value) {
@@ -31,8 +27,6 @@ export async function authMiddleware(req: NextRequest) {
                         Authorization: `Bearer ${refreshToken.value}`,
                     }
                 });
-
-                console.log("Auth Middleware response: ", response.data.accessToken);
 
                 const res = NextResponse.next();
                 res.cookies.set("accessToken", response.data.accessToken, {
@@ -51,7 +45,6 @@ export async function authMiddleware(req: NextRequest) {
             }
         }
 
-        console.log("New Access Token:", accessToken?.value);
         return NextResponse.next();
     } catch (err: any) {
         console.error("Error in authMiddleware:", err?.message || err);

@@ -6,7 +6,7 @@ const REFRESH_TOKEN_SECRET = new TextEncoder().encode(process.env.REFRESH_TOKEN_
 export const generateAccessToken = async (userId: string, email: string) => {
     return await new SignJWT({ id: userId, email: email })
         .setProtectedHeader({ alg: "HS256" })
-        .setExpirationTime("60s")
+        .setExpirationTime("15m")
         .sign(ACCESS_TOKEN_SECRET);
 };
 

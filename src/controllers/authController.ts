@@ -100,7 +100,7 @@ export const loginUser = async (userData: any) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
-            maxAge: 60,
+            maxAge: 15 * 60,
             path: '/'
         });
 
@@ -185,14 +185,15 @@ export const getUser = async () => {
 export const refreshAccessToken = async (request: NextRequest) => {
     try {
         const authHeader = request.headers.get("Authorization");
+
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
             return NextResponse.json(
                 { message: "Unauthorized: Missing or invalid authorization" },
                 { status: StatusCodes.UNAUTHORIZED }
             );
         }
+
         const refreshToken = authHeader.split(" ")[1];
-        console.log("Controller Refresh Token: ", refreshToken);
 
         if (!refreshToken) {
             return NextResponse.json(
@@ -228,8 +229,6 @@ export const refreshAccessToken = async (request: NextRequest) => {
         }
 
         const newAccessToken = await generateAccessToken(user._id.toString(), user.email);
-
-        console.log("Generating & Saving new Access Token");
 
         return NextResponse.json(
             { message: "Token refreshed", accessToken: newAccessToken },

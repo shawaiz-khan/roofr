@@ -3,7 +3,6 @@ import { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
     const pathname = req.nextUrl.pathname;
-    console.log("I am the Middleware");
 
     if (pathname.includes("/me")) {
         return authMiddleware(req);
