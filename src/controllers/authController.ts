@@ -2,10 +2,10 @@
 import { deHash, hashedPasswordGenerator } from "@/helpers/hashHelper";
 import User from "@/models/User";
 import { StatusCodes } from "http-status-codes";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { generateAccessToken, generateRefreshToken } from '@/helpers/generateToken';
 import { cookies } from "next/headers";
-import { getAccessToken, getRefreshToken } from "@/helpers/getCookies";
+import { getAccessToken } from "@/helpers/getCookies";
 import { verifyJwt } from "@/helpers/jwtHelpers";
 
 export const registerUser = async (userData: any) => {
@@ -182,9 +182,17 @@ export const getUser = async () => {
     }
 };
 
-export const refreshAccessToken = async () => {
+export const refreshAccessToken = async (request: NextRequest) => {
     try {
-        const refreshToken = await getRefreshToken();
+        const authHeader = request.headers.get("Authorization");
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return NextResponse.json(
+                { message: "Unauthorized: Missing or invalid authorization" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+        const refreshToken = authHeader.split(" ")[1];
+        console.log("Controller Refresh Token: ", refreshToken);
 
         if (!refreshToken) {
             return NextResponse.json(
@@ -195,7 +203,7 @@ export const refreshAccessToken = async () => {
 
         let decoded;
         try {
-            decoded = await verifyJwt(refreshToken.value, "refresh");
+            decoded = await verifyJwt(refreshToken, "refresh");
         } catch (err: any) {
             return NextResponse.json(
                 { message: err.message || "Invalid or expired refresh token" },
@@ -212,7 +220,7 @@ export const refreshAccessToken = async () => {
 
         const user = await User.findById(decoded.id);
 
-        if (!user || user.refreshToken !== refreshToken.value) {
+        if (!user || user.refreshToken !== refreshToken) {
             return NextResponse.json(
                 { message: "Invalid refresh token" },
                 { status: StatusCodes.UNAUTHORIZED }
@@ -222,14 +230,6 @@ export const refreshAccessToken = async () => {
         const newAccessToken = await generateAccessToken(user._id.toString(), user.email);
 
         console.log("Generating & Saving new Access Token");
-        const CookieStore = await cookies();
-        CookieStore.set("accessToken", newAccessToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 15 * 60,
-            path: "/"
-        });
 
         return NextResponse.json(
             { message: "Token refreshed", accessToken: newAccessToken },

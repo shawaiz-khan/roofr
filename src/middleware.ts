@@ -2,13 +2,17 @@ import { authMiddleware } from "@/middleware/authMiddleware";
 import { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
+    const pathname = req.nextUrl.pathname;
     console.log("I am the Middleware");
-    return authMiddleware(req);
+
+    if (pathname.includes("/me")) {
+        return authMiddleware(req);
+    }
 }
 
 export const config = {
     matcher: [
-        "/api/auth/me",
+        "/api/auth/:path*",
     ],
     runtime: "nodejs",
 };
