@@ -2,10 +2,10 @@
 import { deHash, hashedPasswordGenerator } from "@/helpers/hashHelper";
 import User from "@/models/User";
 import { StatusCodes } from "http-status-codes";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { generateAccessToken, generateRefreshToken } from '@/helpers/generateToken';
 import { cookies } from "next/headers";
-import { getAccessToken, getRefreshToken } from "@/helpers/getCookies";
+import { getAccessToken } from "@/helpers/getCookies";
 import { verifyJwt } from "@/helpers/jwtHelpers";
 
 export const registerUser = async (userData: any) => {
@@ -87,11 +87,12 @@ export const loginUser = async (userData: any) => {
             );
         }
 
-        const accessToken = generateAccessToken(user._id.toString(), user.email);
-        const refreshToken = generateRefreshToken(user._id.toString(), user.email);
+        const accessToken = await generateAccessToken(user._id.toString(), user.email);
+        const refreshToken = await generateRefreshToken(user._id.toString(), user.email);
 
         user.refreshToken = refreshToken;
 
+        console.log("Refresh Token saved in DB");
         await user.save();
 
         const CookieStore = await cookies();
@@ -145,7 +146,7 @@ export const getUser = async () => {
 
         let userData;
         try {
-            userData = verifyJwt(accessToken.value);
+            userData = await verifyJwt(accessToken.value, 'access');
         } catch (error: any) {
             return NextResponse.json(
                 { message: error.message || "Invalid or expired token" },
@@ -181,20 +182,29 @@ export const getUser = async () => {
     }
 };
 
-export const refreshAccessToken = async () => {
+export const refreshAccessToken = async (request: NextRequest) => {
     try {
-        const refreshToken = await getRefreshToken();
+        const authHeader = request.headers.get("Authorization");
+
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return NextResponse.json(
+                { message: "Unauthorized: Missing or invalid authorization" },
+                { status: StatusCodes.UNAUTHORIZED }
+            );
+        }
+
+        const refreshToken = authHeader.split(" ")[1];
 
         if (!refreshToken) {
             return NextResponse.json(
-                { message: "Refresh token is Required" },
+                { message: "Refresh token is required" },
                 { status: StatusCodes.UNAUTHORIZED }
-            )
+            );
         }
 
         let decoded;
         try {
-            decoded = verifyJwt(refreshToken.value);
+            decoded = await verifyJwt(refreshToken, "refresh");
         } catch (err: any) {
             return NextResponse.json(
                 { message: err.message || "Invalid or expired refresh token" },
@@ -202,16 +212,16 @@ export const refreshAccessToken = async () => {
             );
         }
 
-        if (typeof decoded !== "object" || !decoded.userId) {
+        if (typeof decoded !== "object" || !decoded.id) {
             return NextResponse.json(
                 { message: "Invalid token payload" },
                 { status: StatusCodes.UNAUTHORIZED }
             );
         }
 
-        const user = await User.findById(decoded.userId);
+        const user = await User.findById(decoded.id);
 
-        if (!user || user.refreshToken !== refreshToken.value) {
+        if (!user || user.refreshToken !== refreshToken) {
             return NextResponse.json(
                 { message: "Invalid refresh token" },
                 { status: StatusCodes.UNAUTHORIZED }
@@ -220,16 +230,10 @@ export const refreshAccessToken = async () => {
 
         const newAccessToken = await generateAccessToken(user._id.toString(), user.email);
 
-        const CookieStore = await cookies();
-        CookieStore.set("accessToken", newAccessToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 15 * 60,
-            path: "/"
-        });
-
-        return NextResponse.json({ accessToken: newAccessToken }, { status: StatusCodes.OK });
+        return NextResponse.json(
+            { message: "Token refreshed", accessToken: newAccessToken },
+            { status: StatusCodes.OK }
+        );
 
     } catch (error: any) {
         return NextResponse.json(

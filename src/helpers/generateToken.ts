@@ -1,17 +1,18 @@
-import jwt from "jsonwebtoken";
+import { SignJWT } from "jose";
 
-export const generateAccessToken = (userId: string, email: string) => {
-    return jwt.sign(
-        { id: userId, email: email },
-        process.env.JWT_SECRET!,
-        { expiresIn: 15 * 60 }
-    )
+const ACCESS_TOKEN_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!);
+const REFRESH_TOKEN_SECRET = new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET!);
+
+export const generateAccessToken = async (userId: string, email: string) => {
+    return await new SignJWT({ id: userId, email: email })
+        .setProtectedHeader({ alg: "HS256" })
+        .setExpirationTime("15m")
+        .sign(ACCESS_TOKEN_SECRET);
 };
 
-export const generateRefreshToken = (userId: string, email: string) => {
-    return jwt.sign(
-        { id: userId, email: email },
-        process.env.REFRESH_TOKEN_SECRET!,
-        { expiresIn: 7 * 24 * 60 * 60 }
-    )
+export const generateRefreshToken = async (userId: string, email: string) => {
+    return await new SignJWT({ id: userId, email: email })
+        .setProtectedHeader({ alg: "HS256" })
+        .setExpirationTime("7d")
+        .sign(REFRESH_TOKEN_SECRET);
 };
