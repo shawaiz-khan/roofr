@@ -4,6 +4,7 @@ import heroImg from '@/assets/images/hero.jpg';
 import RoundTextSvg from "@/components/RoundTextSvg";
 import RatingBlock from "@/components/RatingBlock";
 import FeaturesBlock from "@/components/FeaturesBlock";
+import Testimonials from "@/components/Testimonial";
 
 const Home: React.FC = () => {
   return (
@@ -43,6 +44,7 @@ const Home: React.FC = () => {
         <FeaturesBlock />
       </div>
       {/* Testimonials  */}
+      <Testimonials />
     </main>
   );
 }
