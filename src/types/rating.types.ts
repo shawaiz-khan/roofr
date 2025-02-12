@@ -1,4 +1,4 @@
-export default interface RatingBlockProps {
+export default interface RatingBlockTypes {
     count: number | string,
     text: string,
 }

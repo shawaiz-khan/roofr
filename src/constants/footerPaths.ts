@@ -1,4 +1,4 @@
-import { FooterItemProps } from '@/types/paths';
+import { FooterItemProps } from '@/types/path.types';
 
 export const FooterHomeItems: FooterItemProps[] = [
     { name: "Hero Section", path: "/#hero" },

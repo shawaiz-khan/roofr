@@ -1,4 +1,4 @@
-import { NavItemProps } from '@/types/paths';
+import { NavItemProps } from '@/types/path.types';
 
 const NavItems: NavItemProps[] = [
     { name: "Home", path: "/" },

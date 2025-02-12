@@ -1,10 +1,10 @@
-import FeatureBlockProps from '@/types/featureBlock';
+import FeatureBlockTypes from '@/types/feature.types';
 import HomeIcon from "@/assets/svg/Home.svg";
 import LockIcon from "@/assets/svg/Lock.svg";
 import PropertyIcon from "@/assets/svg/Property.svg";
 import SunIcon from "@/assets/svg/Sun.svg";
 
-const Features: FeatureBlockProps[] = [
+const Features: FeatureBlockTypes[] = [
     {
         title: "Find Your Dream Home",
         icon: HomeIcon,

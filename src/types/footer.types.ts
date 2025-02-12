@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export default interface FooterBlockProps {
+export default interface FooterBlockTypes {
     title: string;
     children: ReactNode;
 }

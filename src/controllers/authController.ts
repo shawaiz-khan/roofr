@@ -220,6 +220,7 @@ export const refreshAccessToken = async (request: NextRequest) => {
         }
 
         const user = await User.findById(decoded.id);
+        console.log("User: ", user);
 
         if (!user || user.refreshToken !== refreshToken) {
             return NextResponse.json(

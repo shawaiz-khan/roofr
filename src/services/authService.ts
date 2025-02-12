@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axiosInstance from "@/lib/axios";
-import AuthServiceProps from "@/types/authService";
+import AuthServiceProps from "@/types/auth.service.types";
 
 export const Register = async ({ apiUrl, userData }: AuthServiceProps) => {
     try {

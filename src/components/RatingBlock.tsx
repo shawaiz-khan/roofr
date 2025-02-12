@@ -1,7 +1,7 @@
 import React from 'react';
-import RatingBlockProps from '@/types/ratingBlock';
+import RatingBlockTypes from '@/types/rating.types';
 
-const RatingBlock: React.FC<RatingBlockProps> = (props) => {
+const RatingBlock: React.FC<RatingBlockTypes> = (props) => {
     const { count, text } = props;
 
     return (

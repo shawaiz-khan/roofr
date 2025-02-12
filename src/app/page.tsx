@@ -42,6 +42,7 @@ const Home: React.FC = () => {
       <div className="z-10">
         <FeaturesBlock />
       </div>
+      {/* Testimonials  */}
     </main>
   );
 }

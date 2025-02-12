@@ -1,4 +1,4 @@
-import IUser from '@/types/dbModals';
+import IUser from '@/types/db.model.types';
 import mongoose, { Schema } from 'mongoose';
 
 const UserSchema = new Schema<IUser>(
