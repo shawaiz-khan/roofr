@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const TestimonialBlock: React.FC<TestimonialProps> = ({ name, city, title, testimonial, stars }) => {
     return (
-        <div className="border border-black-tertiary p-5 space-y-6 rounded-md">
+        <div className="border border-black-tertiary p-5 space-y-6 rounded-lg">
             <RatingStarProvider rating={stars} />
             <div className="space-y-1">
                 <h1 className="text-lg font-semibold">{title}</h1>

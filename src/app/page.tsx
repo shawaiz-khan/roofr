@@ -40,7 +40,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       {/* Featured Cards  */}
-      <div className="z-10">
+      <div className="z-20">
         <FeaturesBlock />
       </div>
       {/* Testimonials  */}
