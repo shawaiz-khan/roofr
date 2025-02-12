@@ -19,7 +19,7 @@ const TestimonialBlock: React.FC<TestimonialProps> = ({ name, city, title, testi
                 />
                 <div className="flex flex-col gap-0">
                     <p className="text-md">{name}</p>
-                    <span className="text-gray-quaternary text-sm">{city}</span>
+                    <span className="text-gray-quaternary text-xs">{city}</span>
                 </div>
             </div>
         </div>
