@@ -5,7 +5,7 @@ import TestimonialBlock from "./TestimonialBlock";
 import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Testimonials: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -46,40 +46,41 @@ const Testimonials: React.FC = () => {
                     </p>
                 </div>
                 <button className="bg-black-secondary border border-black-tertiary py-3 px-4 text-sm rounded-md hidden md:block">
-                    View All Testimonials
+                    Share Your Testimonial
                 </button>
             </div>
 
             <div className="relative overflow-hidden">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={currentPage}
-                        initial={{ x: "100%", opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: "-100%", opacity: 0 }}
-                        transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
-                        className="grid grid-rows-1 md:grid-cols-3 gap-5"
-                    >
-                        {getTestimonialsForCurrentPage().map((testimonial) => (
-                            <TestimonialBlock
-                                key={testimonial.id}
-                                name={testimonial.name}
-                                city={testimonial.city}
-                                title={testimonial.title}
-                                testimonial={testimonial.testimonial}
-                                stars={testimonial.stars}
-                            />
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
+                <motion.div
+                    key={currentPage}
+                    initial={{ x: "100%", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: "-100%", opacity: 0 }}
+                    transition={{ type: "tween", stiffness: 100, damping: 15 }}
+                    className="grid grid-rows-1 md:grid-cols-3 gap-5"
+                >
+                    {getTestimonialsForCurrentPage().map((testimonial) => (
+                        <TestimonialBlock
+                            key={testimonial.id}
+                            name={testimonial.name}
+                            city={testimonial.city}
+                            title={testimonial.title}
+                            testimonial={testimonial.testimonial}
+                            stars={testimonial.stars}
+                        />
+                    ))}
+                </motion.div>
             </div>
 
             {totalPages > 1 && (
                 <div className="flex justify-between items-center border-t border-black-tertiary pt-5">
-                    <span className="text-sm font-medium">
+                    <span className="text-sm hidden md:block md:text-md font-medium">
                         {currentPage + 1} <span className="text-gray-quaternary">of {totalPages}</span>
                     </span>
-                    <div className="flex items-center gap-4">
+                    <button className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden">
+                        Share Your Testimonial
+                    </button>
+                    <div className="flex items-center gap-2">
                         <button
                             onClick={prevSlide}
                             className="h-10 w-10 rounded-full bg-black-secondary text-white disabled:opacity-50 border border-black-tertiary"
@@ -87,6 +88,9 @@ const Testimonials: React.FC = () => {
                         >
                             ←
                         </button>
+                        <span className="text-sm md:text-md md:hidden font-medium">
+                            {currentPage + 1} <span className="text-gray-quaternary">of {totalPages}</span>
+                        </span>
                         <button
                             onClick={nextSlide}
                             className="h-10 w-10 rounded-full bg-black-secondary text-white disabled:opacity-50 border border-black-tertiary"
