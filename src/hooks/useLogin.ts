@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Login } from "@/services/authService";
+import { Login } from "@/services/auth.service";
 import { useState } from "react";
 
 export const useLogin = () => {

@@ -1,4 +1,4 @@
-import { authMiddleware } from "@/middleware/authMiddleware";
+import { authMiddleware } from "@/middleware/auth.middleware";
 import { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {

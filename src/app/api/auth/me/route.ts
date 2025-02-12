@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getUser } from "@/controllers/authController";
+import { getUser } from "@/controllers/auth.controller";
 import connectDB from "@/lib/db"
 import { NextRequest } from "next/server"
 

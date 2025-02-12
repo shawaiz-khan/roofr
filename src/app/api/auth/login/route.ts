@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import connectDB from "@/lib/db";
-import { loginUser } from '@/controllers/authController';
+import { loginUser } from '@/controllers/auth.controller';
 
 connectDB();
 

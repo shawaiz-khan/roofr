@@ -16,6 +16,7 @@ export async function authMiddleware(req: NextRequest) {
         }
 
         await verifyJwt(refreshToken.value, "refresh");
+
         const accessToken = await getAccessToken();
 
         if (!accessToken || !accessToken.value) {
@@ -29,7 +30,7 @@ export async function authMiddleware(req: NextRequest) {
                 });
 
                 const res = NextResponse.next();
-                res.cookies.set("accessToken", response.data.accessToken, {
+                res.cookies.set("accessToken", response.data.body.accessToken, {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === "production",
                     sameSite: "strict",
@@ -38,7 +39,6 @@ export async function authMiddleware(req: NextRequest) {
                 });
 
                 return res;
-
             } catch (refreshError: any) {
                 console.error("Error refreshing access token:", refreshError?.message || refreshError);
                 return NextResponse.json({ message: "Error refreshing token" }, { status: 401 });

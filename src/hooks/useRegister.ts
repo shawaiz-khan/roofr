@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import { Register } from "@/services/authService";
+import { Register } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 
 export const useRegister = () => {
