@@ -192,12 +192,6 @@ export const refreshAccessToken = async (request: NextRequest) => {
 
         const refreshToken = authHeader.split(" ")[1];
 
-        if (!refreshToken) {
-            return NextResponse.json(
-                createResponse("Refresh token is required", StatusCodes.UNAUTHORIZED)
-            );
-        }
-
         let decoded;
         try {
             decoded = await verifyJwt(refreshToken, "refresh");
@@ -222,6 +216,15 @@ export const refreshAccessToken = async (request: NextRequest) => {
         }
 
         const newAccessToken = await generateAccessToken(user._id.toString(), user.email);
+
+        const CookieStore = await cookies();
+        CookieStore.set("accessToken", newAccessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 15 * 60,
+            path: '/'
+        });
 
         return NextResponse.json(
             createResponse("Token refreshed", StatusCodes.OK, { accessToken: newAccessToken })

@@ -46,3 +46,6 @@ next-env.d.ts
 #.sh
 loc.sh
 .vercel
+
+# test 
+**/test/
