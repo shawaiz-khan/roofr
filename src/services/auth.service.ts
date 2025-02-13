@@ -20,11 +20,20 @@ export const Login = async ({ apiUrl, userData }: AuthServiceProps) => {
     }
 };
 
-export const User = async ({ apiUrl }: { apiUrl: string }) => {
+export const User = async (apiUrl: string) => {
     try {
         const res = await axiosInstance.get(apiUrl);
         return res.data;
     } catch (err: any) {
         throw new Error(err.response?.data?.message || "Fetching User Failed");
+    }
+}
+
+export const Refresh = async (apiUrl: string) => {
+    try {
+        const res = await axiosInstance.post(apiUrl);
+        return res.data?.accessToken;
+    } catch (err: any) {
+        throw new Error(err.response?.data?.message || "Token Refresh Failed");
     }
 }
