@@ -109,7 +109,7 @@ const NavBar: React.FC = () => {
                                 <button
                                     className="block bg-black-primary border border-stroke-grey px-4 py-3 rounded-md cursor-pointer"
                                 >
-                                    <Link href={"/auth/login"}>Login</Link>
+                                    <Link href={"/auth/login"} className="flex justify-center items-center gap-2 text-lg"><User size={22} /> Login</Link>
                                 </button>
                             </ul>
                         </motion.div>

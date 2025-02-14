@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 
-export default interface IUser extends Document {
+export interface IUser extends Document {
     name: string;
     email: string;
     phone: string;
@@ -10,6 +10,16 @@ export default interface IUser extends Document {
     terms: boolean;
     role: "user" | "admin";
     refreshToken: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+}
+
+export interface IReview extends Document {
+    name: string;
+    city: string;
+    title: string;
+    testimonial: string;
+    stars: number;
     createdAt?: Date;
     updatedAt?: Date;
 }
