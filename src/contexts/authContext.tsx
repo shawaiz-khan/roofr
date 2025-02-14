@@ -2,37 +2,30 @@
 "use client";
 
 import { getAccessToken, getRefreshToken } from "@/helpers/getCookies";
-import { Refresh, User } from "@/services/auth.service";
-import { useRouter } from "next/navigation";
+import { Refresh } from "@/services/auth.service";
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import AuthContextType from "@/types/auth.context.types";
 import Loader from "@/components/PageLoader";
+import { protectedRoutes } from "@/constants/protectedRoutes";
 
 const AuthContext = createContext<AuthContextType>({
     accessToken: "",
     refreshToken: "",
-    user: { name: "", email: "", phone: "", location: "", userType: "" },
     setAccessToken: () => { },
     setRefreshToken: () => { },
-    setUser: () => { },
 });
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [accessToken, setAccessToken] = useState("");
     const [refreshToken, setRefreshToken] = useState("");
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        location: "",
-        userType: "",
-    });
-
     const [loading, setLoading] = useState(true);
+
     const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
-        const fetchTokensAndUser = async () => {
+        const fetchTokens = async () => {
             try {
                 const accessToken_cookie = await getAccessToken();
                 const refreshToken_cookie = await getRefreshToken();
@@ -56,10 +49,6 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 setAccessToken(newAccessToken);
                 setRefreshToken(refreshToken_cookie?.value || "");
 
-                if (newAccessToken) {
-                    const userData = await User("/api/auth/me", newAccessToken);
-                    setUser(userData);
-                }
             } catch (error) {
                 console.error("Error fetching tokens:", error);
                 router.push("/auth/login");
@@ -68,11 +57,16 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             }
         };
 
-        fetchTokensAndUser();
-    }, [accessToken, refreshToken]);
+        if (protectedRoutes.some(route => pathname.startsWith(route))) {
+            fetchTokens();
+        } else {
+            setLoading(false);
+        }
+
+    }, [accessToken, refreshToken, pathname]);
 
     return (
-        <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken, user, setUser }}>
+        <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken }}>
             {loading && <Loader />}
             {!loading && children}
         </AuthContext.Provider>

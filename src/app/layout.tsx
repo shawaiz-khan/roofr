@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/contexts/authContext";
+import { UserProvider } from "@/contexts/userContext";
 
 // Font Configuration
 const geistSans = Geist({
@@ -29,9 +30,11 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
-          <NavBar />
-          {children}
-          <Footer />
+          <UserProvider>
+            <NavBar />
+            {children}
+            <Footer />
+          </UserProvider>
         </AuthProvider>
       </body>
     </html>

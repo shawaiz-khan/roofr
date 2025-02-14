@@ -1,0 +1,47 @@
+"use client";
+
+import { UserContextType } from "@/types/user.context.types";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
+import useAuth from "@/hooks/useAuth";
+import { User } from "@/services/auth.service";
+
+const UserContext = createContext<UserContextType>({
+    user: { name: "", email: "", phone: "", location: "", userType: "" },
+    setUser: () => { },
+});
+
+const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        location: "",
+        userType: "",
+    });
+    const { accessToken } = useAuth();
+
+    useEffect(() => {
+        const getUser = async () => {
+            if (!accessToken) return;
+
+            try {
+                const res = await User("/api/auth/me", accessToken);
+                if (res) {
+                    setUser(res);
+                }
+            } catch (error) {
+                console.error("Failed to get user:", error);
+            }
+        };
+
+        getUser();
+    }, [accessToken]);
+
+    return (
+        <UserContext.Provider value={{ user, setUser }}>
+            {children}
+        </UserContext.Provider>
+    );
+};
+
+export { UserContext, UserProvider };
