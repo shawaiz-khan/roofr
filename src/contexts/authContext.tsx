@@ -1,64 +1,78 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { getAccessToken, getRefreshToken } from "@/helpers/getCookies";
-import { Refresh } from "@/services/auth.service";
+import { Refresh, User } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useEffect, useState } from "react";
-
-interface AuthContextType {
-    accessToken: string;
-    refreshToken: string;
-    setAccessToken: (token: string) => void;
-    setRefreshToken: (token: string) => void;
-}
+import AuthContextType from "@/types/auth.context.types";
 
 const AuthContext = createContext<AuthContextType>({
     accessToken: "",
     refreshToken: "",
+    user: { name: "", email: "", phone: "", location: "", userType: "" },
     setAccessToken: () => { },
     setRefreshToken: () => { },
+    setUser: () => { },
 });
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [accessToken, setAccessToken] = useState("");
     const [refreshToken, setRefreshToken] = useState("");
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        location: "",
+        userType: "",
+    });
+
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
-        const getTokens = async () => {
+        const fetchTokensAndUser = async () => {
             try {
                 const accessToken_cookie = await getAccessToken();
                 const refreshToken_cookie = await getRefreshToken();
 
-                console.log("Access Cookie:", accessToken_cookie, "Refresh Cookie:", refreshToken_cookie);
-
                 if (!refreshToken_cookie) {
-                    router.push('/auth/login');
+                    router.push("/auth/login");
                     return;
                 }
 
+                let newAccessToken = accessToken_cookie?.value || "";
                 if (!accessToken_cookie && refreshToken_cookie) {
-                    const apiUrl = "/api/auth/refresh-token";
-                    const newAccessToken = await Refresh(apiUrl, refreshToken_cookie.value);
-                    setAccessToken(newAccessToken);
-                } else {
-                    setAccessToken(accessToken_cookie?.value || "");
+                    try {
+                        newAccessToken = await Refresh("/api/auth/refresh-token", refreshToken_cookie.value);
+                    } catch (error) {
+                        console.error("Failed to refresh token:", error);
+                        router.push("/auth/login");
+                        return;
+                    }
                 }
 
+                setAccessToken(newAccessToken);
                 setRefreshToken(refreshToken_cookie?.value || "");
 
+                if (newAccessToken) {
+                    const userData = await User("/api/auth/me", newAccessToken);
+                    setUser(userData);
+                }
             } catch (error) {
                 console.error("Error fetching tokens:", error);
-                router.push('/auth/login');
+                router.push("/auth/login");
+            } finally {
+                setLoading(false);
             }
         };
 
-        getTokens();
+        fetchTokensAndUser();
     }, [accessToken, refreshToken]);
 
     return (
-        <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken }}>
-            {children}
+        <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken, user, setUser }}>
+            {!loading && children}
         </AuthContext.Provider>
     );
 };

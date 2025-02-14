@@ -5,7 +5,6 @@ import { StatusCodes } from "http-status-codes";
 import { NextRequest, NextResponse } from "next/server";
 import { generateAccessToken, generateRefreshToken } from '@/helpers/generateToken';
 import { cookies } from "next/headers";
-import { getAccessToken } from "@/helpers/getCookies";
 import { verifyJwt } from "@/helpers/jwtHelpers";
 
 const createResponse = (message: string, status: number, body?: any) => {
@@ -138,9 +137,18 @@ export const loginUser = async (userData: any) => {
     }
 };
 
-export const getUser = async () => {
+export const getUser = async (request: NextRequest) => {
     try {
-        const accessToken = await getAccessToken();
+        const authHeader = request.headers.get("Authorization");
+
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return NextResponse.json(
+                createResponse("Unauthorized: Missing or invalid authorization", StatusCodes.UNAUTHORIZED)
+            );
+        }
+
+        const accessToken = authHeader.split(" ")[1];
+
         if (!accessToken) {
             return NextResponse.json(
                 createResponse("Unauthorized: No access token provided", StatusCodes.UNAUTHORIZED)
@@ -149,7 +157,7 @@ export const getUser = async () => {
 
         let userData;
         try {
-            userData = await verifyJwt(accessToken.value, 'access');
+            userData = await verifyJwt(accessToken, 'access');
         } catch (error: any) {
             return NextResponse.json(
                 createResponse(error.message || "Invalid or expired token", StatusCodes.UNAUTHORIZED)
@@ -171,7 +179,15 @@ export const getUser = async () => {
         }
 
         return NextResponse.json(
-            createResponse("User Found", StatusCodes.OK, { user })
+            createResponse("User Found", StatusCodes.OK, {
+                user: {
+                    name: user.name,
+                    email: user.email,
+                    phone: user.phone,
+                    location: user.location,
+                    userType: user.userType,
+                }
+            })
         );
     } catch (err: any) {
         return NextResponse.json(

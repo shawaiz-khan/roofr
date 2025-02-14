@@ -24,10 +24,14 @@ export const Login = async ({ apiUrl, userData }: AuthServiceProps) => {
     }
 };
 
-export const User = async (apiUrl: string) => {
+export const User = async (apiUrl: string, accessToken: string) => {
     try {
-        const res = await axiosInstance.get(apiUrl);
-        return res.data;
+        const res = await axiosInstance.get(apiUrl, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        return res.data?.body?.user;
     } catch (err: any) {
         throw new Error(err.response?.data?.message || "Fetching User Failed");
     }
