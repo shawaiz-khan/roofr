@@ -6,6 +6,7 @@ import { Refresh, User } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import AuthContextType from "@/types/auth.context.types";
+import Loader from "@/components/PageLoader";
 
 const AuthContext = createContext<AuthContextType>({
     accessToken: "",
@@ -72,6 +73,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken, user, setUser }}>
+            {loading && <Loader />}
             {!loading && children}
         </AuthContext.Provider>
     );

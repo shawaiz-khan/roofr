@@ -16,7 +16,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-// Metadata
 export const metadata: Metadata = {
   title: "Roofr - Real Estate Platform",
   description:

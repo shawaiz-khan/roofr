@@ -1,29 +1,29 @@
 "use client";
 
-import { testimonials } from "@/data/testimonials";
-import TestimonialBlock from "./TestimonialBlock";
+import { faqs } from "@/data/faqs";
 import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import FaqBlock from "./FaqBlock";
 
-const Testimonials: React.FC = () => {
+const FAQs: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
-    const [reviewsPerPage, setReviewsPerPage] = useState(3);
-    const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
+    const [faqPerPage, setFaqPerPage] = useState(3);
+    const totalPages = Math.ceil(faqs.length / faqPerPage);
 
     useEffect(() => {
         const handleResize = () => {
-            setReviewsPerPage(window.innerWidth <= 768 ? 1 : 3);
+            setFaqPerPage(window.innerWidth <= 768 ? 1 : 3);
         };
         handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const getTestimonialsForCurrentPage = () => {
-        const startIndex = currentPage * reviewsPerPage;
-        return testimonials.slice(startIndex, startIndex + reviewsPerPage);
+    const getFAQsForCurrentPage = () => {
+        const startIndex = currentPage * faqPerPage;
+        return faqs.slice(startIndex, startIndex + faqPerPage);
     };
 
     const nextSlide = () => {
@@ -39,14 +39,15 @@ const Testimonials: React.FC = () => {
             <div className="flex justify-between items-end">
                 <div className="flex flex-col gap-2">
                     <Image src={stars} alt="What our client says" />
-                    <h1 className="text-2xl">What Our Clients Say</h1>
-                    <p className="text-sm text-gray-quaternary">
-                        Read the success stories and heartfelt testimonials from our valued clients.
-                        Discover why they chose Roofr for their real estate needs.
+                    <h1 className="text-2xl">Frequently Asked Questions</h1>
+                    <p className="text-sm text-gray-quaternary md:w-[90%]">
+                        Find answers to common questions about Roofr services,
+                        property listings, and the real estate process.
+                        We are here to provide clarity and assist you every step of the way.
                     </p>
                 </div>
                 <button className="bg-black-secondary border border-black-tertiary py-3 px-4 text-sm rounded-md hidden md:block">
-                    Share Your Testimonial
+                    View All FAQs
                 </button>
             </div>
 
@@ -59,14 +60,11 @@ const Testimonials: React.FC = () => {
                     transition={{ type: "tween", stiffness: 100, damping: 15 }}
                     className="grid grid-rows-1 md:grid-cols-3 gap-5"
                 >
-                    {getTestimonialsForCurrentPage().map((testimonial) => (
-                        <TestimonialBlock
-                            key={testimonial.id}
-                            name={testimonial.name}
-                            city={testimonial.city}
-                            title={testimonial.title}
-                            testimonial={testimonial.testimonial}
-                            stars={testimonial.stars}
+                    {getFAQsForCurrentPage().map((faq, index) => (
+                        <FaqBlock
+                            key={index}
+                            question={faq.question}
+                            answer={faq.answer}
                         />
                     ))}
                 </motion.div>
@@ -78,7 +76,7 @@ const Testimonials: React.FC = () => {
                         {currentPage + 1} <span className="text-gray-quaternary">of {totalPages}</span>
                     </span>
                     <button className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden">
-                        Share Your Testimonial
+                        View All FAQs
                     </button>
                     <div className="flex items-center gap-2">
                         <button
@@ -105,4 +103,4 @@ const Testimonials: React.FC = () => {
     );
 };
 
-export default Testimonials;
+export default FAQs;

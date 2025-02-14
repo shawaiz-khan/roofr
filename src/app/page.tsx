@@ -5,6 +5,7 @@ import RoundTextSvg from "@/components/RoundTextSvg";
 import RatingBlock from "@/components/RatingBlock";
 import FeaturesBlock from "@/components/FeaturesBlock";
 import Testimonials from "@/components/Testimonial";
+import FAQs from "@/components/FAQ";
 
 const Home: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ const Home: React.FC = () => {
         </div>
         <div className="flex flex-col gap-10 md:justify-center md:items-start md:p-5">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl md:text-5xl font-semibold">Discover Your Dream Property with Roofr</h1>
+            <h1 className="text-2xl md:text-5xl">Discover Your Dream Property with Roofr</h1>
             <p className="text-gray-quaternary">Your journey to finding the perfect property begins here. Explore our listings to find the home that matches your dreams.</p>
           </div>
           <div className="grid grid-rows-2 gap-3 w-full md:w-3/4 md:grid-rows-1 md:grid-cols-2">
@@ -45,6 +46,8 @@ const Home: React.FC = () => {
       </div>
       {/* Testimonials  */}
       <Testimonials />
+      {/* FAQs  */}
+      <FAQs />
     </main>
   );
 }
