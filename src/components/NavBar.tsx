@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import HeaderGraphic from "@/assets/svg/Background Graphics.svg";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/assets/svg/logo.svg";
 import { usePathname } from "next/navigation";
@@ -65,7 +65,7 @@ const NavBar: React.FC = () => {
                 </ul>
 
                 <button className="hidden md:block bg-black-primary border border-stroke-dark px-3 py-2 rounded-md cursor-pointer">
-                    <Link href={"/auth/login"}>Log In / Sign Up</Link>
+                    <Link href={"/auth/login"} className="flex justify-center items-center gap-2"><User size={20} />Login</Link>
                 </button>
 
                 <button onClick={handleMenu} className="block md:hidden">
