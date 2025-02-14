@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDownCircleIcon } from 'lucide-react';
+import { ArrowDownCircleIcon, EyeIcon, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import { useRegister } from '@/hooks/useRegister';
 
@@ -10,9 +10,11 @@ const CreateAccount: React.FC = () => {
         error,
         success,
         loading,
+        isShowPassword,
         handleOnChange,
         handleCheckboxChange,
         handleSubmit,
+        handleShowPassword
     } = useRegister();
 
     const inputStyle = `bg-transparent border border-black-tertiary text-sm text-gray-tertiary w-full py-3 px-4 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary`;
@@ -79,16 +81,24 @@ const CreateAccount: React.FC = () => {
                         onChange={handleOnChange}
                         className={inputStyle}
                     />
+                    <div className='gap-4 w-full relative'>
+                        <input
+                            type={isShowPassword ? "text" : "password"}
+                            placeholder="Enter Your Password"
+                            name="password"
+                            value={signupForm.password}
+                            onChange={handleOnChange}
+                            className={inputStyle}
+                        />
+                        <span
+                            className="absolute inset-y-0 right-3 flex items-center"
+                            onClick={handleShowPassword}
+                        >
+                            {isShowPassword ? <EyeIcon size={15} className='text-gray-quaternary' /> : <EyeOff size={15} className='text-gray-quaternary' />}
+                        </span>
+                    </div>
                     <input
-                        type="password"
-                        placeholder="Enter Your Password"
-                        name="password"
-                        value={signupForm.password}
-                        onChange={handleOnChange}
-                        className={inputStyle}
-                    />
-                    <input
-                        type="password"
+                        type={isShowPassword ? "text" : "password"}
                         placeholder="Confirm Your Password"
                         name="confirmPassword"
                         value={signupForm.confirmPassword}

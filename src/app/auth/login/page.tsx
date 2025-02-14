@@ -1,6 +1,7 @@
 "use client";
 
 import { useLogin } from "@/hooks/useLogin";
+import { EyeIcon, EyeOff } from "lucide-react";
 import Link from "next/link";
 
 const Login: React.FC = () => {
@@ -9,8 +10,10 @@ const Login: React.FC = () => {
         error,
         success,
         loading,
+        isShowPassword,
         handleOnChange,
-        handleSubmit
+        handleSubmit,
+        handleShowPassword
     } = useLogin();
 
     const inputStyle = `bg-transparent border border-black-tertiary text-gray-tertiary w-full py-3 px-4 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary`;
@@ -31,14 +34,22 @@ const Login: React.FC = () => {
                         onChange={handleOnChange}
                         className={inputStyle}
                     />
-                    <input
-                        type="password"
-                        placeholder="Enter Your Password"
-                        name="password"
-                        value={loginForm.password}
-                        onChange={handleOnChange}
-                        className={inputStyle}
-                    />
+                    <div className="w-full relative">
+                        <input
+                            type={isShowPassword ? "text" : "password"}
+                            placeholder="Enter Your Password"
+                            name="password"
+                            value={loginForm.password}
+                            onChange={handleOnChange}
+                            className={inputStyle}
+                        />
+                        <span
+                            className="absolute inset-y-0 right-3 flex items-center"
+                            onClick={handleShowPassword}
+                        >
+                            {isShowPassword ? <EyeIcon size={15} className='text-gray-quaternary' /> : <EyeOff size={15} className='text-gray-quaternary' />}
+                        </span>
+                    </div>
                 </div>
                 {error && <span className="text-red-500 text-xs">{error}</span>}
                 {success && <span className="text-green-500 text-xs">{success}</span>}

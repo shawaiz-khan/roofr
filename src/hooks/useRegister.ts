@@ -18,6 +18,7 @@ export const useRegister = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState('');
+    const [isShowPassword, setIsShowPassword] = useState(false);
 
     const router = useRouter();
 
@@ -77,13 +78,19 @@ export const useRegister = () => {
         }
     };
 
+    const handleShowPassword = () => {
+        setIsShowPassword((prev) => !prev);
+    }
+
     return {
         signupForm,
         error,
         success,
         loading,
+        isShowPassword,
         handleOnChange,
         handleSubmit,
         handleCheckboxChange,
+        handleShowPassword
     };
 };

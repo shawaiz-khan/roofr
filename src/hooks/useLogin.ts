@@ -10,6 +10,7 @@ export const useLogin = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState('');
+    const [isShowPassword, setIsShowPassword] = useState(false);
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginForm((prev) => ({
@@ -46,9 +47,16 @@ export const useLogin = () => {
 
         try {
             const apiUrl = `/api/auth/login`;
-            await Login({ apiUrl, userData });
-            setSuccess("User Logged In successfully!");
-            setError("");
+            const res = await Login({ apiUrl, userData });
+            console.log(res?.message);
+
+            if (res.status === 200) {
+                setSuccess("User Logged In successfully!");
+                setError("");
+            } else {
+                throw new Error(res.message || "Error logging in")
+            }
+
         } catch (error: any) {
             setError(error.message || "Something went wrong!");
             setSuccess("");
@@ -57,12 +65,18 @@ export const useLogin = () => {
         }
     };
 
+    const handleShowPassword = () => {
+        setIsShowPassword((prev) => !prev);
+    }
+
     return {
         loginForm,
         error,
         success,
         loading,
         handleOnChange,
-        handleSubmit
+        handleSubmit,
+        isShowPassword,
+        handleShowPassword,
     };
 };
