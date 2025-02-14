@@ -11,14 +11,14 @@ const FaqBlock: React.FC<FAQsType> = ({ question, answer }) => {
     };
 
     return (
-        <div className="border border-black-tertiary p-5 space-y-5 flex flex-col justify-between rounded-lg">
+        <div className="border border-black-tertiary p-5 space-y-5 md:space-y-3 flex flex-col justify-between rounded-lg">
             <h1 className="text-xl font-semibold">{question}</h1>
             <p className="text-md text-gray-quaternary">
-                {answer.length > 50 ? answer.slice(0, 50) + "..." : answer}
+                {answer.length > 100 ? answer.slice(0, 100) + "..." : answer}
             </p>
-            {answer.length > 50 && (
+            {answer.length > 100 && (
                 <button
-                    className="w-full bg-black-secondary border border-black-tertiary py-3 rounded-md hover:bg-black-primary transition-all"
+                    className="w-full md:w-fit bg-black-secondary border border-black-tertiary px-3 py-3 md:py-2 rounded-md"
                     onClick={handleReadMore}
                 >
                     Read More
@@ -39,7 +39,7 @@ const FaqPopup: React.FC<{ question: string; answer: string; onClose: () => void
                 <h2 className="text-xl mb-3">{question}</h2>
                 <p className="text-md text-gray-quaternary mb-4">{answer}</p>
                 <button
-                    className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition-all"
+                    className="w-full bg-purple-primary text-white py-2 rounded-md"
                     onClick={onClose}
                 >
                     Close

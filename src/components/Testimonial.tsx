@@ -35,7 +35,7 @@ const Testimonials: React.FC = () => {
     };
 
     return (
-        <main className="flex flex-col gap-5 md:gap-10 md:my-10 md:p-5">
+        <main className="flex flex-col gap-5 md:gap-10 md:mt-10 md:mb-5 md:p-5">
             <div className="flex justify-between items-end">
                 <div className="flex flex-col gap-2">
                     <Image src={stars} alt="What our client says" />
