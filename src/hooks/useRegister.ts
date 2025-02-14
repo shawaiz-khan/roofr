@@ -68,9 +68,15 @@ export const useRegister = () => {
 
         try {
             const apiUrl = `/api/auth/create-account`;
-            await Register({ apiUrl, userData });
-            setSuccess("User registered successfully!");
-            router.push(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`);
+            const res = await Register({ apiUrl, userData });
+
+            if (res?.status === 201) {
+                setSuccess("User registered successfully!");
+                router.push(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`);
+            } else {
+                throw new Error(res.message || "Error creating account")
+            }
+
         } catch (error: any) {
             setError(error.message || "Something went wrong!");
         } finally {
