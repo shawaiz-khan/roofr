@@ -9,12 +9,15 @@ import Logo from "@/assets/svg/logo.svg";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import NavItems from "@/constants/navPaths";
+import useUser from "@/hooks/useUser";
+import UserMenu from "./UserMenu";
 
 const NavBar: React.FC = () => {
     const [isModal, setIsModal] = useState<boolean>(true);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const pathname = usePathname();
+    const { user } = useUser();
 
     const handleModal = () => setIsModal((prev) => !prev);
     const handleMenu = () => setIsOpen((prev) => !prev);
@@ -64,13 +67,28 @@ const NavBar: React.FC = () => {
                     ))}
                 </ul>
 
-                <button className="hidden md:block bg-black-primary border border-stroke-dark px-3 py-2 rounded-md cursor-pointer">
-                    <Link href={"/auth/login"} className="flex justify-center items-center gap-2"><User size={20} />Login</Link>
-                </button>
+                {user.name ? (
+                    <div className="m-0 p-0 hidden md:block">
+                        <UserMenu user={user} />
+                    </div>
+                ) : (
+                    <button className="hidden md:block bg-black-primary border border-stroke-dark px-3 py-2 rounded-md cursor-pointer">
+                        <Link href={"/auth/login"} className="flex justify-center items-center gap-2"><User size={20} />Login</Link>
+                    </button>
+                )}
 
-                <button onClick={handleMenu} className="block md:hidden">
-                    {isOpen ? <X /> : <Menu />}
-                </button>
+                {user.name ? (
+                    <div className="flex justify-center items-center gap-3 m-0 p-0 md:hidden">
+                        <UserMenu user={user} />
+                        <button onClick={handleMenu}>
+                            {isOpen ? <X /> : <Menu />}
+                        </button>
+                    </div>
+                ) : (
+                    <button onClick={handleMenu} className="block md:hidden">
+                        {isOpen ? <X /> : <Menu />}
+                    </button>
+                )}
             </div>
 
             <AnimatePresence>
