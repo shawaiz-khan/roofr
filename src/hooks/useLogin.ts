@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Login } from "@/services/auth.service";
 import { useState } from "react";
+import useAuth from "./useAuth";
 
 export const useLogin = () => {
     const [loginForm, setLoginForm] = useState({
@@ -11,6 +12,8 @@ export const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState('');
     const [isShowPassword, setIsShowPassword] = useState(false);
+
+    const { setIsLoggedIn } = useAuth();
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginForm((prev) => ({
@@ -48,11 +51,11 @@ export const useLogin = () => {
         try {
             const apiUrl = `/api/auth/login`;
             const res = await Login({ apiUrl, userData });
-            console.log(res?.message);
 
             if (res.status === 200) {
                 setSuccess("User Logged In successfully!");
                 setError("");
+                setIsLoggedIn(true);
             } else {
                 throw new Error(res.message || "Error logging in")
             }

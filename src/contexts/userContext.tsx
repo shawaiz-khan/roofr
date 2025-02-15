@@ -26,11 +26,15 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
             try {
                 const res = await User("/api/auth/me", accessToken);
-                if (res) {
-                    setUser(res);
+
+                if (!res) {
+                    throw new Error(res.message || "Failed to get user");
                 }
+
+                setUser(res.body?.user);
+
             } catch (error) {
-                console.error("Failed to get user:", error);
+                console.error("Get user error: ", error);
             }
         };
 

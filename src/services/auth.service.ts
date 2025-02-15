@@ -31,7 +31,7 @@ export const User = async (apiUrl: string, accessToken: string) => {
                 Authorization: `Bearer ${accessToken}`
             }
         });
-        return res.data?.body?.user;
+        return res.data;
     } catch (err: any) {
         throw new Error(err.response?.data?.message || "Fetching User Failed");
     }
@@ -44,7 +44,7 @@ export const Refresh = async (apiUrl: string, refreshToken: string) => {
                 Authorization: `Bearer ${refreshToken}`,
             }
         });
-        return res.data?.accessToken;
+        return res.data;
     } catch (err: any) {
         throw new Error(err.response?.data?.message || "Token Refresh Failed");
     }

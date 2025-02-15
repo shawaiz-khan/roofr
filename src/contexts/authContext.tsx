@@ -12,14 +12,17 @@ import { protectedRoutes } from "@/constants/protectedRoutes";
 const AuthContext = createContext<AuthContextType>({
     accessToken: "",
     refreshToken: "",
+    isLoggedIn: false,
     setAccessToken: () => { },
     setRefreshToken: () => { },
+    setIsLoggedIn: () => { },
 });
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [accessToken, setAccessToken] = useState("");
     const [refreshToken, setRefreshToken] = useState("");
     const [loading, setLoading] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const router = useRouter();
     const pathname = usePathname();
@@ -38,9 +41,16 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 let newAccessToken = accessToken_cookie?.value || "";
                 if (!accessToken_cookie && refreshToken_cookie) {
                     try {
-                        newAccessToken = await Refresh("/api/auth/refresh-token", refreshToken_cookie.value);
+                        const res = await Refresh("/api/auth/refresh-token", refreshToken_cookie.value);
+
+                        if (!res.accessToken) {
+                            throw new Error(res.message || "Failed to refresh token");
+                        }
+
+                        newAccessToken = res.accessToken;
+
                     } catch (error) {
-                        console.error("Failed to refresh token:", error);
+                        console.error("Refresh Error:", error);
                         router.push("/auth/login");
                         return;
                     }
@@ -48,6 +58,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
                 setAccessToken(newAccessToken);
                 setRefreshToken(refreshToken_cookie?.value || "");
+                setIsLoggedIn(true);
 
             } catch (error) {
                 console.error("Error fetching tokens:", error);
@@ -66,7 +77,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }, [accessToken, refreshToken, pathname]);
 
     return (
-        <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken }}>
+        <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken, isLoggedIn, setIsLoggedIn }}>
             {loading && <Loader />}
             {!loading && children}
         </AuthContext.Provider>
