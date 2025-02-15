@@ -11,7 +11,8 @@ export const Register = async ({ apiUrl, userData }: AuthServiceProps) => {
         const res = await axiosInstance.post(apiUrl, userData);
         return res.data;
     } catch (err: any) {
-        throw new Error(err?.response?.data?.message || "Registration failed");
+        console.error("Registration failed:", err.response?.data?.message || err.message);
+        return null;
     }
 };
 
@@ -20,7 +21,8 @@ export const Login = async ({ apiUrl, userData }: AuthServiceProps) => {
         const res = await axiosInstance.post(apiUrl, userData);
         return res.data;
     } catch (err: any) {
-        throw new Error(err?.response?.data?.message || "Login failed");
+        console.error("Login failed:", err.response?.data?.message || err.message);
+        return null;
     }
 };
 
@@ -33,7 +35,8 @@ export const User = async (apiUrl: string, accessToken: string) => {
         });
         return res.data;
     } catch (err: any) {
-        throw new Error(err.response?.data?.message || "Fetching User Failed");
+        console.error("Fetch user failed:", err.response?.data?.message || err.message);
+        return null;
     }
 }
 
@@ -46,6 +49,7 @@ export const Refresh = async (apiUrl: string, refreshToken: string) => {
         });
         return res.data;
     } catch (err: any) {
-        throw new Error(err.response?.data?.message || "Token Refresh Failed");
+        console.error("Token refresh failed:", err.response?.data?.message || err.message);
+        return null;
     }
 }

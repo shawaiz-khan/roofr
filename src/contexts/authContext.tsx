@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
@@ -34,7 +35,11 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 const refreshToken_cookie = await getRefreshToken();
 
                 if (!refreshToken_cookie) {
-                    router.push("/auth/login");
+                    setLoading(false);
+                    // ✅ Only redirect if the current route is protected
+                    if (protectedRoutes.some(route => pathname.startsWith(route))) {
+                        router.push("/auth/login");
+                    }
                     return;
                 }
 
@@ -43,15 +48,16 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                     try {
                         const res = await Refresh("/api/auth/refresh-token", refreshToken_cookie.value);
 
-                        if (!res.accessToken) {
+                        if (!res.body?.accessToken) {
                             throw new Error(res.message || "Failed to refresh token");
                         }
 
-                        newAccessToken = res.accessToken;
-
+                        newAccessToken = res.body?.accessToken;
                     } catch (error) {
-                        console.error("Refresh Error:", error);
-                        router.push("/auth/login");
+                        setLoading(false);
+                        if (protectedRoutes.some(route => pathname.startsWith(route))) {
+                            router.push("/auth/login");
+                        }
                         return;
                     }
                 }
@@ -59,27 +65,19 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 setAccessToken(newAccessToken);
                 setRefreshToken(refreshToken_cookie?.value || "");
                 setIsLoggedIn(true);
-
             } catch (error) {
                 console.error("Error fetching tokens:", error);
-                router.push("/auth/login");
             } finally {
                 setLoading(false);
             }
         };
 
-        if (protectedRoutes.some(route => pathname.startsWith(route))) {
-            fetchTokens();
-        } else {
-            setLoading(false);
-        }
-
-    }, [accessToken, refreshToken, pathname]);
+        fetchTokens();
+    }, [pathname]);
 
     return (
         <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken, isLoggedIn, setIsLoggedIn }}>
-            {loading && <Loader />}
-            {!loading && children}
+            {loading ? <Loader /> : children}
         </AuthContext.Provider>
     );
 };
