@@ -36,10 +36,11 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
                 if (!refreshToken_cookie) {
                     setLoading(false);
-                    // ✅ Only redirect if the current route is protected
+
                     if (protectedRoutes.some(route => pathname.startsWith(route))) {
                         router.push("/auth/login");
                     }
+
                     return;
                 }
 
