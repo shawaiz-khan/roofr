@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/contexts/authContext";
 import { UserProvider } from "@/contexts/userContext";
+import BackToTop from "@/components/BackToTop";
 
 // Font Configuration
 const geistSans = Geist({
@@ -33,6 +34,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <UserProvider>
             <NavBar />
             {children}
+            <BackToTop />
             <Footer />
           </UserProvider>
         </AuthProvider>
