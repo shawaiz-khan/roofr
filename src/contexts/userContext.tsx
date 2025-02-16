@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { UserContextType } from "@/types/user.context.types";
@@ -25,7 +26,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             if (!accessToken) return;
 
             try {
-                const res = await User("/api/auth/me", accessToken);
+                const res = await User("/api/auth/me", accessToken) as any;
 
                 if (!res) {
                     throw new Error(res.message || "Failed to get user");
