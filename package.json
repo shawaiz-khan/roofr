@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/axios": "^0.9.36",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "^20",
