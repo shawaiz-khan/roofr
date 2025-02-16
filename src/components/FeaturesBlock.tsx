@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Features from "@/data/features";
+import { Features } from "@/data/features";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
