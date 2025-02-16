@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
@@ -47,7 +48,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 let newAccessToken = accessToken_cookie?.value || "";
                 if (!accessToken_cookie && refreshToken_cookie) {
                     try {
-                        const res = await Refresh("/api/auth/refresh-token", refreshToken_cookie.value);
+                        const res = await Refresh("/api/auth/refresh-token", refreshToken_cookie.value) as any;
 
                         if (!res.body?.accessToken) {
                             throw new Error(res.message || "Failed to refresh token");
