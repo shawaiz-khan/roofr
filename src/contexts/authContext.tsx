@@ -8,7 +8,7 @@ import { Refresh } from "@/services/auth.service";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import AuthContextType from "@/types/auth.context.types";
-import Loader from "@/components/PageLoader";
+import Loader from "@/components/ui/PageLoader";
 import { protectedRoutes } from "@/constants/protectedRoutes";
 
 const AuthContext = createContext<AuthContextType>({

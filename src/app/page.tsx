@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import heroImg from '@/assets/images/hero.jpg';
-import RoundTextSvg from "@/components/RoundTextSvg";
-import RatingBlock from "@/components/RatingBlock";
-import FeaturesBlock from "@/components/FeaturesBlock";
-import Testimonials from "@/components/Testimonial";
-import FAQs from "@/components/FAQ";
-import CTA from "@/components/CTA";
+import RoundTextSvg from "@/components/ui/RoundTextSvg";
+import RatingBlock from "@/components/block/RatingBlock";
+import FeaturesBlock from "@/components/block/FeaturesBlock";
+import Testimonials from "@/components/block/Testimonial";
+import FAQs from "@/components/block/FAQ";
+import CTA from "@/components/block/CTA";
 
 const Home: React.FC = () => {
   return (

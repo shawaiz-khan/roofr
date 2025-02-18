@@ -4,8 +4,8 @@ import MailIcon from '@/assets/svg/Mail.svg';
 import Image from 'next/image';
 import { FooterAboutItems, FooterContactItems, FooterHomeItems, FooterPropertiesItems, FooterServicesItems, FooterUserItems } from '@/constants/footerPaths';
 import Link from 'next/link';
-import FooterBlock from './FooterBlock';
-import FooterSocials from './FooterSocials';
+import FooterBlock from '../block/FooterBlock';
+import FooterSocials from '../block/FooterSocials';
 
 const Footer: React.FC = () => {
     return (

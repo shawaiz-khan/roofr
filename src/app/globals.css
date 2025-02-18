@@ -59,3 +59,31 @@ body {
     transform: rotate(1turn)
   }
 }
+
+.half-border {
+  border: 1px solid var(--black-tertiary);
+}
+
+.half-border::before {
+  display: block;
+  content: "";
+  width: 1.1px;
+  height: 60%;
+  background: linear-gradient(to bottom, var(--purple-primary), var(--black-tertiary));
+  position: absolute;
+  left: -1px;
+  top: 0;
+  z-index: 20;
+}
+
+.half-border::after {
+  display: block;
+  content: "";
+  width: 40%;
+  height: 1.1px;
+  background: linear-gradient(to right, var(--purple-primary), var(--black-tertiary));
+  position: absolute;
+  left: 0;
+  top: -1px;
+  z-index: 20;
+}
