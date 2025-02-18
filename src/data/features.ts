@@ -29,7 +29,7 @@ import abt_excellence from '@/assets/svg/excellence.svg';
 
 export const AboutFeatures: AboutFeatureBlockTypes[] = [
     { title: "Trust", description: "Trust is the cornerstone of every successful real estate transaction.", icon: abt_star },
-    { title: "Excellence", description: "We set the bar high for ourselves. From the properties we list to the services we provide.", icon: abt_excellence },
+    { title: "Excellence", description: "We set the bar high for ourselves. From the properties we provide.", icon: abt_excellence },
     { title: "Client-Centric", description: "Your dreams and needs are at the center of our universe. We listen, understand.", icon: abt_client },
     { title: "Our Commitment", description: "We are dedicated to providing you with the highest level of service, professionalism", icon: abt_star },
 ]

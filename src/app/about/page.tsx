@@ -11,52 +11,59 @@ import Image from 'next/image';
 
 const About: React.FC = () => {
     return (
-        <main className="min-h-screen bg-black-primary text-text-light flex flex-col items-center gap-10 md:gap-0">
-            <div className='p-5 md:p-0 flex flex-col gap-10 md:gap-0'>
+        <main className="min-h-screen bg-black-primary text-text-light flex flex-col gap-10">
+            <div className='p-5 md:p-10 flex flex-col justify-center items-center gap-10'>
                 {/* About Hero  */}
-                <div className='border border-black-tertiary rounded-xl relative overflow-hidden'>
-                    <Image
-                        src={abt_cover}
-                        alt='About Roofr'
-                        className='relative'
-                    />
+                <div className='md:grid md:grid-cols-2 flex flex-col justify-center items-center gap-10'>
+                    <div className='w-full md:order-2 flex justify-end items-center'>
+                        <div className='border border-black-tertiary rounded-xl relative overflow-hidden md:max-w-96'>
+                            <Image
+                                src={abt_cover}
+                                alt='About Roofr'
+                                className='relative z-10'
+                            />
 
-                    <Image
-                        src={abt_bg_cover}
-                        alt='About Roofr'
-                        layout='fill'
-                        className='absolute inset-0 object-cover opacity-60'
-                    />
-                </div>
-                {/* Journey  */}
-                <div className="flex flex-col gap-2">
-                    <Image src={stars} alt="What our client says" />
-                    <h1 className="text-2xl">Our Journey</h1>
-                    <p className="text-sm text-gray-quaternary md:w-[90%]">
-                        Our story is one of continuous growth and evolution. We started as a small team with big dreams,
-                        determined to create a real estate platform that transcended the ordinary. Over the years, we have
-                        expanded our reach, forged valuable partnerships, and gained the trust of countless clients.
-                    </p>
-                </div>
-                {/* Ratings  */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 w-full">
-                    <RatingBlock count={200} text="Happy Customers" />
-                    <RatingBlock count="10k" text="Properties For Clients" />
-                    <div className="col-span-2 md:col-span-1">
-                        <RatingBlock count={16} text="Years of Experience" />
+                            <Image
+                                src={abt_bg_cover}
+                                alt='About Roofr'
+                                layout='fill'
+                                className='absolute inset-0 object-cover opacity-60'
+                            />
+                        </div>
+                    </div>
+                    {/* Journey  */}
+                    <div className='flex flex-col gap-10'>
+                        <div className="flex flex-col gap-2">
+                            <Image src={stars} alt="What our client says" />
+                            <h1 className="text-2xl md:text-3xl">Our Journey</h1>
+                            <p className="text-sm md:text-md text-gray-quaternary md:w-[90%]">
+                                Our story is one of continuous growth and evolution. We started as a small team with big dreams,
+                                determined to create a real estate platform that transcended the ordinary. Over the years, we have
+                                expanded our reach, forged valuable partnerships, and gained the trust of countless clients.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 w-full">
+                            <RatingBlock count={200} text="Happy Customers" />
+                            <RatingBlock count="10k" text="Properties For Clients" />
+                            <div className="col-span-2 md:col-span-1">
+                                <RatingBlock count={16} text="Years of Experience" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {/* Values  */}
-                <div className="flex flex-col gap-2">
-                    <Image src={stars} alt="What our client says" />
-                    <h1 className="text-2xl">Our Values</h1>
-                    <p className="text-sm text-gray-quaternary md:w-[90%]">
-                        Our story is one of continuous growth and evolution. We started as a small team with big dreams,
-                        determined to create a real estate platform that transcended the ordinary.
-                    </p>
-                </div>
-                <div className='bg-black-primary flex flex-col p-5 gap-3 rounded-md shadow-[0_0_10px_#262626]'>
-                    <AboutFeatureList />
+                <div className='md:grid md:grid-cols-2 flex flex-col justify-center items-center gap-10 md:gap-0'>
+                    <div className="flex flex-col gap-2">
+                        <Image src={stars} alt="What our client says" />
+                        <h1 className="text-2xl">Our Values</h1>
+                        <p className="text-sm md:text-md text-gray-quaternary md:w-[80%]">
+                            Our story is one of continuous growth and evolution. We started as a small team with big dreams,
+                            determined to create a real estate platform that transcended the ordinary.
+                        </p>
+                    </div>
+                    <div className='bg-black-primary flex flex-col md:grid md:grid-cols-2 md:grid-rows-2 md:justify-center md:items-center p-5 gap-3 rounded-md shadow-[0_0_10px_#262626]'>
+                        <AboutFeatureList />
+                    </div>
                 </div>
                 {/* Achievements  */}
                 <div className="flex flex-col gap-2">
