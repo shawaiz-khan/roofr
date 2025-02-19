@@ -87,3 +87,38 @@ body {
   top: -1px;
   z-index: 20;
 }
+
+.custom-divider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .custom-divider::before {
+    display: block;
+    content: "";
+    width: 90%;
+    height: 1.1px;
+    background-color: var(--black-tertiary);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+  }
+
+  .custom-divider::after {
+    display: block;
+    content: "";
+    width: 1.1px;
+    height: 80%;
+    background-color: var(--black-tertiary);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+  }
+}

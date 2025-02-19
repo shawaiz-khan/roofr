@@ -2,7 +2,7 @@ import { Achievements } from "@/data/achievements";
 
 const AchievementBlock: React.FC = () => {
     return (
-        <div className="w-full grid grid-cols-1 gap-5">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
             {Achievements.map((achievement) => (
                 <div
                     className="bg-black-primary px-5 py-7 flex flex-col rounded-md gap-3 shadow-[0_0_10px_#262626]"

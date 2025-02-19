@@ -12,7 +12,7 @@ import Image from 'next/image';
 const About: React.FC = () => {
     return (
         <main className="min-h-screen bg-black-primary text-text-light flex flex-col gap-10">
-            <div className='p-5 md:p-10 flex flex-col justify-center items-center gap-10'>
+            <div className='p-5 md:p-10 flex flex-col justify-center items-center gap-10 md:gap-16'>
                 {/* About Hero  */}
                 <div className='md:grid md:grid-cols-2 flex flex-col justify-center items-center gap-10'>
                     <div className='w-full md:order-2 flex justify-end items-center'>
@@ -32,7 +32,7 @@ const About: React.FC = () => {
                         </div>
                     </div>
                     {/* Journey  */}
-                    <div className='flex flex-col gap-10'>
+                    <div className='flex flex-col gap-10 md:gap-16'>
                         <div className="flex flex-col gap-2">
                             <Image src={stars} alt="What our client says" />
                             <h1 className="text-2xl md:text-3xl">Our Journey</h1>
@@ -52,49 +52,55 @@ const About: React.FC = () => {
                     </div>
                 </div>
                 {/* Values  */}
-                <div className='md:grid md:grid-cols-2 flex flex-col justify-center items-center gap-10 md:gap-0'>
+                <div className='w-full md:grid md:grid-cols-2 flex flex-col justify-center items-center gap-10'>
                     <div className="flex flex-col gap-2">
                         <Image src={stars} alt="What our client says" />
-                        <h1 className="text-2xl">Our Values</h1>
+                        <h1 className="text-2xl md:text-3xl">Our Values</h1>
                         <p className="text-sm md:text-md text-gray-quaternary md:w-[80%]">
                             Our story is one of continuous growth and evolution. We started as a small team with big dreams,
                             determined to create a real estate platform that transcended the ordinary.
                         </p>
                     </div>
-                    <div className='bg-black-primary flex flex-col md:grid md:grid-cols-2 md:grid-rows-2 md:justify-center md:items-center p-5 gap-3 rounded-md shadow-[0_0_10px_#262626]'>
+                    <div className='bg-black-primary flex flex-col md:grid md:grid-cols-2 md:grid-rows-2 md:p-8 p-5 rounded-md shadow-[0_0_10px_#262626] custom-divider'>
                         <AboutFeatureList />
                     </div>
                 </div>
                 {/* Achievements  */}
-                <div className="flex flex-col gap-2">
-                    <Image src={stars} alt="What our client says" />
-                    <h1 className="text-2xl">Our Achievements</h1>
-                    <p className="text-sm text-gray-quaternary md:w-[90%]">
-                        Our story is one of continuous growth and evolution. We started as a small team
-                        with big dreams, determined to create a real estate platform that transcended the ordinary.
-                    </p>
+                <div className='w-full flex flex-col gap-10 md:gap-16'>
+                    <div className="flex flex-col gap-2">
+                        <Image src={stars} alt="What our client says" />
+                        <h1 className="text-2xl md:text-3xl">Our Achievements</h1>
+                        <p className="text-sm md:text-md text-gray-quaternary md:w-[80%]">
+                            Our story is one of continuous growth and evolution. We started as a small team
+                            with big dreams, determined to create a real estate platform that transcended the ordinary.
+                        </p>
+                    </div>
+                    <AchievementBlock />
                 </div>
-                <AchievementBlock />
                 {/* Experience  */}
-                <div className="flex flex-col gap-2">
-                    <Image src={stars} alt="What our client says" />
-                    <h1 className="text-2xl">Navigating the Roofr Experience</h1>
-                    <p className="text-sm text-gray-quaternary md:w-[90%]">
-                        At Roofr, we have designed a straightforward process to help you find and purchase your dream property with ease.
-                        Here is a step-by-step guide to how it all works.
-                    </p>
+                <div className='w-full flex flex-col gap-10 md:gap-16'>
+                    <div className="flex flex-col gap-2">
+                        <Image src={stars} alt="What our client says" />
+                        <h1 className="text-2xl">Navigating the Roofr Experience</h1>
+                        <p className="text-sm text-gray-quaternary md:w-[80%]">
+                            At Roofr, we have designed a straightforward process to help you find and purchase your dream property with ease.
+                            Here is a step-by-step guide to how it all works.
+                        </p>
+                    </div>
+                    <ExperienceBlock />
                 </div>
-                <ExperienceBlock />
                 {/* Developer  */}
-                <div className="flex flex-col gap-2">
-                    <Image src={stars} alt="What our client says" />
-                    <h1 className="text-2xl">Meet the Developer</h1>
-                    <p className="text-sm text-gray-quaternary md:w-[90%]">
-                        At Roofr, our success is driven by the dedication and expertise of our team. Get to know the people behind our
-                        mission to make your real estate dreams a reality.
-                    </p>
+                <div className='w-full flex flex-col gap-10 md:gap-16'>
+                    <div className="flex flex-col gap-2">
+                        <Image src={stars} alt="What our client says" />
+                        <h1 className="text-2xl">Meet the Developer</h1>
+                        <p className="text-sm text-gray-quaternary md:w-[80%]">
+                            At Roofr, our success is driven by the dedication and expertise of our team. Get to know the people behind our
+                            mission to make your real estate dreams a reality.
+                        </p>
+                    </div>
+                    <TeamBlock />
                 </div>
-                <TeamBlock />
             </div>
             {/* CTA  */}
             <CTA />
