@@ -9,11 +9,8 @@ import Estate from "@/types/estate.types";
 
 const estates: Estate[] = [
     {
-        images: [
-            Img_1,
-            Img_2,
-            Img_3
-        ],
+        title: "Luxury Lakefront Villa",
+        images: [Img_1, Img_2],
         description: "A luxurious 3-bedroom villa with a stunning lake view and modern amenities.",
         bedrooms: 3,
         bathrooms: 2,
@@ -38,14 +35,12 @@ const estates: Estate[] = [
                 propertyInsurance: 100,
                 downPayment: 2500
             }
-        }
+        },
+        totalPrice: 500000 + 5000 + 3000 + 600 + 1200
     },
     {
-        images: [
-            Img_4,
-            Img_5,
-            Img_6
-        ],
+        title: "Spacious Family Home",
+        images: [Img_3, Img_4],
         description: "A spacious 4-bedroom family home in a peaceful neighborhood, close to schools and parks.",
         bedrooms: 4,
         bathrooms: 3,
@@ -70,13 +65,12 @@ const estates: Estate[] = [
                 propertyInsurance: 120,
                 downPayment: 3250
             }
-        }
+        },
+        totalPrice: 650000 + 7000 + 4500 + 700 + 1500
     },
     {
-        images: [
-            "https://example.com/image5.jpg",
-            "https://example.com/image6.jpg"
-        ],
+        title: "Cozy City Apartment",
+        images: [Img_5, Img_6],
         description: "A cozy 2-bedroom apartment in the city center, perfect for professionals and small families.",
         bedrooms: 2,
         bathrooms: 1,
@@ -101,7 +95,9 @@ const estates: Estate[] = [
                 propertyInsurance: 90,
                 downPayment: 1750
             }
-        }
+        },
+        totalPrice: 350000 + 4000 + 2500 + 500 + 900
     }
 ];
+
 export default estates;
