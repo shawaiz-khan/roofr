@@ -21,6 +21,7 @@ const About: React.FC = () => {
                                 src={abt_cover}
                                 alt='About Roofr'
                                 className='relative z-10'
+                                priority
                             />
 
                             <Image
@@ -28,13 +29,14 @@ const About: React.FC = () => {
                                 alt='About Roofr'
                                 layout='fill'
                                 className='absolute inset-0 object-cover opacity-60'
+                                priority
                             />
                         </div>
                     </div>
                     {/* Journey  */}
                     <div className='flex flex-col gap-10 md:gap-16'>
                         <div className="flex flex-col gap-2">
-                            <Image src={stars} alt="What our client says" />
+                            <Image src={stars} alt="What our client says" priority />
                             <h1 className="text-2xl md:text-3xl">Our Journey</h1>
                             <p className="text-sm md:text-md text-gray-quaternary md:w-[90%]">
                                 Our story is one of continuous growth and evolution. We started as a small team with big dreams,
@@ -54,7 +56,7 @@ const About: React.FC = () => {
                 {/* Values  */}
                 <div className='w-full md:grid md:grid-cols-2 flex flex-col justify-center items-center gap-10'>
                     <div className="flex flex-col gap-2">
-                        <Image src={stars} alt="What our client says" />
+                        <Image src={stars} alt="What our client says" priority />
                         <h1 className="text-2xl md:text-3xl">Our Values</h1>
                         <p className="text-sm md:text-md text-gray-quaternary md:w-[80%]">
                             Our story is one of continuous growth and evolution. We started as a small team with big dreams,
@@ -68,7 +70,7 @@ const About: React.FC = () => {
                 {/* Achievements  */}
                 <div className='w-full flex flex-col gap-10 md:gap-16'>
                     <div className="flex flex-col gap-2">
-                        <Image src={stars} alt="What our client says" />
+                        <Image src={stars} alt="What our client says" priority />
                         <h1 className="text-2xl md:text-3xl">Our Achievements</h1>
                         <p className="text-sm md:text-md text-gray-quaternary md:w-[80%]">
                             Our story is one of continuous growth and evolution. We started as a small team
@@ -80,7 +82,7 @@ const About: React.FC = () => {
                 {/* Experience  */}
                 <div className='w-full flex flex-col gap-10 md:gap-16'>
                     <div className="flex flex-col gap-2">
-                        <Image src={stars} alt="What our client says" />
+                        <Image src={stars} alt="What our client says" priority />
                         <h1 className="text-2xl">Navigating the Roofr Experience</h1>
                         <p className="text-sm text-gray-quaternary md:w-[80%]">
                             At Roofr, we have designed a straightforward process to help you find and purchase your dream property with ease.
@@ -92,7 +94,7 @@ const About: React.FC = () => {
                 {/* Developer  */}
                 <div className='w-full flex flex-col gap-10 md:gap-16'>
                     <div className="flex flex-col gap-2">
-                        <Image src={stars} alt="What our client says" />
+                        <Image src={stars} alt="What our client says" priority />
                         <h1 className="text-2xl">Meet the Developer</h1>
                         <p className="text-sm text-gray-quaternary md:w-[80%]">
                             At Roofr, our success is driven by the dedication and expertise of our team. Get to know the people behind our
