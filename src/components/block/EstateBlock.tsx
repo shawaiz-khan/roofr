@@ -3,6 +3,7 @@
 import { useState } from "react";
 import EstateType from "@/types/estate.types";
 import Image from "next/image";
+import { Bath, BedDouble, Building2 } from "lucide-react";
 
 const EstateBlock: React.FC<{ estate: EstateType }> = ({ estate }) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -20,9 +21,17 @@ const EstateBlock: React.FC<{ estate: EstateType }> = ({ estate }) => {
                 <h1 className="text-xl">{estate.title}</h1>
                 <p className="text-sm text-gray-quaternary">{estate.description.length > 100 ? estate.description.slice(0, 100) + "..." : estate.description}</p>
             </div>
-            <p className="text-md text-gray-quaternary">
-                {estate.bedrooms} Beds • {estate.bathrooms} Baths • {estate.area} sqft
-            </p>
+            <div className="grid grid-cols-2 grid-rows-2 gap-3">
+                <span className="text-sm text-text-light bg-black-secondary rounded-full flex gap-2 justify-center items-center px-3 py-2">
+                    <BedDouble />{estate.bedrooms}-Bedroom
+                </span>
+                <span className="text-sm text-text-light bg-black-secondary rounded-full flex gap-2 justify-center items-center px-3 py-2">
+                    <Bath />{estate.bathrooms}-Bathroom
+                </span>
+                <span className="text-sm text-text-light bg-black-secondary rounded-full flex gap-2 justify-center items-center px-3 py-2">
+                    <Building2 />{estate.category}
+                </span>
+            </div>
             <div className="flex justify-between items-center gap-3">
                 <div className="relative h-full pr-3 flex justify-start items-center">
                     <span className="text-sm absolute top-0 text-gray-quaternary">Price</span>

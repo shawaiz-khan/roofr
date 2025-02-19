@@ -8,6 +8,7 @@ export default interface EstateTypes {
     bathrooms: number;
     area: number;
     keyFeatures: string[];
+    category: string;
     pricing: {
         additionalFees: {
             transferTax: number;

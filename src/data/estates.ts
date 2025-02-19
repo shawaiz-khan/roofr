@@ -15,6 +15,7 @@ const estates: Estate[] = [
         bedrooms: 3,
         bathrooms: 2,
         area: 2500,
+        category: "Villa",
         keyFeatures: ["Lake View", "Swimming Pool", "Modern Kitchen", "Private Garden"],
         pricing: {
             additionalFees: {
@@ -45,6 +46,7 @@ const estates: Estate[] = [
         bedrooms: 4,
         bathrooms: 3,
         area: 3200,
+        category: "Home",
         keyFeatures: ["Large Backyard", "Garage", "Smart Home System", "Solar Panels"],
         pricing: {
             additionalFees: {
@@ -75,6 +77,7 @@ const estates: Estate[] = [
         bedrooms: 2,
         bathrooms: 1,
         area: 1200,
+        category: "Apartment",
         keyFeatures: ["City View", "Fitness Center", "24/7 Security", "Underground Parking"],
         pricing: {
             additionalFees: {
