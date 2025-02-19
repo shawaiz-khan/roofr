@@ -68,7 +68,7 @@ export const useRegister = () => {
 
         try {
             const apiUrl = `/api/auth/create-account`;
-            const res = await Register({ apiUrl, userData });
+            const res = await Register({ apiUrl, userData }) as any;
 
             if (res?.status === 201) {
                 setSuccess("User registered successfully!");

@@ -50,7 +50,7 @@ export const useLogin = () => {
 
         try {
             const apiUrl = `/api/auth/login`;
-            const res = await Login({ apiUrl, userData });
+            const res = await Login({ apiUrl, userData }) as any;
 
             if (res.status === 200) {
                 setSuccess("User Logged In successfully!");
