@@ -30,17 +30,17 @@ const SearchFilter: React.FC = () => {
 
     return (
         <main className="w-full flex flex-col gap-10 md:gap-16">
-            <div className="bg-black-secondary p-5 w-full">
+            <div className="bg-black-secondary p-5 w-full flex flex-col gap-3 rounded-lg">
                 {FilterItems.map((item) => (
                     <div key={item.title} className="flex items-center gap-2 relative">
                         <span className="absolute left-3">{item.icon}</span>
                         <select
-                            className="bg-transparent border border-black-tertiary text-gray-tertiary w-full pl-10 pr-3 py-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary"
+                            className="bg-black-primary border border-black-tertiary text-gray-tertiary w-full pl-10 py-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary"
                             onChange={(e) => handleFilterChange(item.key, e.target.value)}
                         >
                             <option value="">All {item.title}</option>
                             {uniqueValues(item.key).map((value) => (
-                                <option key={value} value={value}>{value}</option>
+                                <option key={value} value={value} className="bg-black-tertiary">{value}</option>
                             ))}
                         </select>
                     </div>
