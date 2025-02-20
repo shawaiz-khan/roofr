@@ -1,12 +1,14 @@
 import { StaticImageData } from "next/image";
 
-export default interface Estate {
+export default interface EstateTypes {
+    title: string;
     images: string[] | StaticImageData[];
     description: string;
     bedrooms: number;
     bathrooms: number;
     area: number;
     keyFeatures: string[];
+    category: string;
     pricing: {
         additionalFees: {
             transferTax: number;
@@ -27,4 +29,5 @@ export default interface Estate {
             downPayment: number;
         };
     };
+    totalPrice: number;
 }

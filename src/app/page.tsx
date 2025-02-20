@@ -7,6 +7,7 @@ import FeaturesBlock from "@/components/block/FeaturesBlock";
 import Testimonials from "@/components/block/Testimonial";
 import FAQs from "@/components/block/FAQ";
 import CTA from "@/components/block/CTA";
+import EstateContainer from "@/components/block/EstateContainer";
 
 const Home: React.FC = () => {
   return (
@@ -46,6 +47,8 @@ const Home: React.FC = () => {
         <div className="z-20">
           <FeaturesBlock />
         </div>
+        {/* Estate Listings  */}
+        <EstateContainer />
         {/* Testimonials  */}
         <Testimonials />
         {/* FAQs  */}

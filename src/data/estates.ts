@@ -9,15 +9,13 @@ import Estate from "@/types/estate.types";
 
 const estates: Estate[] = [
     {
-        images: [
-            Img_1,
-            Img_2,
-            Img_3
-        ],
+        title: "Luxury Lakefront Villa",
+        images: [Img_1, Img_2],
         description: "A luxurious 3-bedroom villa with a stunning lake view and modern amenities.",
         bedrooms: 3,
         bathrooms: 2,
         area: 2500,
+        category: "Villa",
         keyFeatures: ["Lake View", "Swimming Pool", "Modern Kitchen", "Private Garden"],
         pricing: {
             additionalFees: {
@@ -38,18 +36,17 @@ const estates: Estate[] = [
                 propertyInsurance: 100,
                 downPayment: 2500
             }
-        }
+        },
+        totalPrice: 500000 + 5000 + 3000 + 600 + 1200
     },
     {
-        images: [
-            Img_4,
-            Img_5,
-            Img_6
-        ],
+        title: "Spacious Family Home",
+        images: [Img_3, Img_4],
         description: "A spacious 4-bedroom family home in a peaceful neighborhood, close to schools and parks.",
         bedrooms: 4,
         bathrooms: 3,
         area: 3200,
+        category: "Home",
         keyFeatures: ["Large Backyard", "Garage", "Smart Home System", "Solar Panels"],
         pricing: {
             additionalFees: {
@@ -70,17 +67,17 @@ const estates: Estate[] = [
                 propertyInsurance: 120,
                 downPayment: 3250
             }
-        }
+        },
+        totalPrice: 650000 + 7000 + 4500 + 700 + 1500
     },
     {
-        images: [
-            "https://example.com/image5.jpg",
-            "https://example.com/image6.jpg"
-        ],
+        title: "Cozy City Apartment",
+        images: [Img_5, Img_6],
         description: "A cozy 2-bedroom apartment in the city center, perfect for professionals and small families.",
         bedrooms: 2,
         bathrooms: 1,
         area: 1200,
+        category: "Apartment",
         keyFeatures: ["City View", "Fitness Center", "24/7 Security", "Underground Parking"],
         pricing: {
             additionalFees: {
@@ -101,7 +98,71 @@ const estates: Estate[] = [
                 propertyInsurance: 90,
                 downPayment: 1750
             }
-        }
+        },
+        totalPrice: 350000 + 4000 + 2500 + 500 + 900
+    },
+    {
+        title: "Modern Suburban House",
+        images: [Img_1, Img_2],
+        description: "A stylish 5-bedroom house with an open floor plan and green surroundings.",
+        bedrooms: 5,
+        bathrooms: 4,
+        area: 4000,
+        category: "House",
+        keyFeatures: ["Open Floor Plan", "Green Belt Access", "Energy Efficient", "Double Garage"],
+        pricing: {
+            additionalFees: {
+                transferTax: 8000,
+                legalFees: 5000,
+                homeInspection: 750,
+                propertyInsurance: 1800
+            },
+            monthlyCosts: {
+                propertyTaxes: 400,
+                homeOwnerAssociationFees: 250
+            },
+            totalInitialCosts: {
+                listingPrice: 800000,
+                downPayment: 80000
+            },
+            monthlyExpenses: {
+                propertyInsurance: 150,
+                downPayment: 4000
+            }
+        },
+        totalPrice: 800000 + 8000 + 5000 + 750 + 1800
+    },
+    {
+        title: "Penthouse Suite",
+        images: [Img_3, Img_4],
+        description: "A high-end penthouse with breathtaking skyline views and exclusive amenities.",
+        bedrooms: 3,
+        bathrooms: 3,
+        area: 2800,
+        category: "Penthouse",
+        keyFeatures: ["Rooftop Terrace", "Luxury Finishes", "Private Elevator", "Smart Home Technology"],
+        pricing: {
+            additionalFees: {
+                transferTax: 9000,
+                legalFees: 5500,
+                homeInspection: 800,
+                propertyInsurance: 2000
+            },
+            monthlyCosts: {
+                propertyTaxes: 450,
+                homeOwnerAssociationFees: 300
+            },
+            totalInitialCosts: {
+                listingPrice: 950000,
+                downPayment: 95000
+            },
+            monthlyExpenses: {
+                propertyInsurance: 180,
+                downPayment: 4750
+            }
+        },
+        totalPrice: 950000 + 9000 + 5500 + 800 + 2000
     }
 ];
+
 export default estates;
