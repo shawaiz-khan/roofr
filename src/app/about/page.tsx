@@ -53,6 +53,18 @@ const About: React.FC = () => {
                         </div>
                     </div>
                 </div>
+                {/* Experience  */}
+                <div className='w-full flex flex-col gap-10 md:gap-16'>
+                    <div className="flex flex-col gap-2">
+                        <Image src={stars} alt="What our client says" priority />
+                        <h1 className="text-2xl">Navigating the Roofr Experience</h1>
+                        <p className="text-sm text-gray-quaternary md:w-[80%]">
+                            At Roofr, we have designed a straightforward process to help you find and purchase your dream property with ease.
+                            Here is a step-by-step guide to how it all works.
+                        </p>
+                    </div>
+                    <ExperienceBlock />
+                </div>
                 {/* Values  */}
                 <div className='w-full md:grid md:grid-cols-2 flex flex-col justify-center items-center gap-10'>
                     <div className="flex flex-col gap-2">
@@ -78,18 +90,6 @@ const About: React.FC = () => {
                         </p>
                     </div>
                     <AchievementBlock />
-                </div>
-                {/* Experience  */}
-                <div className='w-full flex flex-col gap-10 md:gap-16'>
-                    <div className="flex flex-col gap-2">
-                        <Image src={stars} alt="What our client says" priority />
-                        <h1 className="text-2xl">Navigating the Roofr Experience</h1>
-                        <p className="text-sm text-gray-quaternary md:w-[80%]">
-                            At Roofr, we have designed a straightforward process to help you find and purchase your dream property with ease.
-                            Here is a step-by-step guide to how it all works.
-                        </p>
-                    </div>
-                    <ExperienceBlock />
                 </div>
                 {/* Developer  */}
                 <div className='w-full flex flex-col gap-10 md:gap-16'>
