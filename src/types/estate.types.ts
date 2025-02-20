@@ -4,6 +4,7 @@ export default interface EstateTypes {
     title: string;
     images: string[] | StaticImageData[];
     description: string;
+    location: string;
     bedrooms: number;
     bathrooms: number;
     area: number;
