@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect } from "react";
 import estates from "@/data/estates";
-import Image from "next/image";
-import stars from "@/assets/svg/Stars.svg";
 import { motion } from "framer-motion";
 import EstateBlock from "./EstateBlock";
 
-const EstateContainer: React.FC = () => {
+interface EstateProps {
+    filters?: { [key: string]: string | number };
+}
+
+const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [estatesPerPage, setEstatesPerPage] = useState(3);
-    const totalPages = Math.ceil(estates.length / estatesPerPage);
 
     useEffect(() => {
         const handleResize = () => {
@@ -21,9 +23,17 @@ const EstateContainer: React.FC = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const filteredData = estates.filter((estate: any) => {
+        return Object.entries(filters || {}).every(([key, value]) => {
+            return value ? estate[key] === value : true;
+        });
+    });
+
+    const totalPages = Math.ceil(filteredData.length / estatesPerPage);
+
     const getEstatesForCurrentPage = () => {
         const startIndex = currentPage * estatesPerPage;
-        return estates.slice(startIndex, startIndex + estatesPerPage);
+        return filteredData.slice(startIndex, startIndex + estatesPerPage);
     };
 
     const nextSlide = () => {
@@ -36,20 +46,6 @@ const EstateContainer: React.FC = () => {
 
     return (
         <main className="flex flex-col gap-5 md:gap-10 md:mt-10 md:mb-5 md:p-5">
-            <div className="flex justify-between items-end">
-                <div className="flex flex-col gap-2">
-                    <Image src={stars} alt="Featured Properties" />
-                    <h1 className="text-2xl">Featured Properties</h1>
-                    <p className="text-sm text-gray-quaternary">
-                        Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional
-                        homes and investments available through Roofr.
-                    </p>
-                </div>
-                <button className="bg-black-secondary border border-black-tertiary py-3 px-4 text-sm rounded-md hidden md:block">
-                    View All Properties
-                </button>
-            </div>
-
             <div className="relative overflow-hidden">
                 <motion.div
                     key={currentPage}
