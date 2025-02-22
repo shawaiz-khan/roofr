@@ -24,7 +24,7 @@ const SearchFilter: React.FC = () => {
     const handleFilterChange = (key: string, value: string | number) => {
         setFilters((prev) => ({
             ...prev,
-            [key]: value
+            [key]: typeof value === "string" && !isNaN(Number(value)) ? Number(value) : value
         }))
     }
 

@@ -38,7 +38,7 @@ const estates: Estate[] = [
                 downPayment: 2500
             }
         },
-        totalPrice: 500000 + 5000 + 3000 + 600 + 1200
+        totalPrice: 509800
     },
     {
         title: "Spacious Family Home",
@@ -70,7 +70,7 @@ const estates: Estate[] = [
                 downPayment: 3250
             }
         },
-        totalPrice: 650000 + 7000 + 4500 + 700 + 1500
+        totalPrice: 663700
     },
     {
         title: "Cozy City Apartment",
@@ -102,7 +102,7 @@ const estates: Estate[] = [
                 downPayment: 1750
             }
         },
-        totalPrice: 350000 + 4000 + 2500 + 500 + 900
+        totalPrice: 357900
     },
     {
         title: "Modern Suburban House",
@@ -134,7 +134,7 @@ const estates: Estate[] = [
                 downPayment: 4000
             }
         },
-        totalPrice: 800000 + 8000 + 5000 + 750 + 1800
+        totalPrice: 815550
     },
     {
         title: "Penthouse Suite",
@@ -166,7 +166,7 @@ const estates: Estate[] = [
                 downPayment: 4750
             }
         },
-        totalPrice: 950000 + 9000 + 5500 + 800 + 2000
+        totalPrice: 967300
     }
 ];
 

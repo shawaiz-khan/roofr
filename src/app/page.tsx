@@ -49,7 +49,7 @@ const Home: React.FC = () => {
           <FeaturesBlock />
         </div>
         {/* Estate Listings  */}
-        <div className="flex justify-between items-end">
+        <div className="flex justify-between items-end p-5 mt-0 md:mt-10">
           <div className="flex flex-col gap-2">
             <Image src={stars} alt="Featured Properties" />
             <h1 className="text-2xl">Featured Properties</h1>
