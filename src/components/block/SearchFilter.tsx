@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { MapPin, Home, Ruler, DollarSign } from "lucide-react";
+import { MapPin, Home, Ruler, DollarSign, Search } from "lucide-react";
 import { FilterItemTypes } from "@/types/search.filters.types";
 import estates from "@/data/estates";
 import { useState } from "react";
@@ -29,8 +29,14 @@ const SearchFilter: React.FC = () => {
     }
 
     return (
-        <main className="w-full flex flex-col gap-10 md:gap-16">
-            <div className="bg-black-secondary p-5 w-full flex flex-col gap-3 rounded-lg">
+        <main className="w-full flex flex-col gap-10 md:gap-0 md:items-center p-5">
+            <div className="relative md:bg-black-secondary md:p-3 w-full md:rounded-md">
+                <input type="text" placeholder="Search For A Property" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full pl-5 py-4 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
+                <button className="absolute top-1/2 right-3 md:right-5 transform -translate-y-1/2 bg-purple-primary text-white px-3 py-2 rounded-md hover:bg-purple-700 transition duration-200">
+                    <Search size={20} />
+                </button>
+            </div>
+            <div className="bg-black-secondary p-5 md:p-3 w-full md:w-3/4 grid grid-cols-1 md:grid-cols-4 gap-3 rounded-lg md:rounded-t-none">
                 {FilterItems.map((item) => (
                     <div key={item.title} className="flex items-center gap-2 relative">
                         <span className="absolute left-3">{item.icon}</span>

@@ -45,7 +45,7 @@ const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
     };
 
     return (
-        <main className="flex flex-col gap-5 md:gap-10 md:mt-10 md:mb-5 md:p-5">
+        <main className="flex flex-col gap-5 md:gap-10 md:mt-5 md:mb-5 md:p-5">
             <div className="relative overflow-hidden">
                 <motion.div
                     key={currentPage}
