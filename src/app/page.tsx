@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import heroImg from '@/assets/images/hero.jpg';
 import RoundTextSvg from "@/components/ui/RoundTextSvg";
@@ -8,6 +7,8 @@ import Testimonials from "@/components/block/Testimonial";
 import FAQs from "@/components/block/FAQ";
 import CTA from "@/components/block/CTA";
 import EstateContainer from "@/components/block/EstateContainer";
+import Image from "next/image";
+import stars from "@/assets/svg/Stars.svg";
 
 const Home: React.FC = () => {
   return (
@@ -48,6 +49,19 @@ const Home: React.FC = () => {
           <FeaturesBlock />
         </div>
         {/* Estate Listings  */}
+        <div className="flex justify-between items-end p-5 mt-0 md:mt-10">
+          <div className="flex flex-col gap-2">
+            <Image src={stars} alt="Featured Properties" />
+            <h1 className="text-2xl">Featured Properties</h1>
+            <p className="text-sm text-gray-quaternary">
+              Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional
+              homes and investments available through Roofr.
+            </p>
+          </div>
+          <button className="bg-black-secondary border border-black-tertiary py-3 px-4 text-sm rounded-md hidden md:block">
+            View All Properties
+          </button>
+        </div>
         <EstateContainer />
         {/* Testimonials  */}
         <Testimonials />
