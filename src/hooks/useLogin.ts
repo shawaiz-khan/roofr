@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Login } from "@/services/auth.service";
 import { useState } from "react";
@@ -14,6 +15,7 @@ export const useLogin = () => {
     const [isShowPassword, setIsShowPassword] = useState(false);
 
     const { setIsLoggedIn } = useAuth();
+    const router = useRouter();
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginForm((prev) => ({
@@ -56,6 +58,7 @@ export const useLogin = () => {
                 setSuccess("User Logged In successfully!");
                 setError("");
                 setIsLoggedIn(true);
+                router.push('/');
             } else {
                 throw new Error(res.message || "Error logging in")
             }
