@@ -137,6 +137,22 @@ export const loginUser = async (userData: any) => {
     }
 };
 
+export const logoutUser = async () => {
+    try {
+        const CookieStore = await cookies();
+        CookieStore.delete("accessToken");
+        CookieStore.delete("refreshToken");
+
+        return NextResponse.json(
+            createResponse("Logout successful!", StatusCodes.OK)
+        );
+    } catch (error: any) {
+        return NextResponse.json(
+            createResponse(error.message || "Something went wrong. Please try again.", StatusCodes.INTERNAL_SERVER_ERROR)
+        );
+    }
+}
+
 export const getUser = async (request: NextRequest) => {
     try {
         const authHeader = request.headers.get("Authorization");
