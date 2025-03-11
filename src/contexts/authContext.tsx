@@ -75,7 +75,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         };
 
         fetchTokens();
-    }, [pathname]);
+    }, [pathname, isLoggedIn]);
 
     return (
         <AuthContext.Provider value={{ accessToken, setAccessToken, refreshToken, setRefreshToken, isLoggedIn, setIsLoggedIn }}>

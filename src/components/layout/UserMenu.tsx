@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { UserMenuItems } from "@/constants/userMenuPaths";
 import useAuth from "@/hooks/useAuth";
 import axiosInstance from "@/lib/axios";
 import { UserType } from "@/types/user.context.types";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const UserMenu: React.FC<{ user: UserType }> = ({ user }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
     const menuRef = useRef<HTMLDivElement>(null);
     const { setIsLoggedIn } = useAuth();
 
@@ -15,11 +19,14 @@ const UserMenu: React.FC<{ user: UserType }> = ({ user }) => {
     };
 
     const handleLogout = async () => {
+        setIsLoading(true);
         try {
             await axiosInstance.post("/api/auth/logout");
             setIsLoggedIn(false);
         } catch (error: unknown) {
             console.error(error || "Error occurred while logging out.");
+        } finally {
+            setIsLoading(false);
         }
     }
 
