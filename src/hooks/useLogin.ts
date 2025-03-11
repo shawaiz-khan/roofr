@@ -1,8 +1,8 @@
-import { useRouter } from 'next/navigation';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Login } from "@/services/auth.service";
 import { useState } from "react";
 import useAuth from "./useAuth";
+import { useRouter } from 'next/navigation';
 
 export const useLogin = () => {
     const [loginForm, setLoginForm] = useState({

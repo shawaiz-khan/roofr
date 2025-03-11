@@ -6,11 +6,13 @@ import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import useAuth from "@/hooks/useAuth";
 
 const Testimonials: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [reviewsPerPage, setReviewsPerPage] = useState(3);
     const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
+    const { isLoggedIn } = useAuth();
 
     useEffect(() => {
         const handleResize = () => {
@@ -78,7 +80,7 @@ const Testimonials: React.FC = () => {
                         {currentPage + 1} <span className="text-gray-quaternary">of {totalPages}</span>
                     </span>
                     <button className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden">
-                        Share Your Testimonial
+                        {isLoggedIn ? "Share Your Testimonial" : "Login to Share Your Testimonial"}
                     </button>
                     <div className="flex items-center gap-2">
                         <button

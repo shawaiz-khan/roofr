@@ -19,7 +19,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         location: "",
         userType: "",
     });
-    const { accessToken } = useAuth();
+    const { accessToken, isLoggedIn } = useAuth();
 
     useEffect(() => {
         const getUser = async () => {
@@ -39,8 +39,18 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             }
         };
 
-        getUser();
-    }, [accessToken]);
+        if (isLoggedIn) {
+            getUser();
+        } else {
+            setUser({
+                name: "",
+                email: "",
+                phone: "",
+                location: "",
+                userType: "",
+            });
+        }
+    }, [accessToken, isLoggedIn]);
 
     return (
         <UserContext.Provider value={{ user, setUser }}>
