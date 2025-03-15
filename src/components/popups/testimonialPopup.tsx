@@ -21,7 +21,7 @@ const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
                     <div className="flex flex-col gap-5">
                         <button onClick={onClick} className="w-fit"><X /></button>
                         <form onSubmit={handleSubmit}>
-                            <div className="flex flex-col gap-3 md:gap-5">
+                            <div className="flex flex-col gap-3 md:gap-4">
                                 <input type="text" placeholder="name" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
                                 <input type="text" placeholder="location" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
                                 <input type="text" placeholder="title" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
