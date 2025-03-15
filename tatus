@@ -1,0 +1,119 @@
+5168ed4 Shawaiz Khan shawaizkhan.biz@gmail.com Sat Mar 15 05:38:57 2025 +0000 update: Popup frontend created
+2c7eb3e Shawaiz Khan shawaizkhan.biz@gmail.com Sat Mar 15 05:32:21 2025 +0000 add: Testimonial popup is added
+75e3a3f Shawaiz Khan shawaizkhan.biz@gmail.com Tue Mar 11 17:36:38 2025 +0500 Merge pull request #10 from shawaiz-khan/feat/logout-setup
+e2c325c Shawaiz Khan shawaizkhan.biz@gmail.com Tue Mar 11 12:35:39 2025 +0000 fix: Updated the logout functionality
+fae7aa5 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Mar 11 12:16:16 2025 +0000 add: Logout functionality added
+b4fcb48 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Mar 11 00:41:19 2025 +0000 add: Navigation added on login
+28ceaa9 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 23 12:20:02 2025 +0500 Merge pull request #9 from shawaiz-khan/properties-page
+0c7c67c Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 23 07:17:48 2025 +0000 update: Properties page updated
+1f5c99d Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 22 19:25:48 2025 +0000 add: Properties page created for small screens
+dcbd86b Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 20 18:09:50 2025 +0000 add: Properties page added
+a2d51db Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 20 17:48:42 2025 +0000 add: Properties page added
+59a069b Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 20 13:13:46 2025 +0000 add: Added location type in estates
+581fab3 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 20 13:07:34 2025 +0000 update: Updated the layout of the about page
+745f3cd Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 20 18:02:27 2025 +0500 Merge pull request #8 from shawaiz-khan/estate-data
+81f188c Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 20 13:01:46 2025 +0000 update: Added new estates in sample data for functionality check
+1912106 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 19 20:46:31 2025 +0000 fix: Estate listing card updated
+1606a6b Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 19 20:37:53 2025 +0000 add: Updated the estate container
+18190cd Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 19 19:35:59 2025 +0000 add: Added the estate data
+4cd3176 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 19 05:56:13 2025 +0000 fix: Optimized the images
+f94c45e Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 19 05:51:02 2025 +0000 fix: Deployment issue fixed
+f3f3597 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 19 05:46:56 2025 +0000 fix: Fixed the layout of the about page
+d8d1ec0 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 18 19:49:12 2025 +0000 update: Half way through the responsive layout
+2495033 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 18 19:02:56 2025 +0000 update: Completed the about page for small devices
+56f347e Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 18 13:40:42 2025 +0000 add: Experience blocks are added and files changed
+41d277b Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 18 13:38:59 2025 +0000 add: Experience blocks are added and files changed
+6e64417 Shawaiz Khan shawaizkhan.biz@gmail.com Mon Feb 17 01:44:10 2025 +0500 Merge pull request #7 from shawaiz-khan/imgbot
+bdb7479 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 16 20:42:44 2025 +0000 add: About page added and created just for small screens at the moment
+778c3b7 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 16 19:39:55 2025 +0000 update: Fixed the deployed error
+e9976fb Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 16 19:38:32 2025 +0000 update: Fixed the deployed error
+6840234 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 16 19:29:21 2025 +0000 update: Back to top added to the site
+194a698 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 16 19:16:56 2025 +0000 add: CTA added and made responsive
+4e947dd Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 16 09:57:12 2025 +0000 update: Removed the read more popup
+68d010b Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 16 09:22:18 2025 +0000 update: User menu updated
+2034dc9 Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 15 13:23:28 2025 +0000 fix: User menu fixed for smaller screens
+f27953a Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 15 12:57:38 2025 +0000 add: Added the user menu
+9b30fa9 Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 15 12:35:59 2025 +0000 fix: The redirection fixed and protected routed added
+536cd5f Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 15 12:35:20 2025 +0000 fix: The redirection is fixed now
+cf71fa1 Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 15 06:45:49 2025 +0000 fix: Fixed the contexts to globalify the login status
+824987f Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 21:25:02 2025 +0000 add: Added the user context for easily getting users and fixed the auth context
+bc4149b Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 20:18:18 2025 +0000 fix: Fixed the register form to handle properly
+99c258f Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 20:16:03 2025 +0000 fix: Fixed the login and register form
+46f6b99 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 19:42:10 2025 +0000 add: Testimonial model added
+dcdcdec Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 19:26:45 2025 +0000 fix: Made the testimonials and faq blocks responsive
+7164079 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 12:30:45 2025 +0000 add: FAQs are added and popup for FAQ are added
+bb93c4a Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 06:53:09 2025 +0000 add: Added the loader for ease
+16e0906 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 05:43:50 2025 +0000 add: Updated the auth context to get user too
+71fff0e Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 14 09:04:03 2025 +0500 Merge pull request #6 from shawaiz-khan/token-refresh
+4e3582d Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 13 21:12:43 2025 +0000 fix: Finally fixed the token generation
+782a654 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 13 20:08:32 2025 +0000 add: Removed redundancy in auth controller
+8d0eb85 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 13 20:03:55 2025 +0000 add: Added new items
+add8133 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 12 15:09:48 2025 +0000 fix: Renamed the files for less confusion
+a17f339 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 12 11:53:46 2025 +0000 add: Made the testimonial slider responsive
+cf699e2 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 12 11:42:20 2025 +0000 add: Made the testimonial slider responsive
+6b0cd6e Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 12 11:25:41 2025 +0000 add: Added the testimonials in smaller screens
+73c5ca1 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 12 09:13:13 2025 +0000 add: Added the testimonial slider and some major changes
+b3feea5 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 12 05:30:52 2025 +0000 update: Fixed the file names for no confusion
+4e064eb Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 11 13:09:04 2025 +0500 Merge pull request #5 from shawaiz-khan/token-error
+3622f55 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 11 08:07:42 2025 +0000 fix: Removed unnecessory logs
+3c7c29a Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 11 08:05:00 2025 +0000 fix: Fixed the auth middleware to refresh token
+cc8b3bb Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 11 06:21:20 2025 +0000 add: Refresh token error
+85249e8 Shawaiz Khan shawaizkhan.biz@gmail.com Mon Feb 10 11:16:57 2025 +0000 add: Fixed the refresh token logic
+fe82b91 Shawaiz Khan shawaizkhan.biz@gmail.com Mon Feb 10 10:51:49 2025 +0000 update: Added the axios intercepters and fixed the token issues
+af198ab Shawaiz Khan shawaizkhan.biz@gmail.com Mon Feb 10 07:00:04 2025 +0000 fix: Fixed the accessToken logic
+81ace02 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 21:29:32 2025 +0000 add; De-bugged the issues and added new items
+8f48bfa Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 19:47:31 2025 +0000 fix: Fixed the DB issue
+b2a4c62 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 19:46:56 2025 +0000 fix: Fixed the DB issue
+cc94066 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 19:26:58 2025 +0000 fix: Initialize the connection of db
+c7000b3 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 18:28:08 2025 +0000 fix: Added the production url
+d56c4c6 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 11:33:12 2025 +0000 fix: Removing timeout now
+352ef87 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 11:17:59 2025 +0000 fix: Removing timeout
+0e5048d Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 11:14:13 2025 +0000 fix: Removing timeout
+9db9d20 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 11:02:09 2025 +0000 fix: Adding the base url to vercel in order to debug
+86a739f Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 13:46:20 2025 +0500 Merge pull request #4 from shawaiz-khan/auth-token
+4fa3ba7 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 08:45:59 2025 +0000 add: Added the get users to check the cors
+0423ad7 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 10:06:06 2025 +0500 Merge pull request #3 from shawaiz-khan/auth-token
+da36349 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 9 04:57:50 2025 +0000 add: Fixed minor bugs
+987d2b2 Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 8 07:24:12 2025 +0000 add: Trying to fix the token issues
+d028ac5 Shawaiz Khan shawaizkhan.biz@gmail.com Sat Feb 8 05:48:36 2025 +0000 add: Will setup cookies instead of localstorage
+0132276 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 20:13:56 2025 +0000 update: Fixed the router issue
+ea06533 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 19:59:29 2025 +0000 update: Added the token and refresh token and used local storage
+fb2a46e Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 18:55:11 2025 +0000 add: Login form updated and is working
+960878c Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 18:17:47 2025 +0000 add: Register page is setup and refractored
+f1f6380 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 13:42:13 2025 +0000 fix: Removed the token generation from register user and push the user to login first
+2cc789e Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 18:06:48 2025 +0500 Merge pull request #1 from shawaiz-khan/backend-setup
+570bdf9 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 13:03:42 2025 +0000 fix: Fixed the backend errors and added the login user logic
+ff353a4 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 12:37:15 2025 +0000 add: Token generator added
+9a06973 Shawaiz Khan shawaizkhan.biz@gmail.com Fri Feb 7 12:27:23 2025 +0000 add: Register API successfully working
+4513607 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 18:26:07 2025 +0000 fix: Fixed the basic errors encountered during register routing and logic
+a548454 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 16:18:54 2025 +0000 add: Trying to add backend logic for user registration
+5894f2c Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 15:02:40 2025 +0000 fix: Fixed some layout issues
+12ea4a2 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 12:31:19 2025 +0000 update: Signup form made responsive
+3cfcf6c Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 12:18:18 2025 +0000 update: Created the signup form and added the validators
+be02dfb Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 11:50:35 2025 +0000 update: Updated the login form, made it responsive and added validators
+1f779d6 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 08:27:51 2025 +0000 add: Footer socials made responsive
+015b75b Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 08:16:08 2025 +0000 add: Footer made responsive
+57d7241 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 06:39:53 2025 +0000 add: Footer socials container added
+f886b46 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 05:12:12 2025 +0000 update: Updated the footer link containers
+91dc032 Shawaiz Khan shawaizkhan.biz@gmail.com Thu Feb 6 03:57:57 2025 +0000 add: User modal added
+b384787 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 5 15:20:50 2025 +0000 add: Footer input added
+7903108 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 5 14:41:53 2025 +0000 add: Auth pages added, Navbar fixed and the footer component created
+a8a1304 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 5 12:05:50 2025 +0000 add: Added the features block and made responsive
+1e7bd15 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 5 07:18:47 2025 +0000 add: Animated the rating blocks
+4b6b4d4 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 5 07:13:18 2025 +0000 add: Added the rating blocks and made the layout responsive
+1294b14 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 5 06:41:24 2025 +0000 update: Added the rating block in the page
+63f6d59 Shawaiz Khan shawaizkhan.biz@gmail.com Wed Feb 5 05:30:51 2025 +0000 add: Added the round animated graphics on home page
+ccc2650 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 19:07:49 2025 +0000 update: Updated the stroke colors
+f5d135f Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 19:05:58 2025 +0000 update: Upadted the stroke colors
+a90a2c8 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 19:04:15 2025 +0000 update: Added the stroke colors
+b074339 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 18:59:42 2025 +0000 update: Optimized the image
+0b2c763 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 18:53:41 2025 +0000 update: Updated the mobile menu and framer motion added
+cfcf055 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 18:52:59 2025 +0000 update: Updated the mobile menu and framer motion added
+db5fa19 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 17:02:16 2025 +0000 update: Added the navbar items and created paths
+e591724 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 16:09:31 2025 +0000 update: Added the database connection and updated the navbar
+5abce14 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 07:18:31 2025 +0000 add: Navbar component made responsive
+965caf0 Shawaiz Khan shawaizkhan.biz@gmail.com Tue Feb 4 07:07:10 2025 +0000 add: Navbar component added and logic created
+5e5db0b Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 2 15:52:42 2025 +0000 add: Added the color palettes
+b484e71 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 2 15:50:43 2025 +0000 Merge local changes with remote repository
+73d1146 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 2 15:44:38 2025 +0000 Initial commit from Create Next App
+4d20461 Shawaiz Khan shawaizkhan.biz@gmail.com Sun Feb 2 15:35:56 2025 +0000 Initial commit
