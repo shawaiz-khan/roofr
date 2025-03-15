@@ -15,13 +15,13 @@ const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-            <main className="bg-black-secondary p-6 rounded-lg shadow-lg w-80 h-fit text-text-light">
+        <div className="fixed inset-0 flex items-center justify-center bg-[#000] bg-opacity-60 z-50">
+            <main className="bg-black-secondary p-6 rounded-lg shadow-lg w-80 md:w-1/2 h-fit md:p-10 text-text-light">
                 {isLoggedIn ? (
                     <div className="flex flex-col gap-5">
                         <button onClick={onClick} className="w-fit"><X /></button>
                         <form onSubmit={handleSubmit}>
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-3 md:gap-5">
                                 <input type="text" placeholder="name" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
                                 <input type="text" placeholder="location" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
                                 <input type="text" placeholder="title" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
@@ -29,7 +29,7 @@ const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
                                 <input type="number" max={5} min={1} placeholder="stars (max 5)" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
                             </div>
                             <button
-                                className="bg-purple-secondary text-white py-2.5 px-4 rounded-md w-full mt-5 text-base font-normal transition hover:bg-opacity-90"
+                                className="bg-purple-secondary text-white py-2.5 px-4 rounded-md w-full md:w-80 mt-5 text-base font-normal transition hover:bg-opacity-90"
                             >
                                 Submit
                             </button>
