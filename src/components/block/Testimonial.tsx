@@ -6,13 +6,14 @@ import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import useAuth from "@/hooks/useAuth";
+import TestimonialPopup from "../popups/testimonialPopup";
 
 const Testimonials: React.FC = () => {
-    const [currentPage, setCurrentPage] = useState(0);
-    const [reviewsPerPage, setReviewsPerPage] = useState(3);
+    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [reviewsPerPage, setReviewsPerPage] = useState<number>(3);
+    const [isPopup, setIsPopup] = useState<boolean>(false);
+
     const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
-    const { isLoggedIn } = useAuth();
 
     useEffect(() => {
         const handleResize = () => {
@@ -36,6 +37,10 @@ const Testimonials: React.FC = () => {
         setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
     };
 
+    const handlePopup = () => {
+        setIsPopup((prev) => !prev);
+    }
+
     return (
         <main className="flex flex-col gap-5 md:gap-10 md:mt-10 md:mb-5 md:p-5">
             <div className="flex justify-between items-end">
@@ -47,9 +52,15 @@ const Testimonials: React.FC = () => {
                         Discover why they chose Roofr for their real estate needs.
                     </p>
                 </div>
-                <button className="bg-black-secondary border border-black-tertiary py-3 px-4 text-sm rounded-md hidden md:block">
+                <button
+                    className="bg-black-secondary border border-black-tertiary py-3 px-4 text-sm rounded-md hidden md:block"
+                    onClick={handlePopup}
+                >
                     Share Your Testimonial
                 </button>
+                {isPopup && (
+                    <TestimonialPopup onClick={handlePopup} />
+                )}
             </div>
 
             <div className="relative overflow-hidden">
@@ -79,8 +90,11 @@ const Testimonials: React.FC = () => {
                     <span className="text-sm hidden md:block md:text-md font-medium">
                         {currentPage + 1} <span className="text-gray-quaternary">of {totalPages}</span>
                     </span>
-                    <button className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden">
-                        {isLoggedIn ? "Share Your Testimonial" : "Login to Share Your Testimonial"}
+                    <button
+                        className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden"
+                        onClick={handlePopup}
+                    >
+                        Share Your Testimonial
                     </button>
                     <div className="flex items-center gap-2">
                         <button

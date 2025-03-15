@@ -186,7 +186,7 @@ export const getUser = async (request: NextRequest) => {
             );
         }
 
-        const user = await User.findOne({ email: userData.email });
+        const user = await User.findOne({ email: userData.email }).select("name location userType");
 
         if (!user) {
             return NextResponse.json(
@@ -196,13 +196,7 @@ export const getUser = async (request: NextRequest) => {
 
         return NextResponse.json(
             createResponse("User Found", StatusCodes.OK, {
-                user: {
-                    name: user.name,
-                    email: user.email,
-                    phone: user.phone,
-                    location: user.location,
-                    userType: user.userType,
-                }
+                user
             })
         );
     } catch (err: any) {

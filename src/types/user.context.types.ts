@@ -1,7 +1,5 @@
 export interface UserType {
     name: string;
-    email: string;
-    phone: string;
     location: string;
     userType: string;
 }
