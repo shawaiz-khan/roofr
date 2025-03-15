@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
 
 export const AddReview = async (body: unknown) => {
     try {
-        // console.log(body);
         return NextResponse.json({
             success: true,
             message: "Review Added"

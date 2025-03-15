@@ -19,9 +19,10 @@ const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
             <main className="bg-black-secondary p-6 rounded-lg shadow-lg w-80 md:w-1/2 h-fit md:p-10 text-text-light">
                 {isLoggedIn ? (
                     <div className="flex flex-col gap-5">
-                        <button onClick={onClick} className="w-fit"><X /></button>
+                        <button onClick={onClick} className="w-full relative"><X className="absolute top-0 md:-top-2 right-0" /></button>
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-col gap-3 md:gap-4">
+                                <h1 className="text-2xl md:text-3xl text-center md:text-left">Add your Review</h1>
                                 <input type="text" placeholder="name" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
                                 <input type="text" placeholder="location" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
                                 <input type="text" placeholder="title" className="bg-transparent border border-black-tertiary text-gray-tertiary w-full p-3 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none focus:ring-2 focus:ring-inset focus:ring-black-tertiary" />
