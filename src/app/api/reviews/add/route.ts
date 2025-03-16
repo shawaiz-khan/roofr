@@ -5,6 +5,7 @@ import { NextRequest } from "next/server";
 connectDB();
 
 export async function POST(request: NextRequest) {
-    const body = request.json();
-    return AddReview(body);
+    const body = await request.json();
+    console.log(body)
+    return AddReview(request, body);
 }

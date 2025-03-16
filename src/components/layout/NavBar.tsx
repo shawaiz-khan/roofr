@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
     const handleMenu = () => setIsOpen((prev) => !prev);
 
     return (
-        <nav className="relative text-text-light flex flex-col justify-between items-center">
+        <nav className="relative text-text-light flex flex-col justify-between items-center z-50">
             {isModal && (
                 <div className="bg-black-secondary border-b border-stroke-grey flex justify-center items-center relative overflow-hidden w-full h-full px-3 py-4">
                     <div className="text-xs md:text-sm z-10 flex justify-between md:justify-center items-center w-full">

@@ -1,3 +1,3 @@
 export const protectedRoutes = [
-    '/test',
-]
+    "api/reviews/*",
+];
