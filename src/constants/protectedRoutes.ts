@@ -1,3 +1,3 @@
-export const protectedRoutes = [
-    '/test',
-]
+export const protectedRoutes: RegExp[] = [
+    /^\/api\/review\/.*/,
+];

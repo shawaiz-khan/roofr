@@ -38,7 +38,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 if (!refreshToken_cookie) {
                     setLoading(false);
 
-                    if (protectedRoutes.some(route => pathname.startsWith(route))) {
+                    if (protectedRoutes.some(route => new RegExp(route).test(pathname))) {
                         router.push("/auth/login");
                     }
 
@@ -57,7 +57,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                         newAccessToken = res.body?.accessToken;
                     } catch (error) {
                         setLoading(false);
-                        if (protectedRoutes.some(route => pathname.startsWith(route))) {
+                        if (protectedRoutes.some(route => new RegExp(route).test(pathname))) {
                             router.push("/auth/login");
                         }
                         return;
