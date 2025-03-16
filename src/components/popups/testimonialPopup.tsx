@@ -1,5 +1,6 @@
 import useAuth from "@/hooks/useAuth";
 import useUser from "@/hooks/useUser";
+import axiosInstance from "@/lib/axios";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -13,9 +14,13 @@ export interface INewReview {
 }
 
 const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+    const router = useRouter();
+    const { isLoggedIn } = useAuth();
+    const { user } = useUser();
+
     const [review, setReview] = useState<INewReview>({
-        name: "",
-        location: "",
+        name: user.name,
+        location: user.location,
         title: "",
         review: "",
         stars: 1
@@ -23,9 +28,6 @@ const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
     const [error, setError] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
-    const router = useRouter();
-    const { isLoggedIn } = useAuth();
-    const { user } = useUser();
 
     const handleOnchange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -58,7 +60,7 @@ const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
         return true;
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
 
@@ -68,7 +70,8 @@ const TestimonialPopup: React.FC<{ onClick: () => void }> = ({ onClick }) => {
                 return;
             }
 
-            console.log(user);
+            const response = await axiosInstance.post("/api/reviews/add", review);
+            console.log(response);
         } catch (error: unknown) {
             const errorMessage = error instanceof Error ? error.message : "Issue while submitting the review";
             setError(errorMessage);

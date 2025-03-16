@@ -6,12 +6,11 @@ import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import TestimonialPopup from "../popups/testimonialPopup";
+import { useRouter } from "next/navigation";
 
 const Testimonials: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [reviewsPerPage, setReviewsPerPage] = useState<number>(3);
-    const [isPopup, setIsPopup] = useState<boolean>(false);
 
     const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
 
@@ -37,9 +36,7 @@ const Testimonials: React.FC = () => {
         setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
     };
 
-    const handlePopup = () => {
-        setIsPopup((prev) => !prev);
-    }
+    const router = useRouter();
 
     return (
         <main className="flex flex-col gap-5 md:gap-10 md:mt-10 md:mb-5 md:p-5">
@@ -54,13 +51,10 @@ const Testimonials: React.FC = () => {
                 </div>
                 <button
                     className="bg-black-secondary border border-black-tertiary py-3 px-4 text-sm rounded-md hidden md:block"
-                    onClick={handlePopup}
+                    onClick={() => router.push("/reviews")}
                 >
                     Share Your Testimonial
                 </button>
-                {isPopup && (
-                    <TestimonialPopup onClick={handlePopup} />
-                )}
             </div>
 
             <div className="relative overflow-hidden">
@@ -92,7 +86,7 @@ const Testimonials: React.FC = () => {
                     </span>
                     <button
                         className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden"
-                        onClick={handlePopup}
+                        onClick={() => router.push("/reviews")}
                     >
                         Share Your Testimonial
                     </button>

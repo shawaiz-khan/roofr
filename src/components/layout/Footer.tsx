@@ -9,7 +9,7 @@ import FooterSocials from '../block/FooterSocials';
 
 const Footer: React.FC = () => {
     return (
-        <div className="pt-10 bg-black-primary border-t border-black-tertiary flex flex-col gap-10">
+        <div className="pt-10 bg-black-primary border-t border-black-tertiary flex flex-col gap-10 z-50">
             <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
                 <div className="px-5 flex flex-col gap-5">
                     <div className="flex items-end gap-2">
