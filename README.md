@@ -1,6 +1,6 @@
 # Roofr
 
-Roofr is a real estate website designed to help users browse, buy, sell, or rent properties. This project is built with Next.js and TypeScript, providing a seamless, modern web experience.
+Roofr is a real estate website designed to help users browse, buy, sell, or rent properties. This project is built with Next.js and TypeScript, providing a seamless, modern web experience.  It is the site where users can sign in and login to their accounts, and access the features of adding and removing their listings.
 
 ## Features
 
@@ -8,6 +8,7 @@ Roofr is a real estate website designed to help users browse, buy, sell, or rent
 - **Property Search**: Search for properties based on location, price range, and other filters.
 - **Real-time Updates**: Stay up-to-date with the latest property listings and market trends.
 - **User Authentication**: (If implemented) Users can sign up, log in, and save favorite properties.
+- **User Profile**: Access the user profile and listings.
 
 ## Technologies Used
 
@@ -30,43 +31,43 @@ Before you begin, make sure you have the following installed:
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/shawaiz-khan/roofr.git
-   ```
+```bash
+git clone https://github.com/shawaiz-khan/roofr.git
+```
 
 2. Navigate to the project directory:
 
-   ```bash
-   cd roofr
-   ```
+```bash
+cd roofr
+```
 
 3. Install the dependencies:
 
-   ```bash
-   yarn install
-   ```
+```bash
+yarn install
+```
 
-   or, if using npm:
+or, if using npm:
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 4. Set up your environment variables (if any). Create a `.env.local` file in the root of the project and add your configurations (e.g., MongoDB connection strings, API keys, etc.).
 
 5. Start the development server:
 
-   ```bash
-   yarn dev
-   ```
+```bash
+yarn dev
+```
 
-   or, if using npm:
+or, if using npm:
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
-   Your app should now be running on `http://localhost:3000`.
+Your app should now be running on `http://localhost:3000`.
 
 ## Contributing
 
