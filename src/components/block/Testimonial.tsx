@@ -1,42 +1,59 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { testimonials } from "@/data/testimonials";
 import TestimonialBlock from "./TestimonialBlock";
 import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import fetchReviews from "@/hooks/fetchReviews";
+import { TestimonialTypes } from "@/types/testimonial.types";
 
 const Testimonials: React.FC = () => {
-    const [currentPage, setCurrentPage] = useState<number>(0);
-    const [reviewsPerPage, setReviewsPerPage] = useState<number>(3);
+    const router = useRouter();
+    const [currentPage, setCurrentPage] = useState(0);
+    const [reviewsPerPage, setReviewsPerPage] = useState(3);
+    const [testimonials, setTestimonials] = useState<TestimonialTypes[]>([]);
 
-    const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
+    useEffect(() => {
+        const fetchTestimonials = async () => {
+            try {
+                const res = await fetchReviews() as any;
+                console.log(res);
+                if (res?.data.reviews && Array.isArray(res.data.reviews)) {
+                    setTestimonials(res.data.reviews as TestimonialTypes[]);
+                } else {
+                    setTestimonials([]);
+                }
+            } catch (error) {
+                console.error("Error fetching testimonials:", error);
+                setTestimonials([]);
+            }
+        };
+
+        fetchTestimonials();
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
             setReviewsPerPage(window.innerWidth <= 768 ? 1 : 3);
         };
+
         handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const getTestimonialsForCurrentPage = () => {
+    const totalPages = testimonials.length > 0 ? Math.ceil(testimonials.length / reviewsPerPage) : 1;
+
+    const getTestimonialsForCurrentPage = useMemo(() => {
         const startIndex = currentPage * reviewsPerPage;
         return testimonials.slice(startIndex, startIndex + reviewsPerPage);
-    };
+    }, [currentPage, reviewsPerPage, testimonials]);
 
-    const nextSlide = () => {
-        setCurrentPage((prev) => (prev + 1) % totalPages);
-    };
-
-    const prevSlide = () => {
-        setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
-    };
-
-    const router = useRouter();
+    const nextSlide = () => setCurrentPage((prev) => (prev + 1 < totalPages ? prev + 1 : prev));
+    const prevSlide = () => setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
 
     return (
         <main className="flex flex-col gap-5 md:gap-10 md:mt-10 md:mb-5 md:p-5">
@@ -57,27 +74,31 @@ const Testimonials: React.FC = () => {
                 </button>
             </div>
 
-            <div className="relative overflow-hidden">
-                <motion.div
-                    key={currentPage}
-                    initial={{ x: "100%", opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: "-100%", opacity: 0 }}
-                    transition={{ type: "tween", stiffness: 100, damping: 15 }}
-                    className="grid grid-rows-1 md:grid-cols-3 gap-5"
-                >
-                    {getTestimonialsForCurrentPage().map((testimonial) => (
-                        <TestimonialBlock
-                            key={testimonial.id}
-                            name={testimonial.name}
-                            city={testimonial.city}
-                            title={testimonial.title}
-                            testimonial={testimonial.testimonial}
-                            stars={testimonial.stars}
-                        />
-                    ))}
-                </motion.div>
-            </div>
+            {testimonials.length > 0 ? (
+                <div className="relative overflow-hidden">
+                    <motion.div
+                        key={currentPage}
+                        initial={{ x: "100%", opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: "-100%", opacity: 0 }}
+                        transition={{ type: "tween", stiffness: 100, damping: 15 }}
+                        className="grid grid-rows-1 md:grid-cols-3 gap-5"
+                    >
+                        {getTestimonialsForCurrentPage.map((testimonial) => (
+                            <TestimonialBlock
+                                key={testimonial._id}
+                                name={testimonial.name}
+                                city={testimonial.city}
+                                title={testimonial.title}
+                                testimonial={testimonial.review}
+                                stars={testimonial.stars}
+                            />
+                        ))}
+                    </motion.div>
+                </div>
+            ) : (
+                <h1 className="text-start py-4 text-gray-tertiary">No Testimonials Yet...</h1>
+            )}
 
             {totalPages > 1 && (
                 <div className="flex justify-between items-center border-t border-black-tertiary pt-5">
@@ -104,7 +125,7 @@ const Testimonials: React.FC = () => {
                         <button
                             onClick={nextSlide}
                             className="h-10 w-10 rounded-full bg-black-secondary text-white disabled:opacity-50 border border-black-tertiary"
-                            disabled={currentPage === totalPages - 1}
+                            disabled={currentPage >= totalPages - 1}
                         >
                             →
                         </button>

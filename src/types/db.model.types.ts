@@ -16,9 +16,9 @@ export interface IUser extends Document {
 
 export interface IReview extends Document {
     name: string;
-    city: string;
+    location: string;
     title: string;
-    testimonial: string;
+    review: string;
     stars: number;
     createdAt?: Date;
     updatedAt?: Date;

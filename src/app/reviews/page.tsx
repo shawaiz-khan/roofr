@@ -23,6 +23,7 @@ const Reviews: React.FC = () => {
         stars: 1
     });
     const [error, setError] = useState<string>("");
+    const [success, setSuccess] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
     const handleOnchange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -59,16 +60,18 @@ const Reviews: React.FC = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        console.log(user);
 
         try {
+
             if (!validateInputs()) {
                 setLoading(false);
                 return;
             }
 
-            const response = await axiosInstance.post("/api/reviews/add", review);
-            console.log(response);
+            await axiosInstance.post("/api/reviews/add", review);
+
+            setSuccess("Review is added");
+
         } catch (error: unknown) {
             const errorMessage = error instanceof Error ? error.message : "Issue while submitting the review";
             setError(errorMessage);
@@ -157,14 +160,19 @@ const Reviews: React.FC = () => {
                             />
                         </div>
                     </div>
-                    <button
-                        className="bg-purple-secondary text-white py-2.5 px-4 rounded-md w-full mt-5 text-base font-normal transition hover:bg-opacity-90"
-                    >
+
+                    {loading && (
+                        <h1 className="text-green-500 text-xs">{success}</h1>
+                    )}
+
+                    <button className="bg-purple-secondary text-white py-2.5 px-4 rounded-md w-full mt-5 text-base font-normal transition hover:bg-opacity-90">
                         {loading ? "Submitting..." : "Submit"}
                     </button>
+
                     {error && (
                         <div className="text-xs text-red-600 w-full text-center mt-3">{error}</div>
                     )}
+
                 </form>
             </div>
             <span className="absolute bg-gradient-to-br from-purple-primary to-black-tertiary -translate-x-1/2 -translate-y-1/4 h-48 w-48 md:w-96 md:h-96 top-0 left-0 rounded-full blur-3xl z-0"></span>

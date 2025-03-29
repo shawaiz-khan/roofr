@@ -1,9 +1,9 @@
 export interface TestimonialTypes {
-    id: number,
+    _id: number,
     name: string,
     city: string,
     title: string,
-    testimonial: string,
+    review: string,
     stars: number,
 }
 

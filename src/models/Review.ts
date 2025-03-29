@@ -7,7 +7,7 @@ const ReviewSchema = new Schema<IReview>(
             type: String,
             required: true
         },
-        city: {
+        location: {
             type: String,
             required: true
         },
@@ -15,7 +15,7 @@ const ReviewSchema = new Schema<IReview>(
             type: String,
             required: true
         },
-        testimonial: {
+        review: {
             type: String,
             required: true
         },
