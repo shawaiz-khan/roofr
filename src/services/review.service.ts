@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IAddReview } from "@/controllers/review.controller";
+import Review from "@/models/Review";
 
-export const AddReview_Service = async ({ name, location, title, review, stars }: IAddReview) => {
+export const AddReview_Service = async (body: IAddReview) => {
     try {
-        console.log("Review data received:", { name, location, title, review, stars });
+        const newReview = new Review(body);
 
-        return { success: true, message: "Review added successfully" };
+        await newReview.save();
+
+        return { success: true, message: "Review added successfully", newReview };
     } catch (error: unknown) {
-        console.error("Error while adding the review:", error);
         throw new Error("Error while adding the review");
     }
 };
