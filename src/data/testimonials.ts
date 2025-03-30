@@ -4,7 +4,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 1,
         name: "James Carter",
-        city: "New York, USA",
+        location: "New York, USA",
         title: "Amazing Service!",
         review: "The team exceeded my expectations! Their attention to detail and dedication were truly impressive.",
         stars: 5,
@@ -12,7 +12,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 2,
         name: "Aisha Khan",
-        city: "Lahore, Pakistan",
+        location: "Lahore, Pakistan",
         title: "Highly Recommended!",
         review: "Fantastic experience! They delivered exactly what I needed on time. Will definitely work with them again.",
         stars: 4.5,
@@ -20,7 +20,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 3,
         name: "Liam O'Connor",
-        city: "Dublin, Ireland",
+        location: "Dublin, Ireland",
         title: "Professional and Efficient",
         review: "Very professional team. The quality of work was outstanding and the process was seamless.",
         stars: 4,
@@ -28,7 +28,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 4,
         name: "Sofia Alme_ida",
-        city: "São Paulo, Brazil",
+        location: "São Paulo, Brazil",
         title: "Exceptional Work!",
         review: "I am beyond happy with the results! Their expertise and creativity made a huge difference.",
         stars: 5,
@@ -36,7 +36,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 5,
         name: "Hiroshi Tanaka",
-        city: "Tokyo, Japan",
+        location: "Tokyo, Japan",
         title: "Great Experience!",
         review: "They understood my requirements perfectly and delivered outstanding results. Would love to collaborate again.",
         stars: 4.5,
@@ -44,7 +44,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 6,
         name: "Elena Petrova",
-        city: "Moscow, Russia",
+        location: "Moscow, Russia",
         title: "Outstanding Quality",
         review: "The attention to detail and quality of service were truly commendable. Highly satisfied!",
         stars: 4,
@@ -52,7 +52,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 7,
         name: "Mohamed Ali",
-        city: "Cairo, Egypt",
+        location: "Cairo, Egypt",
         title: "Best Decision Ever!",
         review: "The best service I have received! Their work ethic and professionalism are unmatched.",
         stars: 5,
@@ -60,7 +60,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 8,
         name: "Olivia Smith",
-        city: "London, UK",
+        location: "London, UK",
         title: "Superb Work!",
         review: "Absolutely delighted with the results! I would highly recommend them to anyone.",
         stars: 4.5,
@@ -68,7 +68,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 9,
         name: "Rajesh Gupta",
-        city: "Mumbai, India",
+        location: "Mumbai, India",
         title: "Top-notch Service!",
         review: "Very responsive and skilled team. They delivered beyond my expectations.",
         stars: 4,
@@ -76,7 +76,7 @@ export const testimonials: TestimonialTypes[] = [
     {
         _id: 10,
         name: "Chloe Dubois",
-        city: "Paris, France",
+        location: "Paris, France",
         title: "Impressive Results!",
         review: "The quality and dedication they put into their work is incredible. Definitely a five-star experience!",
         stars: 5,

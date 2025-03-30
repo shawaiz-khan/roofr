@@ -1,7 +1,7 @@
 export interface TestimonialTypes {
     _id: number,
     name: string,
-    city: string,
+    location: string,
     title: string,
     review: string,
     stars: number,

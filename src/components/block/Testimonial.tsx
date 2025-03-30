@@ -88,7 +88,7 @@ const Testimonials: React.FC = () => {
                             <TestimonialBlock
                                 key={testimonial._id}
                                 name={testimonial.name}
-                                city={testimonial.city}
+                                city={testimonial.location}
                                 title={testimonial.title}
                                 testimonial={testimonial.review}
                                 stars={testimonial.stars}
