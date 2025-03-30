@@ -2,6 +2,7 @@
 
 import useUser from "@/hooks/useUser";
 import axiosInstance from "@/lib/axios";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 export interface INewReview {
@@ -14,6 +15,7 @@ export interface INewReview {
 
 const Reviews: React.FC = () => {
     const { user } = useUser();
+    const router = useRouter();
 
     const [review, setReview] = useState<INewReview>({
         name: "",
@@ -71,6 +73,7 @@ const Reviews: React.FC = () => {
             await axiosInstance.post("/api/reviews/add", review);
 
             setSuccess("Review is added");
+            router.push("/");
 
         } catch (error: unknown) {
             const errorMessage = error instanceof Error ? error.message : "Issue while submitting the review";
@@ -161,13 +164,14 @@ const Reviews: React.FC = () => {
                         </div>
                     </div>
 
-                    {loading && (
-                        <h1 className="text-green-500 text-xs">{success}</h1>
-                    )}
 
                     <button className="bg-purple-secondary text-white py-2.5 px-4 rounded-md w-full mt-5 text-base font-normal transition hover:bg-opacity-90">
                         {loading ? "Submitting..." : "Submit"}
                     </button>
+
+                    {loading && (
+                        <h1 className="text-xs text-green-600 w-full text-center mt-3">{success}</h1>
+                    )}
 
                     {error && (
                         <div className="text-xs text-red-600 w-full text-center mt-3">{error}</div>
