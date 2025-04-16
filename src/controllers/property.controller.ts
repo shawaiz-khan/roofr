@@ -1,9 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getAccessToken } from "@/helpers/getCookies";
 import { verifyJwt } from "@/helpers/jwtHelpers";
 import PropertyModel from "@/models/Property";
+import { fetchProperties } from "@/services/property.service";
 import { StatusCodes } from "http-status-codes";
 import { NextRequest, NextResponse } from "next/server";
+
+export const Get_Property = async (request: NextRequest) => {
+    try {
+        const data = await fetchProperties();
+        return NextResponse.json({
+            status: StatusCodes.OK,
+            message: "Properties are fetched",
+            data
+        });
+    } catch (error: any) {
+        return NextResponse.json({
+            status: StatusCodes.INTERNAL_SERVER_ERROR,
+            message: "Internal server error"
+        })
+    }
+}
 
 export const Add_Property = async (request: NextRequest, propertyData: any) => {
     try {
