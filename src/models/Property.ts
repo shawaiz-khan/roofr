@@ -43,56 +43,6 @@ const PropertySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    pricing: {
-        additionalFees: {
-            transferTax: {
-                type: Number,
-                required: true
-            },
-            legalFees: {
-                type: Number,
-                required: true
-            },
-            homeInspection: {
-                type: Number,
-                required: true
-            },
-            propertyInsurance: {
-                type: Number,
-                required: true
-            }
-        },
-        monthlyCosts: {
-            propertyTaxes: {
-                type: Number,
-                required: true
-            },
-            homeOwnerAssociationFees: {
-                type: Number,
-                required: true
-            }
-        },
-        totalInitialCosts: {
-            listingPrice: {
-                type: Number,
-                required: true
-            },
-            downPayment: {
-                type: Number,
-                required: true
-            }
-        },
-        monthlyExpenses: {
-            propertyInsurance: {
-                type: Number,
-                required: true
-            },
-            mortgagePayment: {
-                type: Number,
-                required: true
-            }
-        }
-    },
     totalPrice: {
         type: Number,
         required: true
