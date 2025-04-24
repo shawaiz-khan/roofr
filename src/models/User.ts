@@ -19,7 +19,7 @@ const UserSchema = new Schema<IUser>(
         },
         userType: {
             type: String,
-            enum: ["Buyer", "Seller", "Agent", "Investor"],
+            enum: ["Buyer", "Seller", "Admin"],
             required: true,
         },
         password: {
