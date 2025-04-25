@@ -186,7 +186,7 @@ export const getUser = async (request: NextRequest) => {
             );
         }
 
-        const user = await User.findOne({ email: userData.email }).select("name location userType");
+        const user = await User.findOne({ email: userData.email }).select("name location userType _id");
 
         if (!user) {
             return NextResponse.json(

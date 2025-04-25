@@ -7,12 +7,13 @@ import useAuth from "@/hooks/useAuth";
 import { User } from "@/services/auth.service";
 
 const UserContext = createContext<UserContextType>({
-    user: { name: "", location: "", userType: "" },
+    user: { _id: "", name: "", location: "", userType: "" },
     setUser: () => { },
 });
 
 const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [user, setUser] = useState({
+        _id: "",
         name: "",
         location: "",
         userType: "",
@@ -41,6 +42,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             getUser();
         } else {
             setUser({
+                _id: "",
                 name: "",
                 location: "",
                 userType: "",

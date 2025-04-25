@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
 import React, { useState } from "react";
+import useUser from "@/hooks/useUser";
+import axiosInstance from "@/lib/axios";
 
 interface IPropertyForm {
+    owner: string;
     title: string;
     description: string;
     location: string;
@@ -18,7 +22,10 @@ interface IPropertyForm {
 }
 
 const PostProperty: React.FC = () => {
+    const { user } = useUser();
+
     const [formData, setFormData] = useState<IPropertyForm>({
+        owner: user?._id || "",
         title: "",
         description: "",
         location: "",
@@ -36,23 +43,82 @@ const PostProperty: React.FC = () => {
     ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
-            ...prev,
-            [name]: name === "bedrooms" || name === "bathrooms" || name === "area" || name === "totalPrice"
-                ? Number(value)
-                : value,
+            ...prev, [name]: name === "bedrooms" || name === "bathrooms" || name === "area" || name === "totalPrice" ? Number(value) : value,
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!user?._id) {
+            alert("User not authenticated.");
+            return;
+        }
+
+        const {
+            title,
+            description,
+            location,
+            bedrooms,
+            bathrooms,
+            area,
+            keyFeatures,
+            category,
+            totalPrice,
+            images
+        } = formData;
+
+        if (
+            !title.trim() ||
+            !description.trim() ||
+            !location.trim() ||
+            !category.trim() ||
+            !keyFeatures.trim()
+        ) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        if (
+            bedrooms <= 0 ||
+            bathrooms <= 0 ||
+            area <= 0 ||
+            totalPrice <= 0
+        ) {
+            alert("Bedrooms, bathrooms, area, and price must be greater than 0.");
+            return;
+        }
 
         const payload = {
             ...formData,
-            keyFeatures: formData.keyFeatures.split(",").map((feature) => feature.trim()),
-            images: formData.images.split(",").map((url) => url.trim()),
+            owner: user._id,
+            images: images.split(',').map((img) => img.trim()),
+            keyFeatures: keyFeatures.split(',').map((feature) => feature.trim()),
         };
 
-        console.log("Submitting Property:", payload);
+        try {
+            const res = await axiosInstance.post("api/properties/add", payload) as any;
+            console.log(payload);
+
+            setFormData({
+                owner: user._id,
+                title: "",
+                description: "",
+                location: "",
+                bedrooms: 0,
+                bathrooms: 0,
+                area: 0,
+                keyFeatures: "",
+                category: "",
+                totalPrice: 0,
+                images: "",
+            });
+
+            console.log(res.data.property);
+        } catch (error) {
+            console.error("Submission failed:", error);
+            alert("Something went wrong while submitting the property.");
+        }
     };
 
     return (

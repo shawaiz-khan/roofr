@@ -1,4 +1,5 @@
 export interface UserType {
+    _id: string;
     name: string;
     location: string;
     userType: string;
