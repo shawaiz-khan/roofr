@@ -2,9 +2,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import estates from "@/data/estates";
+// import estates from "@/data/estates";
 import { motion } from "framer-motion";
 import EstateBlock from "./EstateBlock";
+import axiosInstance from "@/lib/axios";
+import { useRouter } from "next/navigation";
 
 interface EstateProps {
     filters?: { [key: string]: string | number };
@@ -13,12 +15,21 @@ interface EstateProps {
 const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [estatesPerPage, setEstatesPerPage] = useState(3);
+    const [estates, setEstates] = useState<any[]>([]);
+
+    const router = useRouter();
+
+    const fetchEstates = async () => {
+        const res = await axiosInstance.get("/api/properties/fetch") as any;
+        setEstates(res.data.data);
+    }
 
     useEffect(() => {
         const handleResize = () => {
             setEstatesPerPage(window.innerWidth <= 768 ? 1 : 3);
         };
         handleResize();
+        fetchEstates();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
@@ -66,7 +77,10 @@ const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
                     <span className="text-sm hidden md:block md:text-md font-medium">
                         {currentPage + 1} <span className="text-gray-quaternary">of {totalPages}</span>
                     </span>
-                    <button className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden">
+                    <button
+                        className="bg-black-secondary border border-black-tertiary p-3 text-sm rounded-md md:hidden"
+                        onClick={() => router.push("/properties")}
+                    >
                         View All Properties
                     </button>
                     <div className="flex items-center gap-2">
