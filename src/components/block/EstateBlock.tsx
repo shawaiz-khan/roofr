@@ -1,12 +1,13 @@
 import EstateType from "@/types/estate.types";
 import Image from "next/image";
 import { Bath, BedDouble, Building2 } from "lucide-react";
+import estate_placeholder from "@/assets/images/es_1.jpg";
 
 const EstateBlock: React.FC<{ estate: EstateType }> = ({ estate }) => {
     return (
         <div className="border border-black-tertiary p-5 gap-5 flex flex-col justify-start rounded-lg">
             <Image
-                src={estate.images[0]}
+                src={estate_placeholder}
                 alt="Estate Image"
                 width={400}
                 height={250}

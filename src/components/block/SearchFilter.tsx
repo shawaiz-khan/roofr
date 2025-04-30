@@ -3,9 +3,9 @@
 
 import { MapPin, Home, Ruler, DollarSign, Search } from "lucide-react";
 import { FilterItemTypes } from "@/types/search.filters.types";
-import estates from "@/data/estates";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EstateContainer from "./EstateContainer";
+import axiosInstance from "@/lib/axios";
 
 export const FilterItems: FilterItemTypes[] = [
     { title: "Location", icon: <MapPin size={20} />, key: "location" },
@@ -16,6 +16,16 @@ export const FilterItems: FilterItemTypes[] = [
 
 const SearchFilter: React.FC = () => {
     const [filters, setFilters] = useState<{ [key: string]: string | number }>({});
+    const [estates, setEstates] = useState<any[]>([]);
+
+    const fetchEstates = async () => {
+        const res = await axiosInstance.get("/api/properties/fetch") as any;
+        setEstates(res.data.data);
+    }
+
+    useEffect(() => {
+        fetchEstates();
+    }, []);
 
     const uniqueValues = (key: string) => {
         return [...new Set(estates.map((estate: any) => estate[key]))];
