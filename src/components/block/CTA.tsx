@@ -1,8 +1,13 @@
+"use client"
+
 import bottomImg from "@/assets/svg/cta_top.svg";
 import topImg from "@/assets/svg/cta_bottom.svg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const CTA: React.FC = () => {
+    const router = useRouter();
+
     return (
         <main className="relative overflow-hidden min-h-60 flex items-center justify-center px-5 py-10 text-white border-t border-black-tertiary">
             <Image
@@ -29,7 +34,10 @@ const CTA: React.FC = () => {
                         personalized assistance.
                     </p>
                 </div>
-                <button className="bg-purple-primary w-full md:w-auto max-h-fit px-6 py-3 flex justify-center items-center rounded-md font-medium">
+                <button
+                    className="bg-purple-primary w-full md:w-auto max-h-fit px-6 py-3 flex justify-center items-center rounded-md font-medium"
+                    onClick={() => router.push("/properties")}
+                >
                     Explore Properties
                 </button>
             </div>

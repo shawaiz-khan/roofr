@@ -6,6 +6,7 @@ import stars from "@/assets/svg/Stars.svg";
 import React, { useState } from "react";
 import useUser from "@/hooks/useUser";
 import axiosInstance from "@/lib/axios";
+import { useRouter } from "next/navigation";
 
 interface IPropertyForm {
     owner: string;
@@ -22,6 +23,7 @@ interface IPropertyForm {
 }
 
 const PostProperty: React.FC = () => {
+    const router = useRouter();
     const { user } = useUser();
 
     const [formData, setFormData] = useState<IPropertyForm>({
@@ -118,6 +120,8 @@ const PostProperty: React.FC = () => {
         } catch (error) {
             console.error("Submission failed:", error);
             alert("Something went wrong while submitting the property.");
+        } finally {
+            router.push("/properties");
         }
     };
 
