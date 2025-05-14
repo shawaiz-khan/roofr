@@ -6,7 +6,7 @@ import AchievementBlock from '@/components/block/AchievementBlock';
 import CTA from '@/components/block/CTA';
 import ExperienceBlock from '@/components/block/ExperienceBlock';
 import RatingBlock from '@/components/block/RatingBlock';
-import TeamBlock from '@/components/block/TeamBlock';
+// import TeamBlock from '@/components/block/TeamBlock';
 import Image from 'next/image';
 
 const About: React.FC = () => {
@@ -92,7 +92,7 @@ const About: React.FC = () => {
                     <AchievementBlock />
                 </div>
                 {/* Developer  */}
-                <div className='w-full flex flex-col gap-10 md:gap-16'>
+                {/* <div className='w-full flex flex-col gap-10 md:gap-16'>
                     <div className="flex flex-col gap-2">
                         <Image src={stars} alt="What our client says" priority />
                         <h1 className="text-2xl">Meet the Developer</h1>
@@ -102,7 +102,7 @@ const About: React.FC = () => {
                         </p>
                     </div>
                     <TeamBlock />
-                </div>
+                </div> */}
             </div>
             {/* CTA  */}
             <CTA />

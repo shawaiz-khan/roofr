@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import heroImg from '@/assets/images/hero.jpg';
 import RoundTextSvg from "@/components/ui/RoundTextSvg";
@@ -9,8 +11,11 @@ import CTA from "@/components/block/CTA";
 import EstateContainer from "@/components/block/EstateContainer";
 import Image from "next/image";
 import stars from "@/assets/svg/Stars.svg";
+import { useRouter } from 'next/navigation';
 
 const Home: React.FC = () => {
+  const router = useRouter();
+
   return (
     <main className="min-h-screen bg-black-primary text-text-light flex flex-col gap-10 md:gap-0">
       <div className="p-5 md:p-0 flex flex-col gap-10 md:gap-0">
@@ -33,7 +38,12 @@ const Home: React.FC = () => {
             </div>
             <div className="grid grid-rows-2 gap-3 w-full md:w-3/4 md:grid-rows-1 md:grid-cols-2">
               <button className="bg-black-primary border border-black-tertiary py-3 w-full rounded-md">Learn More</button>
-              <button className="bg-purple-primary border border-purple-secondary py-3 w-full rounded-md">Browse Properties</button>
+              <button
+                className="bg-purple-primary border border-purple-secondary py-3 w-full rounded-md"
+                onClick={() => router.push('/properties')}
+              >
+                Browse Properties
+              </button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               <RatingBlock count={200} text="Happy Customers" />
