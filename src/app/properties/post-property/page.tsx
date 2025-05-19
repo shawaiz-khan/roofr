@@ -39,6 +39,7 @@ const PostProperty: React.FC = () => {
         totalPrice: 0,
         images: "",
     });
+    const [imageFile, setImageFile] = useState<File[]>([]);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -122,6 +123,12 @@ const PostProperty: React.FC = () => {
             alert("Something went wrong while submitting the property.");
         } finally {
             router.push("/properties");
+        }
+    };
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setImageFile(Array.from(e.target.files));
         }
     };
 
@@ -249,14 +256,15 @@ const PostProperty: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="images" className="text-sm">Image URLs (comma separated)</label>
+                        <label htmlFor="imageUpload" className="text-sm mt-2">Upload Images</label>
                         <input
-                            type="text"
-                            name="images"
-                            value={formData.images}
-                            onChange={handleChange}
-                            placeholder="https://img1.jpg, https://img2.jpg"
-                            className="bg-black-secondary border border-black-tertiary text-gray-tertiary w-full py-3 px-4 rounded-md placeholder:text-sm placeholder:text-gray-primary outline-none"
+                            type="file"
+                            id="imageUpload"
+                            name="imageUpload"
+                            multiple
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="text-sm text-gray-tertiary"
                         />
                     </div>
 
