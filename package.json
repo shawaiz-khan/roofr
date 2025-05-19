@@ -12,6 +12,7 @@
     "axios": "^1.7.9",
     "axios-auth-refresh": "^3.3.6",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.6.1",
     "cookies-next": "^5.1.0",
     "framer-motion": "^12.1.0",
     "http-status-codes": "^2.3.0",
