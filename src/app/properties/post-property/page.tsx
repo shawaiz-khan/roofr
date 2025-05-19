@@ -39,7 +39,7 @@ const PostProperty: React.FC = () => {
         totalPrice: 0,
         images: "",
     });
-    const [imageFile, setImageFile] = useSatate<File[]>([]);
+    const [imageFile, setImageFile] = useState<File[]>([]);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -128,7 +128,7 @@ const PostProperty: React.FC = () => {
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            setImageFiles(Array.from(e.target.files));
+            setImageFile(Array.from(e.target.files));
         }
     };
 
