@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -39,15 +40,27 @@ const PostProperty: React.FC = () => {
         totalPrice: 0,
         images: "",
     });
-    const [imageFile, setImageFile] = useState<File[]>([]);
 
-    const handleChange = (
+    const handleChange = async (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev, [name]: name === "bedrooms" || name === "bathrooms" || name === "area" || name === "totalPrice" ? Number(value) : value,
-        }));
+        const { name, value, files } = e.target as HTMLInputElement;
+
+        if (name === "images" && files && files[0]) {
+            const base64 = await convertToBase64(files[0]);
+            setFormData((prev) => ({ ...prev, images: base64 }));
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                [name]:
+                    name === "bedrooms" ||
+                        name === "bathrooms" ||
+                        name === "area" ||
+                        name === "totalPrice"
+                        ? Number(value)
+                        : value,
+            }));
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -92,10 +105,11 @@ const PostProperty: React.FC = () => {
             return;
         }
 
+        console.log(formData);
+
         const payload = {
             ...formData,
             owner: user._id,
-            images: images.split(',').map((img) => img.trim()),
             keyFeatures: keyFeatures.split(',').map((feature) => feature.trim()),
         };
 
@@ -126,11 +140,13 @@ const PostProperty: React.FC = () => {
         }
     };
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setImageFile(Array.from(e.target.files));
-        }
-    };
+    const convertToBase64 = (file: File): Promise<string> =>
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = (error) => reject(error);
+        });
 
     return (
         <main className="min-h-screen bg-black-primary text-text-light">
@@ -256,14 +272,13 @@ const PostProperty: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="imageUpload" className="text-sm mt-2">Upload Images</label>
+                        <label htmlFor="images" className="text-sm mt-2">Upload Images</label>
                         <input
                             type="file"
-                            id="imageUpload"
-                            name="imageUpload"
-                            multiple
+                            id="images"
+                            name="images"
                             accept="image/*"
-                            onChange={handleImageChange}
+                            onChange={handleChange}
                             className="text-sm text-gray-tertiary"
                         />
                     </div>

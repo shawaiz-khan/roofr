@@ -7,7 +7,7 @@ const EstateBlock: React.FC<{ estate: EstateType }> = ({ estate }) => {
     return (
         <div className="border border-black-tertiary p-5 gap-5 flex flex-col justify-start rounded-lg">
             <Image
-                src={estate_placeholder}
+                src={estate.image || estate_placeholder}
                 alt="Estate Image"
                 width={400}
                 height={250}

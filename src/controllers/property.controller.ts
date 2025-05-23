@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getAccessToken } from "@/helpers/getCookies";
 import { verifyJwt } from "@/helpers/jwtHelpers";
+import { uploadImageToCloudinary } from "@/lib/imageUpload";
 import PropertyModel from "@/models/Property";
 import { fetchProperties } from "@/services/property.service";
 import { StatusCodes } from "http-status-codes";
@@ -52,8 +53,15 @@ export const Add_Property = async (request: NextRequest, propertyData: any) => {
             });
         }
 
+        const { images } = propertyData;
+        console.log("images", images);
+
+        const imageUrl = await uploadImageToCloudinary(images);
+        console.log("imageUrl", imageUrl);
+
         const newProperty = new PropertyModel({
-            ...propertyData
+            ...propertyData,
+            image: imageUrl,
         });
 
         await newProperty.save();
