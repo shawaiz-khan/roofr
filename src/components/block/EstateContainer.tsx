@@ -21,6 +21,7 @@ const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
 
     const fetchEstates = async () => {
         const res = await axiosInstance.get("/api/properties/fetch") as any;
+        console.log(res.data.data);
         setEstates(res.data.data);
     }
 

@@ -2,7 +2,8 @@ import { StaticImageData } from "next/image";
 
 export default interface EstateTypes {
     title: string;
-    images: string[] | StaticImageData[];
+    images?: string[] | StaticImageData[] | string | StaticImageData;
+    image?: string | StaticImageData;
     description: string;
     location: string;
     bedrooms: number;
