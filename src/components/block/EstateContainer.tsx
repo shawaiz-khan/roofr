@@ -2,14 +2,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// import estates from "@/data/estates";
 import { motion } from "framer-motion";
 import EstateBlock from "./EstateBlock";
 import axiosInstance from "@/lib/axios";
 import { useRouter } from "next/navigation";
 
 interface EstateProps {
-    filters?: { [key: string]: string | number };
+    filters?: { [key: string]: string | number | { min: number; max: number } };
 }
 
 const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
@@ -20,10 +19,9 @@ const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
     const router = useRouter();
 
     const fetchEstates = async () => {
-        const res = await axiosInstance.get("/api/properties/fetch") as any;
-        console.log(res.data.data);
-        setEstates(res.data.data);
-    }
+        const res = await axiosInstance.get("/api/properties/fetch");
+        setEstates(res.data.data) as any;
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -37,7 +35,12 @@ const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
 
     const filteredData = estates.filter((estate: any) => {
         return Object.entries(filters || {}).every(([key, value]) => {
-            return value ? estate[key] === value : true;
+            if (key === "priceRange" && typeof value === "object") {
+                const { min, max } = value;
+                return estate.totalPrice >= min && estate.totalPrice <= max;
+            } else {
+                return value ? estate[key] === value : true;
+            }
         });
     });
 
