@@ -1,21 +1,20 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/db";
 import { Delete_Property } from "@/controllers/property.controller";
 
 connectDB();
 
 export async function POST(
-    req: NextRequest,
-    { params }: { params: { id: string } }
-): Promise<Response> {
-
-    const id = params.id;
+    request: NextRequest,
+    context: { params: Promise<{ id: string }> }
+) {
+    const { id } = await context.params;
 
     if (!id) {
-        return new Response(JSON.stringify({ message: "Missing property ID" }), {
-            status: 400,
-            headers: { "Content-Type": "application/json" },
-        });
+        return NextResponse.json(
+            { message: "Missing property ID" },
+            { status: 400 }
+        );
     }
 
     return await Delete_Property(id);
