@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -6,21 +5,27 @@ import { motion } from "framer-motion";
 import EstateBlock from "./EstateBlock";
 import axiosInstance from "@/lib/axios";
 import { useRouter } from "next/navigation";
+import EstateTypes from "@/types/estate.types";
 
 interface EstateProps {
     filters?: { [key: string]: string | number | { min: number; max: number } };
 }
 
+interface FetchEstatesResponse {
+    data: EstateTypes[];
+    success: boolean;
+}
+
 const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [estatesPerPage, setEstatesPerPage] = useState(3);
-    const [estates, setEstates] = useState<any[]>([]);
+    const [estates, setEstates] = useState<EstateTypes[]>([]);
 
     const router = useRouter();
 
     const fetchEstates = async () => {
-        const res = await axiosInstance.get("/api/properties/fetch");
-        setEstates(res.data.data) as any;
+        const res = await axiosInstance.get<FetchEstatesResponse>("/api/properties/fetch");
+        setEstates(res.data.data);
     };
 
     useEffect(() => {
@@ -33,13 +38,13 @@ const EstateContainer: React.FC<EstateProps> = ({ filters }) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const filteredData = estates.filter((estate: any) => {
+    const filteredData = estates.filter((estate) => {
         return Object.entries(filters || {}).every(([key, value]) => {
-            if (key === "priceRange" && typeof value === "object") {
-                const { min, max } = value;
+            if (key === "priceRange" && typeof value === "object" && value !== null) {
+                const { min, max } = value as { min: number; max: number };
                 return estate.totalPrice >= min && estate.totalPrice <= max;
             } else {
-                return value ? estate[key] === value : true;
+                return value ? estate[key as keyof EstateTypes] === value : true;
             }
         });
     });

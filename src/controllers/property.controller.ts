@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getAccessToken } from "@/helpers/getCookies";
 import { verifyJwt } from "@/helpers/jwtHelpers";
+import useUser from "@/hooks/useUser";
 import { uploadImageToCloudinary } from "@/lib/imageUpload";
 import PropertyModel from "@/models/Property";
 import { fetchProperties } from "@/services/property.service";
@@ -82,3 +83,38 @@ export const Add_Property = async (request: NextRequest, propertyData: any) => {
         })
     }
 }
+
+export const Delete_Property = async (id: string | number) => {
+    try {
+        const propertyToDelete = await PropertyModel.findById(id);
+
+        if (!propertyToDelete) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Property not found",
+                },
+                { status: StatusCodes.NOT_FOUND }
+            );
+        }
+
+        await PropertyModel.findByIdAndDelete(id);
+
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Property deleted successfully",
+                data: propertyToDelete,
+            },
+            { status: StatusCodes.OK }
+        );
+    } catch (err: any) {
+        return NextResponse.json(
+            {
+                success: false,
+                message: err?.message || "Internal Server Error",
+            },
+            { status: StatusCodes.INTERNAL_SERVER_ERROR }
+        );
+    }
+};
