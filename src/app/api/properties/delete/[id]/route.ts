@@ -6,8 +6,16 @@ connectDB();
 
 export async function POST(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: { id: string } }
 ) {
-    const { id } = params;
+    const { id } = context.params;
+
+    if (!id) {
+        return new Response(JSON.stringify({ message: "Missing ID" }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" },
+        });
+    }
+
     return await Delete_Property(id);
 }
