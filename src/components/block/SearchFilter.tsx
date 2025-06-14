@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { MapPin, Home, Ruler, DollarSign, Search } from "lucide-react";
@@ -7,6 +6,7 @@ import { useEffect, useState } from "react";
 import EstateContainer from "./EstateContainer";
 import axiosInstance from "@/lib/axios";
 import { priceRanges } from "@/constants/priceFilters";
+import EstateTypes from "@/types/estate.types";
 
 export const FilterItems: FilterItemTypes[] = [
     { title: "Location", icon: <MapPin size={20} />, key: "location" },
@@ -19,14 +19,19 @@ type FilterState = {
     [key: string]: string | number | { min: number; max: number };
 };
 
+interface FetchEstatesResponse {
+    data: EstateTypes[];
+    success: boolean;
+}
+
 const SearchFilter: React.FC = () => {
     const [filters, setFilters] = useState<FilterState>({});
-    const [estates, setEstates] = useState<any[]>([]);
+    const [estates, setEstates] = useState<EstateTypes[]>([]);
 
     const fetchEstates = async () => {
         try {
-            const res = await axiosInstance.get("/api/properties/fetch");
-            setEstates(res.data.data) as any;
+            const res = await axiosInstance.get<FetchEstatesResponse>("/api/properties/fetch");
+            setEstates(res.data.data);
         } catch (err) {
             console.error("Failed to fetch estates", err);
         }
@@ -36,9 +41,9 @@ const SearchFilter: React.FC = () => {
         fetchEstates();
     }, []);
 
-    const uniqueValues = (key: string): string[] => {
-        const values = estates.map((estate: any) => estate[key]);
-        return [...new Set(values)].filter(Boolean);
+    const uniqueValues = (key: keyof EstateTypes): string[] => {
+        const values = estates.map((estate) => estate[key]);
+        return [...new Set(values)].filter(Boolean) as string[];
     };
 
     const handleFilterChange = (key: string, value: string | number | { min: number; max: number }) => {
@@ -95,7 +100,7 @@ const SearchFilter: React.FC = () => {
                                 onChange={(e) => handleFilterChange(item.key, e.target.value)}
                             >
                                 <option value="">{`All ${item.title}`}</option>
-                                {uniqueValues(item.key).map((value) => (
+                                {uniqueValues(item.key as keyof EstateTypes).map((value) => (
                                     <option key={value} value={value}>
                                         {value}
                                     </option>
